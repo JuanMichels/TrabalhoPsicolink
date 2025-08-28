@@ -1,0 +1,65 @@
+unit UnFormPsicolink;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Imaging.pngimage,
+  Vcl.WinXPanels, Vcl.StdCtrls, Vcl.Mask, psicolink2, UnDMPrincipal, Data.DB;
+
+type
+  Tformlogin = class(TForm)
+    painel_superior: TPanel;
+    painel_inferior: TPanel;
+    sub_painel: TPanel;
+    Image1: TImage;
+    menu_central: TPanel;
+    Prosseguir: TPanel;
+    login: TPanel;
+    senha: TPanel;
+    senhaTedit: TEdit;
+    Editcpf: TMaskEdit;
+    MaskEdit1: TMaskEdit;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    DataSource: TDataSource;
+    procedure ProsseguirClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  formlogin: Tformlogin;
+
+implementation
+
+{$R *.dfm}
+
+procedure Tformlogin.ProsseguirClick(Sender: TObject);
+var
+  Existe: Boolean;
+begin
+try
+DMPrincipalP.conectarbanco;
+  DMPrincipalP := TDMPrincipalP.create(Self);
+  DMPrincipalP.FDQuery.Close;
+  DMPrincipalP.FDQuery.SQL.Clear;
+  DMPrincipalP.FDQuery.SQL.Add('SELECT COUNT(*) FROM pessoa WHERE cpf = :cpf');
+  DMPrincipalP.FDQuery.ParamByName('cpf').AsString := trim(Editcpf.Text);
+  DMPrincipalP.FDQuery.open;
+  selecao_profissional_paciente.showmodal;
+  formlogin.CloseModal;
+  Existe := DMPrincipalP.FDQuery.fields[0].AsInteger > 0;
+
+
+    selecao_profissional_paciente.ShowModal
+
+except
+    ShowMessage('CPF inválido ou não encontrado!');
+end;
+end;
+
+end.

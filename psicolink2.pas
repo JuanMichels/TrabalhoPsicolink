@@ -1,0 +1,43 @@
+unit psicolink2;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls,
+  Vcl.StdCtrls, Vcl.Mask, Data.DB, UnDMPrincipal;
+
+type
+  Tselecao_profissional_paciente = class(TForm)
+    painel_superior: TPanel;
+    sub_painel: TPanel;
+    menu_central: TPanel;
+    painel_inferior: TPanel;
+    Image1: TImage;
+    profssionalbt: TPanel;
+    pacinetebt: TPanel;
+    Label1: TLabel;
+    procedure pacinetebtClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  selecao_profissional_paciente: Tselecao_profissional_paciente;
+
+implementation
+
+{$R *.dfm}
+
+procedure Tselecao_profissional_paciente.pacinetebtClick(Sender: TObject);
+
+// LFormLogin: TFormLogin;
+begin
+  // LFormLogin := TFormlogin.create(self);
+  // LFormLogin.showmodal;
+end;
+
+end.

@@ -1,0 +1,9 @@
+object DataModule1: TDataModule1
+  Height = 750
+  Width = 1000
+  PixelsPerInch = 120
+  object FDConnection1: TFDConnection
+    Left = 408
+    Top = 112
+  end
+end

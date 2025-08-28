@@ -1,0 +1,36 @@
+unit psicolink;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Imaging.pngimage,
+  Vcl.WinXPanels, Vcl.StdCtrls, Vcl.Mask;
+
+type
+  Ttela_login = class(TForm)
+    painel_superior: TPanel;
+    painel_inferior: TPanel;
+    sub_painel: TPanel;
+    Image1: TImage;
+    menu_central: TPanel;
+    Prosseguir: TPanel;
+    login: TPanel;
+    senha: TPanel;
+    senhaTedit: TEdit;
+    MaskEdit2: TMaskEdit;
+    MaskEdit1: TMaskEdit;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  tela_login: Ttela_login;
+
+implementation
+
+{$R *.dfm}
+
+end.

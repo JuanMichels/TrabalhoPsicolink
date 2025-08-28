@@ -1,0 +1,24 @@
+object DMPrincipalP: TDMPrincipalP
+  Height = 750
+  Width = 1000
+  PixelsPerInch = 120
+  object FDConnection: TFDConnection
+    Params.Strings = (
+      'Database=Psicolink'
+      'User_Name=postgres'
+      'Password=Juan2006'
+      'DriverID=PG')
+    Left = 376
+    Top = 113
+  end
+  object FDPhysPgDriverLink: TFDPhysPgDriverLink
+    VendorLib = 'C:\Program Files\PostgreSQL\psqlODBC\bin\libpq.dll'
+    Left = 520
+    Top = 112
+  end
+  object FDQuery: TFDQuery
+    Connection = FDConnection
+    Left = 704
+    Top = 184
+  end
+end

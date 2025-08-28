@@ -1,0 +1,19 @@
+program Project1;
+
+uses
+  Vcl.Forms,
+  psicolink in 'psicolink.pas' {tela_login},
+  psicolink2 in 'psicolink2.pas' {selecao_profissional_paciente},
+  UnDMPrincipa in 'UnDMPrincipa.pas' {DataModule1: TDataModule};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(Ttela_login, tela_login);
+  Application.CreateForm(Tselecao_profissional_paciente, selecao_profissional_paciente);
+  Application.CreateForm(Tselecao_profissional_paciente, selecao_profissional_paciente);
+  Application.CreateForm(TDataModule1, DataModule1);
+  Application.Run;
+end.
