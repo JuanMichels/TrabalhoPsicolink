@@ -4,7 +4,7 @@ object DMPrincipalP: TDMPrincipalP
   PixelsPerInch = 120
   object FDConnection: TFDConnection
     Params.Strings = (
-      'Database=Psicolink'
+      'Database=PSICOLINK'
       'User_Name=postgres'
       'Password=Juan2006'
       'DriverID=PG')
@@ -12,7 +12,7 @@ object DMPrincipalP: TDMPrincipalP
     Top = 113
   end
   object FDPhysPgDriverLink: TFDPhysPgDriverLink
-    VendorLib = 'C:\Program Files\PostgreSQL\psqlODBC\bin\libpq.dll'
+    VendorLib = 'C:\Program Files (x86)\PostgreSQL\psqlODBC\bin\libpq.dll'
     Left = 520
     Top = 112
   end
