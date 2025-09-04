@@ -15,7 +15,7 @@ begin
   Application.CreateForm(Tformlogin, formlogin);
   Application.CreateForm(Tselecao_profissional_paciente, selecao_profissional_paciente);
   Application.CreateForm(Tselecao_profissional_paciente, selecao_profissional_paciente);
-  Application.CreateForm(TDMPrincipalP, DMPrincipalP);
   Application.CreateForm(Tcadastro, cadastro);
+  Application.CreateForm(TDMPrincipalP, DMPrincipalP);
   Application.Run;
 end.

@@ -18,9 +18,8 @@ type
     Prosseguir: TPanel;
     login: TPanel;
     senha: TPanel;
-    senhaTedit: TEdit;
     Editcpf: TMaskEdit;
-    MaskEdit1: TMaskEdit;
+    SenhaMask: TMaskEdit;
     Edit1: TEdit;
     Edit2: TEdit;
     DataSource: TDataSource;
@@ -42,17 +41,27 @@ procedure Tformlogin.ProsseguirClick(Sender: TObject);
 
 begin
 
-DMPrincipalP.conectarbanco;
+  DMPrincipalP.conectarbanco;
   DMPrincipalP := TDMPrincipalP.create(Self);
   DMPrincipalP.FDQuery.Close;
   DMPrincipalP.FDQuery.SQL.Clear;
-  DMPrincipalP.FDQuery.SQL.Add('SELECT COUNT(*) FROM pessoa WHERE cpf = :cpf');
+  DMPrincipalP.FDQuery.SQL.Add
+    ('SELECT p.cpf, t.senha from pessoa p Join password t ON p.ID = fk_id_pessoa');
   DMPrincipalP.FDQuery.ParamByName('cpf').AsString := trim(Editcpf.Text);
+  DMPrincipalP.FDQuery.ParamByName('password').AsString := Trim(SenhaMask.Text);
   DMPrincipalP.FDQuery.open;
-  selecao_profissional_paciente.showmodal;
 
+  if DMPrincipalP.FDQuery.FieldByName('qtd').AsInteger > 0 then
+  begin
+    ShowMessage('Login realizado com sucesso!');
+    selecao_profissional_paciente.ShowModal;
+  end
+  else
+  begin
+    ShowMessage('CPF ou senha inválidos!');
+  end;
 
-
+  selecao_profissional_paciente.ShowModal;
 end;
 
 end.

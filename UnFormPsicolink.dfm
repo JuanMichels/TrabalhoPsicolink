@@ -19,7 +19,7 @@ object formlogin: Tformlogin
     Width = 624
     Height = 97
     Align = alTop
-    Color = clSeagreen
+    Color = 4151318
     ParentBackground = False
     TabOrder = 0
     StyleName = 'Windows'
@@ -1027,38 +1027,15 @@ object formlogin: Tformlogin
       TabOrder = 2
       StyleName = 'Windows'
       ExplicitWidth = 183
-      DesignSize = (
-        185
-        41)
-      object senhaTedit: TEdit
-        Left = 8
-        Top = 8
-        Width = 169
-        Height = 23
-        Hint = 'ddddd'
-        Anchors = [akLeft, akTop, akRight]
-        BorderStyle = bsNone
-        Color = clCream
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Height = -12
-        Font.Name = 'Segoe UI'
-        Font.Style = []
-        NumbersOnly = True
-        ParentFont = False
-        TabOrder = 0
-        StyleName = 'Windows'
-        ExplicitWidth = 167
-      end
-      object MaskEdit1: TMaskEdit
+      object SenhaMask: TMaskEdit
         Left = 1
         Top = 1
-        Width = 181
+        Width = 179
         Height = 29
         Alignment = taCenter
         BorderStyle = bsNone
         Color = clCream
-        EditMask = 'LLLLL0;1;_'
+        EditMask = '999999;1;_'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -16
@@ -1066,7 +1043,7 @@ object formlogin: Tformlogin
         Font.Style = []
         MaxLength = 6
         ParentFont = False
-        TabOrder = 1
+        TabOrder = 0
         Text = '      '
       end
     end
@@ -1104,7 +1081,7 @@ object formlogin: Tformlogin
     end
   end
   object DataSource: TDataSource
-    DataSet = DMPrincipal.FDQuery
+    DataSet = DMPrincipalP.FDQuery
     Left = 536
     Top = 144
   end

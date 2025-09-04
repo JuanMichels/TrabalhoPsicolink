@@ -12,9 +12,9 @@ object DMPrincipalP: TDMPrincipalP
     Top = 113
   end
   object FDPhysPgDriverLink: TFDPhysPgDriverLink
-    VendorLib = 'C:\Program Files (x86)\PostgreSQL\psqlODBC\bin\libpq.dll'
+    VendorLib = 'C:\Program Files\PostgreSQL\psqlODBC\bin\libpq.dll'
     Left = 520
-    Top = 112
+    Top = 113
   end
   object FDQuery: TFDQuery
     Connection = FDConnection

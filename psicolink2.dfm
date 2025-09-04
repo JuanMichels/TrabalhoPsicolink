@@ -941,16 +941,16 @@ object selecao_profissional_paciente: Tselecao_profissional_paciente
   object menu_central: TPanel
     Left = 176
     Top = 144
-    Width = 239
+    Width = 237
     Height = 249
     Anchors = [akLeft, akTop, akRight]
     Color = clLightgray
     ParentBackground = False
     TabOrder = 2
     StyleName = 'Windows'
-    ExplicitWidth = 237
+    ExplicitWidth = 235
     DesignSize = (
-      239
+      237
       249)
     object Label1: TLabel
       Left = 96
@@ -972,7 +972,7 @@ object selecao_profissional_paciente: Tselecao_profissional_paciente
     object profssionalbt: TPanel
       Left = 32
       Top = 88
-      Width = 183
+      Width = 181
       Height = 41
       Anchors = [akLeft, akTop, akRight]
       Caption = 'Profissional'
@@ -986,12 +986,12 @@ object selecao_profissional_paciente: Tselecao_profissional_paciente
       ParentFont = False
       TabOrder = 0
       StyleName = 'Windows'
-      ExplicitWidth = 181
+      ExplicitWidth = 179
     end
     object pacinetebt: TPanel
       Left = 32
       Top = 151
-      Width = 183
+      Width = 181
       Height = 41
       Anchors = [akLeft, akTop, akRight]
       Caption = 'Paciente'
@@ -1006,7 +1006,7 @@ object selecao_profissional_paciente: Tselecao_profissional_paciente
       TabOrder = 1
       StyleName = 'Windows'
       OnClick = pacinetebtClick
-      ExplicitWidth = 181
+      ExplicitWidth = 179
     end
   end
   object painel_inferior: TPanel
