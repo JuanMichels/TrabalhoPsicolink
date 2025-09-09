@@ -985,68 +985,6 @@ object formlogin: Tformlogin
       OnClick = ProsseguirClick
       ExplicitWidth = 183
     end
-    object login: TPanel
-      Left = 32
-      Top = 33
-      Width = 185
-      Height = 41
-      Anchors = [akLeft, akTop, akRight]
-      Color = clCream
-      ParentBackground = False
-      TabOrder = 1
-      StyleName = 'Windows'
-      ExplicitWidth = 183
-      object Editcpf: TMaskEdit
-        Left = 1
-        Top = 8
-        Width = 177
-        Height = 24
-        Alignment = taCenter
-        BorderStyle = bsNone
-        Color = clCream
-        EditMask = '!999.999.999-99'#10
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Height = 23
-        Font.Name = 'Segoe UI'
-        Font.Style = []
-        MaxLength = 15
-        ParentFont = False
-        TabOrder = 0
-        Text = '   .   .   -  '#10
-      end
-    end
-    object senha: TPanel
-      Left = 32
-      Top = 95
-      Width = 185
-      Height = 41
-      Anchors = [akLeft, akTop, akRight]
-      Color = clCream
-      ParentBackground = False
-      TabOrder = 2
-      StyleName = 'Windows'
-      ExplicitWidth = 183
-      object SenhaMask: TMaskEdit
-        Left = 1
-        Top = 1
-        Width = 181
-        Height = 29
-        Alignment = taCenter
-        BorderStyle = bsNone
-        Color = clCream
-        EditMask = 'LLLLL0;1;_'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Height = -16
-        Font.Name = 'Segoe UI'
-        Font.Style = []
-        MaxLength = 6
-        ParentFont = False
-        TabOrder = 0
-        Text = '      '
-      end
-    end
     object Edit1: TEdit
       Left = 32
       Top = 71
@@ -1060,7 +998,7 @@ object formlogin: Tformlogin
       Font.Name = 'Segoe UI Emoji'
       Font.Style = [fsItalic]
       ParentFont = False
-      TabOrder = 3
+      TabOrder = 1
       Text = 'Senha'
     end
     object Edit2: TEdit
@@ -1076,8 +1014,33 @@ object formlogin: Tformlogin
       Font.Name = 'Segoe UI Emoji'
       Font.Style = [fsItalic]
       ParentFont = False
-      TabOrder = 4
+      TabOrder = 2
       Text = 'Cpf'
+    end
+    object EditCPF: TMaskEdit
+      Left = 32
+      Top = 24
+      Width = 181
+      Height = 23
+      EditMask = '                    999.999.999-99;0;_'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlack
+      Font.Height = -12
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      MaxLength = 34
+      ParentFont = False
+      TabOrder = 3
+      Text = ''
+    end
+    object SenhaMask: TMaskEdit
+      Left = 32
+      Top = 95
+      Width = 185
+      Height = 42
+      MaxLength = 6
+      TabOrder = 4
+      Text = 'SenhaMask'
     end
   end
   object DataSource: TDataSource

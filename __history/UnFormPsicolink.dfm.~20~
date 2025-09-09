@@ -997,23 +997,23 @@ object formlogin: Tformlogin
       StyleName = 'Windows'
       ExplicitWidth = 183
       object Editcpf: TMaskEdit
-        Left = 1
+        Left = 9
         Top = 8
-        Width = 175
+        Width = 173
         Height = 24
         Alignment = taCenter
         BorderStyle = bsNone
         Color = clCream
-        EditMask = '>AAAAAAAAAAAA999999;0;_'
+        EditMask = '000\.000\.000\-00;1;_'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = 23
         Font.Name = 'Segoe UI'
         Font.Style = []
-        MaxLength = 18
+        MaxLength = 14
         ParentFont = False
         TabOrder = 0
-        Text = ''
+        Text = '   .   .   -  '
       end
     end
     object senha: TPanel
@@ -1028,23 +1028,23 @@ object formlogin: Tformlogin
       StyleName = 'Windows'
       ExplicitWidth = 183
       object SenhaMask: TMaskEdit
-        Left = 1
-        Top = 1
-        Width = 179
+        Left = 9
+        Top = 0
+        Width = 173
         Height = 29
         Alignment = taCenter
         BorderStyle = bsNone
         Color = clCream
-        EditMask = '999999;1;_'
+        EditMask = '>AAAAAAAAAAAA999999;0;_'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -16
         Font.Name = 'Segoe UI'
         Font.Style = []
-        MaxLength = 6
+        MaxLength = 18
         ParentFont = False
         TabOrder = 0
-        Text = '      '
+        Text = ''
       end
     end
     object Edit1: TEdit

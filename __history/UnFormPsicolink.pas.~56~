@@ -40,7 +40,6 @@ implementation
 procedure Tformlogin.ProsseguirClick(Sender: TObject);
 
 begin
-
   DMPrincipalP := TDMPrincipalP.create(Self);
   DMPrincipalP.conectarbanco;
 
@@ -48,8 +47,7 @@ begin
   DMPrincipalP.FDQuery.SQL.Clear;
   DMPrincipalP.FDQuery.SQL.Text :=
     ('SELECT p.cpf, t.senha from pessoa p Join password t ON t.fk_id_pessoa = p.id WHERE p.cpf = :cpf AND t.senha = :senha;');
-  DMPrincipalP.FDQuery.ParamByName('cpf').AsLargeInt := StrToInt64(Trim(Editcpf.Text));
-
+  DMPrincipalP.FDQuery.ParamByName('cpf').AsString := trim(Editcpf.Text);
   DMPrincipalP.FDQuery.ParamByName('senha').AsString := trim(SenhaMask.Text);
   DMPrincipalP.FDQuery.open;
 

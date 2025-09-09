@@ -16,13 +16,11 @@ type
     Image1: TImage;
     menu_central: TPanel;
     Prosseguir: TPanel;
-    login: TPanel;
-    senha: TPanel;
-    Editcpf: TMaskEdit;
-    SenhaMask: TMaskEdit;
     Edit1: TEdit;
     Edit2: TEdit;
     DataSource: TDataSource;
+    EditCPF: TMaskEdit;
+    SenhaMask: TMaskEdit;
     procedure ProsseguirClick(Sender: TObject);
   private
     { Private declarations }
@@ -40,19 +38,18 @@ implementation
 procedure Tformlogin.ProsseguirClick(Sender: TObject);
 
 begin
-
   DMPrincipalP := TDMPrincipalP.create(Self);
   DMPrincipalP.conectarbanco;
 
   DMPrincipalP.FDQuery.Close;
   DMPrincipalP.FDQuery.SQL.Clear;
   DMPrincipalP.FDQuery.SQL.Text :=
-    ('SELECT p.cpf, t.senha from pessoa p Join password t ON t.fk_id_pessoa = p.id WHERE p.cpf = :cpf AND t.senha = :senha;');
-  DMPrincipalP.FDQuery.ParamByName('cpf').AsString := trim(Editcpf.Text);
-  DMPrincipalP.FDQuery.ParamByName('senha').AsString := trim(SenhaMask.Text);
+    'SELECT id, cpf FROM pessoa WHERE cpf = :cpf AND senha = :senha';
+  DMPrincipalP.FDQuery.ParamByName('cpf').AsString := EditCPF.Text;
+  DMPrincipalP.FDQuery.ParamByName('senha').AsString := SenhaMask.Text;
   DMPrincipalP.FDQuery.open;
 
-  if not DMPrincipalP.FDQuery.IsEmpty then
+  if DMPrincipalP.FDQuery.Exists then
   begin
     ShowMessage('Login realizado com sucesso!');
     selecao_profissional_paciente.ShowModal;
