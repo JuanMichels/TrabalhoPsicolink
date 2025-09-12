@@ -1,0 +1,10 @@
+object DMCadastro: TDMCadastro
+  Height = 750
+  Width = 1000
+  PixelsPerInch = 120
+  object QRYCadastro: TFDQuery
+    Connection = DMPrincipalP.FDConnection
+    Left = 432
+    Top = 184
+  end
+end

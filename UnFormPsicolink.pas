@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Imaging.pngimage,
-  Vcl.WinXPanels, Vcl.StdCtrls, Vcl.Mask, psicolink2, UnDMPrincipal, Data.DB;
+  Vcl.WinXPanels, Vcl.StdCtrls, Vcl.Mask, psicolink2, UnDMPrincipal, Data.DB, UnCadastro;
 
 type
   Tformlogin = class(TForm)
@@ -21,6 +21,8 @@ type
     DataSource: TDataSource;
     EditCPF: TMaskEdit;
     SenhaMask: TMaskEdit;
+    Cadastro: TPanel;
+    procedure CadastroClick(Sender: TObject);
     procedure ProsseguirClick(Sender: TObject);
   private
     { Private declarations }
@@ -34,6 +36,18 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure Tformlogin.CadastroClick(Sender: TObject);
+var
+  LFormCadastro : TUnFormCadastro;
+begin
+  LFormCadastro := TUnFormCadastro.create(Self);
+  try
+  LFormCadastro.showModal;
+  finally
+    FreeAndNil(LFormCadastro)
+  end;
+end;
 
 procedure Tformlogin.ProsseguirClick(Sender: TObject);
 

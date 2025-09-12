@@ -1,7 +1,7 @@
 object formlogin: Tformlogin
   Left = 0
   Top = 0
-  ClientHeight = 441
+  ClientHeight = 493
   ClientWidth = 624
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -11,7 +11,7 @@ object formlogin: Tformlogin
   Font.Style = []
   DesignSize = (
     624
-    441)
+    493)
   TextHeight = 15
   object painel_superior: TPanel
     Left = 0
@@ -927,7 +927,7 @@ object formlogin: Tformlogin
   end
   object painel_inferior: TPanel
     Left = 0
-    Top = 416
+    Top = 468
     Width = 624
     Height = 25
     Align = alBottom
@@ -954,7 +954,7 @@ object formlogin: Tformlogin
     Left = 184
     Top = 144
     Width = 241
-    Height = 249
+    Height = 297
     Anchors = [akLeft, akTop, akRight]
     Color = clLightgray
     ParentBackground = False
@@ -962,7 +962,7 @@ object formlogin: Tformlogin
     StyleName = 'Windows'
     DesignSize = (
       241
-      249)
+      297)
     object Prosseguir: TPanel
       Left = 32
       Top = 176
@@ -970,7 +970,7 @@ object formlogin: Tformlogin
       Height = 41
       Anchors = [akLeft, akTop, akRight]
       BorderStyle = bsSingle
-      Caption = 'Prosseguir'
+      Caption = 'Confirmar'
       Color = clSeagreen
       Font.Charset = ANSI_CHARSET
       Font.Color = clWhite
@@ -1048,6 +1048,26 @@ object formlogin: Tformlogin
       TabOrder = 4
       Text = ''
     end
+  end
+  object Cadastro: TPanel
+    Left = 216
+    Top = 383
+    Width = 185
+    Height = 41
+    Anchors = [akLeft, akTop, akRight]
+    BorderStyle = bsSingle
+    Caption = 'Cadastrar-se'
+    Color = clSeagreen
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -16
+    Font.Name = 'Segoe UI'
+    Font.Style = [fsBold]
+    ParentBackground = False
+    ParentFont = False
+    TabOrder = 4
+    StyleName = 'Windows'
+    OnClick = CadastroClick
   end
   object DataSource: TDataSource
     DataSet = DMPrincipalP.FDQuery

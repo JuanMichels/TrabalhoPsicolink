@@ -1,0 +1,94 @@
+unit UnCadastro;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls,
+  Vcl.StdCtrls, Vcl.Mask, Vcl.DBCtrls, DMUnCadastro, Data.DB;
+
+type
+  TUnFormCadastro = class(TForm)
+    painel_superior: TPanel;
+    Image1: TImage;
+    sub_painel: TPanel;
+    menu_central: TPanel;
+    painel_inferior: TPanel;
+    LblNome: TLabel;
+    Label1: TLabel;
+    CPFEdit: TLabel;
+    Label3: TLabel;
+    CheckPsico: TCheckBox;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Numero: TLabel;
+    Label7: TLabel;
+    Salvar: TButton;
+    Label8: TLabel;
+    DSCadastro: TDataSource;
+    NomeEdit: TMaskEdit;
+    DataNascimentoEdit: TMaskEdit;
+    CPFEdits: TMaskEdit;
+    TelefoneEdit: TMaskEdit;
+    EmailEdit: TMaskEdit;
+    CRPEdit: TMaskEdit;
+    CEPEdit: TMaskEdit;
+    RuaEdit: TMaskEdit;
+    NumeroEdit: TMaskEdit;
+    BairroEdit: TMaskEdit;
+    DSPsicologo: TDataSource;
+    procedure CheckPsicoClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure SalvarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  // Form1: TForm1;
+  DMCadastro: TDMCadastro;
+
+implementation
+
+{$R *.dfm}
+
+procedure TUnFormCadastro.CheckPsicoClick(Sender: TObject);
+begin
+  CRPEdit.Enabled := CheckPsico.Checked;
+end;
+
+procedure TUnFormCadastro.FormShow(Sender: TObject);
+begin
+  DMCadastro := TDMCadastro.create(self);
+  // DMCadastro.QRYCadastro.close;
+  // DMCadastro.QRYCadastro.SQL.clear;
+  // DMCadastro.QRYCadastro.SQL.Add('SELECT COUNT(*) FROM pessoa');
+  // DMCadastro.QRYCadastro.open;
+  //
+  // DMCadastro.QRYPsicologo.close;
+  // DMCadastro.QRYPsicologo.SQL.clear;
+  // DMCadastro.QRYPsicologo.SQL.Add('SELECT COUNT(*) FROM Psicologo');
+  // DMCadastro.QRYPsicologo.open;
+
+  DMCadastro.conectarCadastro;
+
+  DMCadastro.QRYCadastro.ParamByName('nome').AsString := NomeEdit.text;
+  DMCadastro.QRYCadastro.ParamByName('datanascimento').AsString :=
+    DataNascimentoEdit.text;
+  DMCadastro.QRYCadastro.ParamByName('cpf').AsString := CPFEdits.text;
+  DMCadastro.QRYCadastro.ParamByName('email').AsString := EmailEdit.text;
+
+end;
+
+procedure TUnFormCadastro.SalvarClick(Sender: TObject);
+begin
+  DMCadastro.QRYCadastro.ApplyUpdates();
+  ShowMessage('Cadastrado com sucesso!');
+  UnFormCadastroDeCidades.close;
+end;
+
+end.

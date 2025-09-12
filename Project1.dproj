@@ -142,6 +142,15 @@
             <Form>cadastro</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="UnCadastro.pas">
+            <Form>UnFormCadastro</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="DMUnCadastro.pas">
+            <Form>DMCadastro</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

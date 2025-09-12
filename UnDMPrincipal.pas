@@ -77,7 +77,7 @@ procedure TDMPrincipalP.buscarbanco;
 begin
   FDQuery.close;
   FDQuery.SQL.clear;
-  FDQuery.SQL.Add('SELECT COUNT(*) FROM pessoa WHERE cpf = :cpf');
+  FDQuery.SQL.Add('SELECT * FROM pessoa');
   FDQuery.open;
 end;
 

@@ -5,7 +5,9 @@ uses
   UnFormPsicolink in 'UnFormPsicolink.pas' {formlogin},
   psicolink2 in 'psicolink2.pas' {selecao_profissional_paciente},
   UnDMPrincipal in 'UnDMPrincipal.pas' {DMPrincipalP: TDataModule},
-  psicolink3 in '..\..\Downloads\psicolink\psicolink3.pas' {cadastro};
+  psicolink3 in '..\..\Downloads\psicolink\psicolink3.pas' {cadastro},
+  UnCadastro in 'UnCadastro.pas' {UnFormCadastro},
+  DMUnCadastro in 'DMUnCadastro.pas' {DMCadastro: TDataModule};
 
 {$R *.res}
 
@@ -15,7 +17,6 @@ begin
   Application.CreateForm(Tformlogin, formlogin);
   Application.CreateForm(Tselecao_profissional_paciente, selecao_profissional_paciente);
   Application.CreateForm(Tselecao_profissional_paciente, selecao_profissional_paciente);
-  Application.CreateForm(Tcadastro, cadastro);
   Application.CreateForm(TDMPrincipalP, DMPrincipalP);
   Application.Run;
 end.

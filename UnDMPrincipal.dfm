@@ -17,6 +17,7 @@ object DMPrincipalP: TDMPrincipalP
     Top = 113
   end
   object FDQuery: TFDQuery
+    CachedUpdates = True
     Connection = FDConnection
     Left = 648
     Top = 104
