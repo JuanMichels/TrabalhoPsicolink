@@ -1017,30 +1017,33 @@ object formlogin: Tformlogin
       TabOrder = 2
       Text = 'Cpf'
     end
-    object EditCPF: TMaskEdit
+    object CPFEdit: TMaskEdit
       Left = 32
-      Top = 24
-      Width = 185
+      Top = 33
+      Width = 177
       Height = 26
-      EditMask = '              999.999.999-99;0;_'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
       Font.Height = -15
       Font.Name = 'Segoe UI'
       Font.Style = []
-      MaxLength = 28
       ParentFont = False
       TabOrder = 3
       Text = ''
     end
-    object DBEdit1: TDBEdit
+    object SenhaEdit: TMaskEdit
       Left = 32
-      Top = 104
-      Width = 185
-      Height = 33
-      DataField = 'senha'
-      DataSource = DataSource1
+      Top = 95
+      Width = 177
+      Height = 26
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlack
+      Font.Height = -15
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
       TabOrder = 4
+      Text = ''
     end
   end
   object Cadastro: TPanel
@@ -1063,7 +1066,7 @@ object formlogin: Tformlogin
     StyleName = 'Windows'
     OnClick = CadastroClick
   end
-  object DataSource1: TDataSource
+  object DSLogin: TDataSource
     DataSet = DMPrincipalP.FDQuery
     Left = 528
     Top = 152

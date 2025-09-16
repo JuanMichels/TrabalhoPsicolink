@@ -6,7 +6,8 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Imaging.pngimage,
-  Vcl.WinXPanels, Vcl.StdCtrls, Vcl.Mask, psicolink2, UnDMPrincipal, Data.DB, UnCadastro,
+  Vcl.WinXPanels, Vcl.StdCtrls, Vcl.Mask, psicolink2, UnDMPrincipal, Data.DB,
+  UnCadastro,
   Vcl.DBCtrls;
 
 type
@@ -19,10 +20,10 @@ type
     Prosseguir: TPanel;
     Edit1: TEdit;
     Edit2: TEdit;
-    EditCPF: TMaskEdit;
     Cadastro: TPanel;
-    DBEdit1: TDBEdit;
-    DataSource1: TDataSource;
+    DSLogin: TDataSource;
+    CPFEdit: TMaskEdit;
+    SenhaEdit: TMaskEdit;
     procedure CadastroClick(Sender: TObject);
     procedure ProsseguirClick(Sender: TObject);
   private
@@ -36,15 +37,18 @@ var
 
 implementation
 
+uses
+  DMUnCadastro;
+
 {$R *.dfm}
 
 procedure Tformlogin.CadastroClick(Sender: TObject);
 var
-  LFormCadastro : TUnFormCadastro;
+  LFormCadastro: TUnFormCadastro;
 begin
   LFormCadastro := TUnFormCadastro.create(Self);
   try
-  LFormCadastro.showModal;
+    LFormCadastro.showModal;
   finally
     FreeAndNil(LFormCadastro)
   end;
@@ -53,21 +57,21 @@ end;
 procedure Tformlogin.ProsseguirClick(Sender: TObject);
 
 begin
-  DMPrincipalP := TDMPrincipalP.create(Self);
-  DMPrincipalP.conectarbanco;
+  DMPrincipalP := TDMPrincipalP.create(self);
+  // DMPrincipalP.conectarbanco;
 
   DMPrincipalP.FDQuery.Close;
-  DMPrincipalP.FDQuery.SQL.Clear;
-  DMPrincipalP.FDQuery.SQL.Text :=
-    'SELECT id, cpf FROM pessoa WHERE cpf = :cpf AND senha = :senha';
-  DMPrincipalP.FDQuery.ParamByName('cpf').AsString := EditCPF.Text;
-//  DMPrincipalP.FDQuery.ParamByName('senha').AsString := SenhaMask.Text;
+  DMPrincipalP.FDQuery.ClearBlobs;
+ 
+  DMPrincipalP.FDQuery.ParamByName('cpf').AsString := CPFEdit.Text;
+  DMPrincipalP.FDQuery.ParamByName('senha').AsString := SenhaEdit.Text;
   DMPrincipalP.FDQuery.open;
 
-  if not DMPrincipalP.FDQuery.isEmpty then
+  if (DMPrincipalP.FDQuery.RecordCount > 0) then
   begin
-    ShowMessage('Login realizado com sucesso!');
-    selecao_profissional_paciente.ShowModal;
+    ShowMessage('Login realizado com sucesso!' + (' ') +
+      DMPrincipalP.FDQuerycpf.Value);
+    selecao_profissional_paciente.showModal;
   end
   else
   begin

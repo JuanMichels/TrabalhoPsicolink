@@ -16,16 +16,8 @@ type
     FDPhysPgDriverLink: TFDPhysPgDriverLink;
     FDQuery: TFDQuery;
     FDQueryid: TLargeintField;
-    FDQuerynome: TWideStringField;
     FDQuerycpf: TWideStringField;
-    FDQuerydatanascimento: TDateField;
-    FDQueryendereco: TWideStringField;
-    FDQuerytelefone: TWideStringField;
-    FDQueryemail: TWideStringField;
-    SenhaEdit: TWideStringField;
-    FDQuerycep: TWideStringField;
-    FDQuerybairro: TWideStringField;
-    FDQuerynumerocasa: TBCDField;
+    FDQuerysenha: TWideStringField;
     procedure conectarbanco;
     procedure buscarbanco;
   private
