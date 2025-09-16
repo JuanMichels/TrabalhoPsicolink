@@ -15,6 +15,17 @@ type
     FDConnection: TFDConnection;
     FDPhysPgDriverLink: TFDPhysPgDriverLink;
     FDQuery: TFDQuery;
+    FDQueryid: TLargeintField;
+    FDQuerynome: TWideStringField;
+    FDQuerycpf: TWideStringField;
+    FDQuerydatanascimento: TDateField;
+    FDQueryendereco: TWideStringField;
+    FDQuerytelefone: TWideStringField;
+    FDQueryemail: TWideStringField;
+    SenhaEdit: TWideStringField;
+    FDQuerycep: TWideStringField;
+    FDQuerybairro: TWideStringField;
+    FDQuerynumerocasa: TBCDField;
     procedure conectarbanco;
     procedure buscarbanco;
   private
@@ -77,7 +88,7 @@ procedure TDMPrincipalP.buscarbanco;
 begin
   FDQuery.close;
   FDQuery.SQL.clear;
-  FDQuery.SQL.Add('SELECT * FROM pessoa');
+  FDQuery.SQL.add('SELECT * FROM pessoa');
   FDQuery.open;
 end;
 

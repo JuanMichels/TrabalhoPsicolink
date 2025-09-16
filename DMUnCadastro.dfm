@@ -5,12 +5,85 @@ object DMCadastro: TDMCadastro
   object QRYCadastro: TFDQuery
     CachedUpdates = True
     Connection = DMPrincipalP.FDConnection
+    SQL.Strings = (
+      'Select * from pessoa')
     Left = 432
     Top = 184
+    object QRYCadastroid: TLargeintField
+      Alignment = taLeftJustify
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object QRYCadastronome: TWideStringField
+      FieldName = 'nome'
+      Origin = 'nome'
+      Size = 150
+    end
+    object QRYCadastrocpf: TWideStringField
+      FieldName = 'cpf'
+      Origin = 'cpf'
+      Size = 12
+    end
+    object QRYCadastrodatanascimento: TDateField
+      FieldName = 'datanascimento'
+      Origin = 'datanascimento'
+    end
+    object QRYCadastroendereco: TWideStringField
+      FieldName = 'endereco'
+      Origin = 'endereco'
+      Size = 150
+    end
+    object QRYCadastrotelefone: TWideStringField
+      FieldName = 'telefone'
+      Origin = 'telefone'
+      Size = 11
+    end
+    object QRYCadastroemail: TWideStringField
+      FieldName = 'email'
+      Origin = 'email'
+      Size = 150
+    end
+    object QRYCadastrosenha: TWideStringField
+      FieldName = 'senha'
+      Origin = 'senha'
+      Size = 6
+    end
+    object QRYCadastrocep: TWideStringField
+      FieldName = 'cep'
+      Origin = 'cep'
+      FixedChar = True
+      Size = 15
+    end
+    object QRYCadastrobairro: TWideStringField
+      FieldName = 'bairro'
+      Origin = 'bairro'
+      Size = 50
+    end
+    object QRYCadastronumerocasa: TBCDField
+      Alignment = taLeftJustify
+      FieldName = 'numerocasa'
+      Origin = 'numerocasa'
+      Precision = 15
+      Size = 2
+    end
   end
   object QRYPsicologo: TFDQuery
+    CachedUpdates = True
     Connection = DMPrincipalP.FDConnection
+    SQL.Strings = (
+      'Select * from psicologo')
     Left = 600
     Top = 208
+    object QRYPsicologoid: TLargeintField
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object QRYPsicologocrp: TWideStringField
+      FieldName = 'crp'
+      Origin = 'crp'
+      Size = 5
+    end
   end
 end

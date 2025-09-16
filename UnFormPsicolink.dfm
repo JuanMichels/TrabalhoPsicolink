@@ -3,7 +3,8 @@ object formlogin: Tformlogin
   Top = 0
   ClientHeight = 493
   ClientWidth = 624
-  Color = clBtnFace
+  Color = clWindow
+  Ctl3D = False
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWhite
   Font.Height = -12
@@ -935,7 +936,7 @@ object formlogin: Tformlogin
     ParentBackground = False
     TabOrder = 1
     StyleName = 'Windows'
-    ExplicitTop = 408
+    ExplicitTop = 460
     ExplicitWidth = 622
   end
   object sub_painel: TPanel
@@ -953,20 +954,21 @@ object formlogin: Tformlogin
   object menu_central: TPanel
     Left = 184
     Top = 144
-    Width = 241
+    Width = 239
     Height = 297
     Anchors = [akLeft, akTop, akRight]
     Color = clLightgray
     ParentBackground = False
     TabOrder = 3
     StyleName = 'Windows'
+    ExplicitWidth = 237
     DesignSize = (
-      241
+      239
       297)
     object Prosseguir: TPanel
       Left = 32
       Top = 176
-      Width = 185
+      Width = 183
       Height = 41
       Anchors = [akLeft, akTop, akRight]
       BorderStyle = bsSingle
@@ -982,7 +984,6 @@ object formlogin: Tformlogin
       TabOrder = 0
       StyleName = 'Windows'
       OnClick = ProsseguirClick
-      ExplicitWidth = 183
     end
     object Edit1: TEdit
       Left = 32
@@ -1020,7 +1021,7 @@ object formlogin: Tformlogin
       Left = 32
       Top = 24
       Width = 185
-      Height = 28
+      Height = 26
       EditMask = '              999.999.999-99;0;_'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -1032,27 +1033,20 @@ object formlogin: Tformlogin
       TabOrder = 3
       Text = ''
     end
-    object SenhaMask: TMaskEdit
+    object DBEdit1: TDBEdit
       Left = 32
-      Top = 95
+      Top = 104
       Width = 185
-      Height = 28
-      EditMask = '                 999999;0;_'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clBlack
-      Font.Height = -15
-      Font.Name = 'Segoe UI'
-      Font.Style = []
-      MaxLength = 23
-      ParentFont = False
+      Height = 33
+      DataField = 'senha'
+      DataSource = DataSource1
       TabOrder = 4
-      Text = ''
     end
   end
   object Cadastro: TPanel
     Left = 216
     Top = 383
-    Width = 185
+    Width = 183
     Height = 41
     Anchors = [akLeft, akTop, akRight]
     BorderStyle = bsSingle
@@ -1069,9 +1063,9 @@ object formlogin: Tformlogin
     StyleName = 'Windows'
     OnClick = CadastroClick
   end
-  object DataSource: TDataSource
+  object DataSource1: TDataSource
     DataSet = DMPrincipalP.FDQuery
-    Left = 536
-    Top = 144
+    Left = 528
+    Top = 152
   end
 end

@@ -6,7 +6,8 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Imaging.pngimage,
-  Vcl.WinXPanels, Vcl.StdCtrls, Vcl.Mask, psicolink2, UnDMPrincipal, Data.DB, UnCadastro;
+  Vcl.WinXPanels, Vcl.StdCtrls, Vcl.Mask, psicolink2, UnDMPrincipal, Data.DB, UnCadastro,
+  Vcl.DBCtrls;
 
 type
   Tformlogin = class(TForm)
@@ -18,10 +19,10 @@ type
     Prosseguir: TPanel;
     Edit1: TEdit;
     Edit2: TEdit;
-    DataSource: TDataSource;
     EditCPF: TMaskEdit;
-    SenhaMask: TMaskEdit;
     Cadastro: TPanel;
+    DBEdit1: TDBEdit;
+    DataSource1: TDataSource;
     procedure CadastroClick(Sender: TObject);
     procedure ProsseguirClick(Sender: TObject);
   private
@@ -60,7 +61,7 @@ begin
   DMPrincipalP.FDQuery.SQL.Text :=
     'SELECT id, cpf FROM pessoa WHERE cpf = :cpf AND senha = :senha';
   DMPrincipalP.FDQuery.ParamByName('cpf').AsString := EditCPF.Text;
-  DMPrincipalP.FDQuery.ParamByName('senha').AsString := SenhaMask.Text;
+//  DMPrincipalP.FDQuery.ParamByName('senha').AsString := SenhaMask.Text;
   DMPrincipalP.FDQuery.open;
 
   if not DMPrincipalP.FDQuery.isEmpty then

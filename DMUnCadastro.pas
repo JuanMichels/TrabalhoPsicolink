@@ -13,6 +13,19 @@ type
   TDMCadastro = class(TDataModule)
     QRYCadastro: TFDQuery;
     QRYPsicologo: TFDQuery;
+    QRYCadastroid: TLargeintField;
+    QRYCadastronome: TWideStringField;
+    QRYCadastrocpf: TWideStringField;
+    QRYCadastrodatanascimento: TDateField;
+    QRYCadastroendereco: TWideStringField;
+    QRYCadastrotelefone: TWideStringField;
+    QRYCadastroemail: TWideStringField;
+    QRYCadastrosenha: TWideStringField;
+    QRYCadastrocep: TWideStringField;
+    QRYCadastrobairro: TWideStringField;
+    QRYCadastronumerocasa: TBCDField;
+    QRYPsicologoid: TLargeintField;
+    QRYPsicologocrp: TWideStringField;
     procedure conectarCadastro;
   private
     { Private declarations }

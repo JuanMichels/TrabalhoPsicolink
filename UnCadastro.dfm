@@ -940,13 +940,15 @@ object UnFormCadastro: TUnFormCadastro
     ExplicitWidth = 787
   end
   object menu_central: TPanel
-    Left = 64
-    Top = 136
-    Width = 590
-    Height = 281
+    Left = 58
+    Top = 128
+    Width = 588
+    Height = 304
     Anchors = [akLeft, akTop, akRight]
     Color = clLightgray
+    Ctl3D = False
     ParentBackground = False
+    ParentCtl3D = False
     TabOrder = 2
     StyleName = 'Windows'
     object LblNome: TLabel
@@ -986,38 +988,61 @@ object UnFormCadastro: TUnFormCadastro
     end
     object Label5: TLabel
       Left = 16
-      Top = 168
+      Top = 157
       Width = 21
       Height = 15
       Caption = 'CEP'
     end
     object Label6: TLabel
       Left = 157
-      Top = 168
+      Top = 157
       Width = 20
       Height = 15
       Caption = 'Rua'
     end
     object Numero: TLabel
       Left = 16
-      Top = 218
+      Top = 207
       Width = 44
       Height = 15
       Caption = 'Numero'
     end
     object Label7: TLabel
       Left = 165
-      Top = 218
+      Top = 207
       Width = 31
       Height = 15
       Caption = 'Bairro'
     end
     object Label8: TLabel
       Left = 20
-      Top = 118
+      Top = 107
       Width = 29
       Height = 15
       Caption = 'Email'
+    end
+    object Label2: TLabel
+      Left = 16
+      Top = 257
+      Width = 32
+      Height = 15
+      Caption = 'Senha'
+    end
+    object Label9: TLabel
+      Left = 48
+      Top = 184
+      Width = 19
+      Height = 15
+      Caption = 'cep'
+      FocusControl = DBEdit6
+    end
+    object Label10: TLabel
+      Left = 32
+      Top = 232
+      Width = 65
+      Height = 15
+      Caption = 'numerocasa'
+      FocusControl = DBEdit8
     end
     object CheckPsico: TCheckBox
       Left = 488
@@ -1028,86 +1053,95 @@ object UnFormCadastro: TUnFormCadastro
       TabOrder = 0
       OnClick = CheckPsicoClick
     end
-    object NomeEdit: TMaskEdit
+    object DBEdit1: TDBEdit
       Left = 16
-      Top = 30
+      Top = 32
       Width = 409
-      Height = 23
+      Height = 21
+      DataField = 'nome'
+      DataSource = DSCadastro
       TabOrder = 1
-      Text = ''
     end
-    object DataNascimentoEdit: TMaskEdit
+    object DBEdit2: TDBEdit
       Left = 16
       Top = 78
-      Width = 121
-      Height = 23
+      Width = 129
+      Height = 21
+      DataField = 'datanascimento'
+      DataSource = DSCadastro
       TabOrder = 2
-      Text = ''
     end
-    object CPFEdits: TMaskEdit
-      Left = 165
+    object DBEdit3: TDBEdit
+      Left = 151
       Top = 78
-      Width = 121
-      Height = 23
+      Width = 138
+      Height = 21
+      DataField = 'cpf'
+      DataSource = DSCadastro
       TabOrder = 3
-      Text = ''
     end
-    object TelefoneEdit: TMaskEdit
+    object DBEdit4: TDBEdit
       Left = 304
-      Top = 78
+      Top = 80
       Width = 121
-      Height = 23
+      Height = 21
+      DataField = 'telefone'
+      DataSource = DSCadastro
       TabOrder = 4
-      Text = ''
     end
-    object EmailEdit: TMaskEdit
+    object DBEdit5: TDBEdit
       Left = 16
-      Top = 139
+      Top = 128
       Width = 409
-      Height = 23
+      Height = 21
+      DataField = 'email'
+      DataSource = DSCadastro
       TabOrder = 5
-      Text = ''
     end
-    object CRPEdit: TMaskEdit
-      Left = 448
-      Top = 30
-      Width = 121
-      Height = 23
-      Enabled = False
+    object DBEdit6: TDBEdit
+      Left = 16
+      Top = 178
+      Width = 129
+      Height = 21
+      DataField = 'cep'
+      DataSource = DSCadastro
       TabOrder = 6
-      Text = ''
     end
-    object CEPEdit: TMaskEdit
-      Left = 16
-      Top = 189
-      Width = 107
-      Height = 23
+    object DBEdit7: TDBEdit
+      Left = 151
+      Top = 178
+      Width = 274
+      Height = 21
+      DataField = 'endereco'
+      DataSource = DSCadastro
       TabOrder = 7
-      Text = ''
     end
-    object RuaEdit: TMaskEdit
-      Left = 157
-      Top = 189
-      Width = 268
-      Height = 23
-      TabOrder = 8
-      Text = ''
-    end
-    object NumeroEdit: TMaskEdit
+    object DBEdit8: TDBEdit
       Left = 16
-      Top = 239
-      Width = 121
-      Height = 23
-      TabOrder = 9
-      Text = ''
+      Top = 228
+      Width = 129
+      Height = 21
+      DataField = 'numerocasa'
+      DataSource = DSCadastro
+      TabOrder = 8
     end
-    object BairroEdit: TMaskEdit
-      Left = 157
-      Top = 239
-      Width = 268
-      Height = 23
+    object DBEdit9: TDBEdit
+      Left = 151
+      Top = 228
+      Width = 274
+      Height = 21
+      DataField = 'bairro'
+      DataSource = DSCadastro
+      TabOrder = 9
+    end
+    object DBEdit10: TDBEdit
+      Left = 16
+      Top = 278
+      Width = 129
+      Height = 21
+      DataField = 'senha'
+      DataSource = DSCadastro
       TabOrder = 10
-      Text = ''
     end
   end
   object painel_inferior: TPanel

@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls,
-  Vcl.StdCtrls, Vcl.Mask, Vcl.DBCtrls, DMUnCadastro, Data.DB;
+  Vcl.StdCtrls, Vcl.Mask, Vcl.DBCtrls, DMUnCadastro, Data.DB, UnDMPrincipal;
 
 type
   TUnFormCadastro = class(TForm)
@@ -28,17 +28,20 @@ type
     Salvar: TButton;
     Label8: TLabel;
     DSCadastro: TDataSource;
-    NomeEdit: TMaskEdit;
-    DataNascimentoEdit: TMaskEdit;
-    CPFEdits: TMaskEdit;
-    TelefoneEdit: TMaskEdit;
-    EmailEdit: TMaskEdit;
-    CRPEdit: TMaskEdit;
-    CEPEdit: TMaskEdit;
-    RuaEdit: TMaskEdit;
-    NumeroEdit: TMaskEdit;
-    BairroEdit: TMaskEdit;
     DSPsicologo: TDataSource;
+    Label2: TLabel;
+    DBEdit1: TDBEdit;
+    DBEdit2: TDBEdit;
+    DBEdit3: TDBEdit;
+    DBEdit4: TDBEdit;
+    DBEdit5: TDBEdit;
+    Label9: TLabel;
+    DBEdit6: TDBEdit;
+    DBEdit7: TDBEdit;
+    Label10: TLabel;
+    DBEdit8: TDBEdit;
+    DBEdit9: TDBEdit;
+    DBEdit10: TDBEdit;
     procedure CheckPsicoClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure SalvarClick(Sender: TObject);
@@ -58,37 +61,61 @@ implementation
 
 procedure TUnFormCadastro.CheckPsicoClick(Sender: TObject);
 begin
-  CRPEdit.Enabled := CheckPsico.Checked;
+  //CRPEdit.Enabled := CheckPsico.Checked;
 end;
 
 procedure TUnFormCadastro.FormShow(Sender: TObject);
 begin
+
   DMCadastro := TDMCadastro.create(self);
-   DMCadastro.QRYCadastro.close;
-   DMCadastro.QRYCadastro.SQL.clear;
-   DMCadastro.QRYCadastro.SQL.Add('SELECT * FROM pessoa');
-   DMCadastro.QRYCadastro.open;
+  DMCadastro.QRYCadastro.close;
+  DMCadastro.QRYCadastro.SQL.clear;
+  DMCadastro.QRYCadastro.SQL.Add('SELECT * FROM pessoa');
+  DMCadastro.QRYCadastro.open;
 
-   DMCadastro.QRYPsicologo.close;
-   DMCadastro.QRYPsicologo.SQL.clear;
-   DMCadastro.QRYPsicologo.SQL.Add('SELECT * FROM Psicologo');
-   DMCadastro.QRYPsicologo.open;
+  DMCadastro.QRYPsicologo.close;
+  DMCadastro.QRYPsicologo.SQL.clear;
+  DMCadastro.QRYPsicologo.SQL.Add('SELECT * FROM Psicologo');
+  DMCadastro.QRYPsicologo.open;
+   if not (DMCadastro.QRYCadastro.State in [dsInsert, dsEdit]) then
+      DMCadastro.QRYCadastro.Append;
 
-//  DMCadastro.conectarCadastro;
-
-  DMCadastro.QRYCadastro.ParamByName('nome').AsString := NomeEdit.text;
-  DMCadastro.QRYCadastro.ParamByName('datanascimento').AsString :=
-    DataNascimentoEdit.text;
-  DMCadastro.QRYCadastro.ParamByName('cpf').AsString := CPFEdits.text;
-  DMCadastro.QRYCadastro.ParamByName('email').AsString := EmailEdit.text;
+  // DMCadastro.conectarCadastro;
 
 end;
 
 procedure TUnFormCadastro.SalvarClick(Sender: TObject);
 begin
-  DMCadastro.QRYCadastro.ApplyUpdates();
-  ShowMessage('Cadastrado com sucesso!');
-  ModalResult := mrOk;
+
+  if DBEdit1.text = '' then
+    ShowMessage('Nome Não pode ser vazio!')
+  else if DBEdit2.text = '' then
+    ShowMessage('Data de Nascimento Não pode ser vazio!')
+  else if DBEdit3.text = '' then
+    ShowMessage('CPF Não pode ser vazio!')
+  else if DBEdit4.text = '' then
+    ShowMessage('Telefone Não pode ser vazio!')
+  else if DBEdit5.text = '' then
+    ShowMessage('Email Não pode ser vazio!')
+  else if DBEdit6.text = '' then
+    ShowMessage('CEP Não pode ser vazio!')
+  else if DBEdit7.text = '' then
+    ShowMessage('Rua Não pode ser vazio!')
+  else if DBEdit8.text = '' then
+    ShowMessage('Numero Não pode ser vazio!')
+  else if DBEdit9.text = '' then
+    ShowMessage('Bairro Não pode ser vazio!')
+  else if DBEdit10.text = '' then
+    ShowMessage('Senha Não pode ser vazio!')
+  else
+  begin
+    if DMCadastro.QRYCadastro.state in [dsEdit, dsInsert] then
+      DMCadastro.QRYCadastro.Post;
+    DMCadastro.QRYCadastro.ApplyUpdates();
+    DMCadastro.QRYCadastro.CommitUpdates;
+    ShowMessage('Cadastrado com sucesso!');
+    ModalResult := mrOk;
+  end;
 end;
 
 end.
