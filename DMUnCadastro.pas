@@ -26,6 +26,7 @@ type
     QRYCadastronumerocasa: TBCDField;
     QRYPsicologoid: TLargeintField;
     QRYPsicologocrp: TWideStringField;
+    QRYCadastrofk_psicologo_id: TIntegerField;
     procedure conectarCadastro;
   private
     { Private declarations }

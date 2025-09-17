@@ -984,6 +984,7 @@ object formlogin: Tformlogin
       TabOrder = 0
       StyleName = 'Windows'
       OnClick = ProsseguirClick
+      ExplicitWidth = 181
     end
     object Edit1: TEdit
       Left = 32
@@ -992,6 +993,7 @@ object formlogin: Tformlogin
       Height = 18
       BorderStyle = bsNone
       Color = clLightgray
+      Enabled = False
       Font.Charset = ANSI_CHARSET
       Font.Color = clGreen
       Font.Height = -11
@@ -1008,6 +1010,7 @@ object formlogin: Tformlogin
       Height = 18
       BorderStyle = bsNone
       Color = clLightgray
+      Enabled = False
       Font.Charset = ANSI_CHARSET
       Font.Color = clGreen
       Font.Height = -11
@@ -1042,6 +1045,7 @@ object formlogin: Tformlogin
       Font.Name = 'Segoe UI'
       Font.Style = []
       ParentFont = False
+      PasswordChar = '*'
       TabOrder = 4
       Text = ''
     end
@@ -1065,6 +1069,7 @@ object formlogin: Tformlogin
     TabOrder = 4
     StyleName = 'Windows'
     OnClick = CadastroClick
+    ExplicitWidth = 181
   end
   object DSLogin: TDataSource
     DataSet = DMPrincipalP.FDQuery

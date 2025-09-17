@@ -8,7 +8,6 @@ object DMPrincipalP: TDMPrincipalP
       'User_Name=postgres'
       'Password=Juan2006'
       'DriverID=PG')
-    Connected = True
     Left = 376
     Top = 113
   end
@@ -23,12 +22,11 @@ object DMPrincipalP: TDMPrincipalP
       'Select * from pessoa'
       'Where CPF = :CPF and Senha = :Senha')
     Left = 664
-    Top = 128
+    Top = 112
     ParamData = <
       item
         Name = 'CPF'
         ParamType = ptInput
-        Value = Null
       end
       item
         Name = 'SENHA'
@@ -48,6 +46,15 @@ object DMPrincipalP: TDMPrincipalP
       FieldName = 'senha'
       Origin = 'senha'
       Size = 6
+    end
+    object FDQuerynome: TWideStringField
+      FieldName = 'nome'
+      Origin = 'nome'
+      Size = 50
+    end
+    object FDQueryfk_psicologo_id: TIntegerField
+      FieldName = 'fk_psicologo_id'
+      Origin = 'fk_psicologo_id'
     end
   end
 end

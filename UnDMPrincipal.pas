@@ -18,6 +18,8 @@ type
     FDQueryid: TLargeintField;
     FDQuerycpf: TWideStringField;
     FDQuerysenha: TWideStringField;
+    FDQuerynome: TWideStringField;
+    FDQueryfk_psicologo_id: TIntegerField;
     procedure conectarbanco;
     procedure buscarbanco;
   private
@@ -35,8 +37,6 @@ implementation
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 {$R *.dfm}
 { TDMPrincipalP }
-
-
 
 function TDMPrincipalP.buscarcaminhobase: string;
 var

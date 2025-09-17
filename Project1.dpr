@@ -7,18 +7,15 @@ uses
   UnDMPrincipal in 'UnDMPrincipal.pas' {DMPrincipalP: TDataModule},
   psicolink3 in '..\..\Downloads\psicolink\psicolink3.pas' {cadastro},
   UnCadastro in 'UnCadastro.pas' {UnFormCadastro},
-  DMUnCadastro in 'DMUnCadastro.pas' {DMCadastro: TDataModule},
-  Unit1 in 'Unit1.pas' {Form1};
+  DMUnCadastro in 'DMUnCadastro.pas' {DMCadastro: TDataModule};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TDMPrincipalP, DMPrincipalP);
   Application.CreateForm(Tformlogin, formlogin);
   Application.CreateForm(Tselecao_profissional_paciente, selecao_profissional_paciente);
-  Application.CreateForm(Tselecao_profissional_paciente, selecao_profissional_paciente);
-  Application.CreateForm(TDMPrincipalP, DMPrincipalP);
-  Application.CreateForm(TForm1, Form1);
   Application.Run;
 end.

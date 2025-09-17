@@ -67,14 +67,24 @@ object DMCadastro: TDMCadastro
       Precision = 15
       Size = 2
     end
+    object QRYCadastrofk_psicologo_id: TIntegerField
+      FieldName = 'fk_psicologo_id'
+      Origin = 'fk_psicologo_id'
+    end
   end
   object QRYPsicologo: TFDQuery
     CachedUpdates = True
     Connection = DMPrincipalP.FDConnection
     SQL.Strings = (
-      'Select * from psicologo')
+      'Select * from psicologo'
+      'WHERE CRP = :crp')
     Left = 600
     Top = 208
+    ParamData = <
+      item
+        Name = 'CRP'
+        ParamType = ptInput
+      end>
     object QRYPsicologoid: TLargeintField
       FieldName = 'id'
       Origin = 'id'

@@ -942,7 +942,7 @@ object UnFormCadastro: TUnFormCadastro
   object menu_central: TPanel
     Left = 58
     Top = 128
-    Width = 588
+    Width = 584
     Height = 304
     Anchors = [akLeft, akTop, akRight]
     Color = clLightgray
@@ -951,6 +951,7 @@ object UnFormCadastro: TUnFormCadastro
     ParentCtl3D = False
     TabOrder = 2
     StyleName = 'Windows'
+    ExplicitWidth = 582
     object LblNome: TLabel
       Left = 16
       Top = 11
@@ -1141,7 +1142,17 @@ object UnFormCadastro: TUnFormCadastro
       Height = 21
       DataField = 'senha'
       DataSource = DSCadastro
+      PasswordChar = '*'
       TabOrder = 10
+    end
+    object DBEdit11: TDBEdit
+      Left = 448
+      Top = 32
+      Width = 113
+      Height = 21
+      DataField = 'crp'
+      DataSource = DSPsicologo
+      TabOrder = 11
     end
   end
   object painel_inferior: TPanel

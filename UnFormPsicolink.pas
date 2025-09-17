@@ -57,20 +57,20 @@ end;
 procedure Tformlogin.ProsseguirClick(Sender: TObject);
 
 begin
-  DMPrincipalP := TDMPrincipalP.create(self);
+  DMPrincipalP := TDMPrincipalP.create(Self);
   // DMPrincipalP.conectarbanco;
 
   DMPrincipalP.FDQuery.Close;
   DMPrincipalP.FDQuery.ClearBlobs;
- 
+
   DMPrincipalP.FDQuery.ParamByName('cpf').AsString := CPFEdit.Text;
   DMPrincipalP.FDQuery.ParamByName('senha').AsString := SenhaEdit.Text;
   DMPrincipalP.FDQuery.open;
 
   if (DMPrincipalP.FDQuery.RecordCount > 0) then
   begin
-    ShowMessage('Login realizado com sucesso!' + (' ') +
-      DMPrincipalP.FDQuerycpf.Value);
+    ShowMessage('Login realizado com sucesso!' + sLineBreak + 'Bem vindo CPF:' +
+      (' ') + DMPrincipalP.FDQuerycpf.Value);
     selecao_profissional_paciente.showModal;
   end
   else

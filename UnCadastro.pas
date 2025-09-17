@@ -42,6 +42,7 @@ type
     DBEdit8: TDBEdit;
     DBEdit9: TDBEdit;
     DBEdit10: TDBEdit;
+    DBEdit11: TDBEdit;
     procedure CheckPsicoClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure SalvarClick(Sender: TObject);
@@ -54,15 +55,11 @@ type
 var
   // Form1: TForm1;
   DMCadastro: TDMCadastro;
+  DMPrincipal: TDMPrincipalP;
 
 implementation
 
 {$R *.dfm}
-
-procedure TUnFormCadastro.CheckPsicoClick(Sender: TObject);
-begin
-  //CRPEdit.Enabled := CheckPsico.Checked;
-end;
 
 procedure TUnFormCadastro.FormShow(Sender: TObject);
 begin
@@ -75,45 +72,61 @@ begin
 
   DMCadastro.QRYPsicologo.close;
   DMCadastro.QRYPsicologo.SQL.clear;
-  DMCadastro.QRYPsicologo.SQL.Add('SELECT * FROM Psicologo');
+  DMCadastro.QRYPsicologo.SQL.Add('Select * from psicologo');
   DMCadastro.QRYPsicologo.open;
-   if not (DMCadastro.QRYCadastro.State in [dsInsert, dsEdit]) then
-      DMCadastro.QRYCadastro.Append;
+
+  if not(DMCadastro.QRYCadastro.State in [dsInsert, dsEdit]) then
+    DMCadastro.QRYCadastro.Append;
 
   // DMCadastro.conectarCadastro;
 
+end;
+
+procedure TUnFormCadastro.CheckPsicoClick(Sender: TObject);
+begin
+
+  DBEdit11.Enabled := CheckPsico.Checked;
 end;
 
 procedure TUnFormCadastro.SalvarClick(Sender: TObject);
 begin
 
   if DBEdit1.text = '' then
-    ShowMessage('Nome Não pode ser vazio!')
+    Showmessage('Nome Não pode ser vazio!')
   else if DBEdit2.text = '' then
-    ShowMessage('Data de Nascimento Não pode ser vazio!')
+    Showmessage('Data de Nascimento Não pode ser vazio!')
   else if DBEdit3.text = '' then
-    ShowMessage('CPF Não pode ser vazio!')
+    Showmessage('CPF Não pode ser vazio!')
   else if DBEdit4.text = '' then
-    ShowMessage('Telefone Não pode ser vazio!')
+    Showmessage('Telefone Não pode ser vazio!')
   else if DBEdit5.text = '' then
-    ShowMessage('Email Não pode ser vazio!')
+    Showmessage('Email Não pode ser vazio!')
   else if DBEdit6.text = '' then
-    ShowMessage('CEP Não pode ser vazio!')
+    Showmessage('CEP Não pode ser vazio!')
   else if DBEdit7.text = '' then
-    ShowMessage('Rua Não pode ser vazio!')
+    Showmessage('Rua Não pode ser vazio!')
   else if DBEdit8.text = '' then
-    ShowMessage('Numero Não pode ser vazio!')
+    Showmessage('Numero Não pode ser vazio!')
   else if DBEdit9.text = '' then
-    ShowMessage('Bairro Não pode ser vazio!')
+    Showmessage('Bairro Não pode ser vazio!')
   else if DBEdit10.text = '' then
-    ShowMessage('Senha Não pode ser vazio!')
+    Showmessage('Senha Não pode ser vazio!')
+  else if DBEdit11.text = '' then
+    Showmessage('CRP Não pode ser vazio!')
   else
   begin
-    if DMCadastro.QRYCadastro.state in [dsEdit, dsInsert] then
+    if not DMCadastro.QRYPsicologo.IsEmpty then
+    begin
+      DMCadastro.QRYCadastro.FieldByName('fk_psicologo_id').AsInteger :=
+        DMCadastro.QRYPsicologo.FieldByName('id').AsInteger;
+    end;
+
+    if DMCadastro.QRYCadastro.State in [dsEdit, dsInsert] then
       DMCadastro.QRYCadastro.Post;
+
     DMCadastro.QRYCadastro.ApplyUpdates();
     DMCadastro.QRYCadastro.CommitUpdates;
-    ShowMessage('Cadastrado com sucesso!');
+    Showmessage('Cadastrado com sucesso!');
     ModalResult := mrOk;
   end;
 end;
