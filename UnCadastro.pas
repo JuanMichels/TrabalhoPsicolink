@@ -43,6 +43,8 @@ type
     DBEdit9: TDBEdit;
     DBEdit10: TDBEdit;
     DBEdit11: TDBEdit;
+    Label11: TLabel;
+    DBEdit12: TDBEdit;
     procedure CheckPsicoClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure SalvarClick(Sender: TObject);
@@ -75,8 +77,11 @@ begin
   DMCadastro.QRYPsicologo.SQL.Add('Select * from psicologo');
   DMCadastro.QRYPsicologo.open;
 
-  if not(DMCadastro.QRYCadastro.State in [dsInsert, dsEdit]) then
-    DMCadastro.QRYCadastro.Append;
+  if DMCadastro.QRYCadastro.State in [dsEdit, dsInsert, dsBrowse] then
+  DMCadastro.QRYCadastro.Append;
+  if DMCadastro.QRYPsicologo.State in [dsEdit, dsInsert, dsBrowse] then
+  DMCadastro.QRYPsicologo.Append;
+
 
   // DMCadastro.conectarCadastro;
 
@@ -113,6 +118,10 @@ begin
     Showmessage('Senha Não pode ser vazio!')
   else if DBEdit11.text = '' then
     Showmessage('CRP Não pode ser vazio!')
+  else if DBEdit12.text = '' then
+    Showmessage('Confirmar senha Não pode ser vazio!')
+  else if DBEdit12.text <> DBEdit10.Text then
+    Showmessage('As senhas não podem ser diferentes')
   else
   begin
     if not DMCadastro.QRYPsicologo.IsEmpty then

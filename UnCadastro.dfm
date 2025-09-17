@@ -940,9 +940,9 @@ object UnFormCadastro: TUnFormCadastro
     ExplicitWidth = 787
   end
   object menu_central: TPanel
-    Left = 58
+    Left = 56
     Top = 128
-    Width = 584
+    Width = 582
     Height = 304
     Anchors = [akLeft, akTop, akRight]
     Color = clLightgray
@@ -951,7 +951,6 @@ object UnFormCadastro: TUnFormCadastro
     ParentCtl3D = False
     TabOrder = 2
     StyleName = 'Windows'
-    ExplicitWidth = 582
     object LblNome: TLabel
       Left = 16
       Top = 11
@@ -967,7 +966,7 @@ object UnFormCadastro: TUnFormCadastro
       Caption = 'Data de Nascimento'
     end
     object CPFEdit: TLabel
-      Left = 165
+      Left = 151
       Top = 59
       Width = 21
       Height = 15
@@ -995,7 +994,7 @@ object UnFormCadastro: TUnFormCadastro
       Caption = 'CEP'
     end
     object Label6: TLabel
-      Left = 157
+      Left = 151
       Top = 157
       Width = 20
       Height = 15
@@ -1009,7 +1008,7 @@ object UnFormCadastro: TUnFormCadastro
       Caption = 'Numero'
     end
     object Label7: TLabel
-      Left = 165
+      Left = 151
       Top = 207
       Width = 31
       Height = 15
@@ -1045,6 +1044,14 @@ object UnFormCadastro: TUnFormCadastro
       Caption = 'numerocasa'
       FocusControl = DBEdit8
     end
+    object Label11: TLabel
+      Left = 151
+      Top = 259
+      Width = 83
+      Height = 15
+      Caption = 'confirmarsenha'
+      FocusControl = DBEdit12
+    end
     object CheckPsico: TCheckBox
       Left = 488
       Top = 11
@@ -1059,8 +1066,10 @@ object UnFormCadastro: TUnFormCadastro
       Top = 32
       Width = 409
       Height = 21
+      Ctl3D = False
       DataField = 'nome'
       DataSource = DSCadastro
+      ParentCtl3D = False
       TabOrder = 1
     end
     object DBEdit2: TDBEdit
@@ -1068,8 +1077,10 @@ object UnFormCadastro: TUnFormCadastro
       Top = 78
       Width = 129
       Height = 21
+      Ctl3D = False
       DataField = 'datanascimento'
       DataSource = DSCadastro
+      ParentCtl3D = False
       TabOrder = 2
     end
     object DBEdit3: TDBEdit
@@ -1077,8 +1088,10 @@ object UnFormCadastro: TUnFormCadastro
       Top = 78
       Width = 138
       Height = 21
+      Ctl3D = False
       DataField = 'cpf'
       DataSource = DSCadastro
+      ParentCtl3D = False
       TabOrder = 3
     end
     object DBEdit4: TDBEdit
@@ -1086,8 +1099,10 @@ object UnFormCadastro: TUnFormCadastro
       Top = 80
       Width = 121
       Height = 21
+      Ctl3D = False
       DataField = 'telefone'
       DataSource = DSCadastro
+      ParentCtl3D = False
       TabOrder = 4
     end
     object DBEdit5: TDBEdit
@@ -1095,8 +1110,10 @@ object UnFormCadastro: TUnFormCadastro
       Top = 128
       Width = 409
       Height = 21
+      Ctl3D = False
       DataField = 'email'
       DataSource = DSCadastro
+      ParentCtl3D = False
       TabOrder = 5
     end
     object DBEdit6: TDBEdit
@@ -1104,8 +1121,10 @@ object UnFormCadastro: TUnFormCadastro
       Top = 178
       Width = 129
       Height = 21
+      Ctl3D = False
       DataField = 'cep'
       DataSource = DSCadastro
+      ParentCtl3D = False
       TabOrder = 6
     end
     object DBEdit7: TDBEdit
@@ -1113,8 +1132,10 @@ object UnFormCadastro: TUnFormCadastro
       Top = 178
       Width = 274
       Height = 21
+      Ctl3D = False
       DataField = 'endereco'
       DataSource = DSCadastro
+      ParentCtl3D = False
       TabOrder = 7
     end
     object DBEdit8: TDBEdit
@@ -1122,8 +1143,10 @@ object UnFormCadastro: TUnFormCadastro
       Top = 228
       Width = 129
       Height = 21
+      Ctl3D = False
       DataField = 'numerocasa'
       DataSource = DSCadastro
+      ParentCtl3D = False
       TabOrder = 8
     end
     object DBEdit9: TDBEdit
@@ -1131,8 +1154,10 @@ object UnFormCadastro: TUnFormCadastro
       Top = 228
       Width = 274
       Height = 21
+      Ctl3D = False
       DataField = 'bairro'
       DataSource = DSCadastro
+      ParentCtl3D = False
       TabOrder = 9
     end
     object DBEdit10: TDBEdit
@@ -1140,8 +1165,10 @@ object UnFormCadastro: TUnFormCadastro
       Top = 278
       Width = 129
       Height = 21
+      Ctl3D = False
       DataField = 'senha'
       DataSource = DSCadastro
+      ParentCtl3D = False
       PasswordChar = '*'
       TabOrder = 10
     end
@@ -1150,9 +1177,22 @@ object UnFormCadastro: TUnFormCadastro
       Top = 32
       Width = 113
       Height = 21
+      Ctl3D = False
       DataField = 'crp'
       DataSource = DSPsicologo
+      Enabled = False
+      ParentCtl3D = False
       TabOrder = 11
+    end
+    object DBEdit12: TDBEdit
+      Left = 151
+      Top = 280
+      Width = 114
+      Height = 21
+      DataField = 'confirmarsenha'
+      DataSource = DSCadastro
+      PasswordChar = '*'
+      TabOrder = 12
     end
   end
   object painel_inferior: TPanel

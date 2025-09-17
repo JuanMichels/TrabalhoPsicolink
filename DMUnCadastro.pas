@@ -27,6 +27,7 @@ type
     QRYPsicologoid: TLargeintField;
     QRYPsicologocrp: TWideStringField;
     QRYCadastrofk_psicologo_id: TIntegerField;
+    QRYCadastroconfirmarsenha: TWideStringField;
     procedure conectarCadastro;
   private
     { Private declarations }

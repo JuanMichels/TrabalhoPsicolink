@@ -8,6 +8,7 @@ object DMPrincipalP: TDMPrincipalP
       'User_Name=postgres'
       'Password=Juan2006'
       'DriverID=PG')
+    Connected = True
     Left = 376
     Top = 113
   end

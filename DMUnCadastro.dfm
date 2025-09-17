@@ -71,20 +71,19 @@ object DMCadastro: TDMCadastro
       FieldName = 'fk_psicologo_id'
       Origin = 'fk_psicologo_id'
     end
+    object QRYCadastroconfirmarsenha: TWideStringField
+      FieldName = 'confirmarsenha'
+      Origin = 'confirmarsenha'
+      Size = 6
+    end
   end
   object QRYPsicologo: TFDQuery
     CachedUpdates = True
     Connection = DMPrincipalP.FDConnection
     SQL.Strings = (
-      'Select * from psicologo'
-      'WHERE CRP = :crp')
+      'Select * from psicologo')
     Left = 600
     Top = 208
-    ParamData = <
-      item
-        Name = 'CRP'
-        ParamType = ptInput
-      end>
     object QRYPsicologoid: TLargeintField
       FieldName = 'id'
       Origin = 'id'
