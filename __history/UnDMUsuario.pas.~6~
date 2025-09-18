@@ -1,0 +1,41 @@
+unit UnDMUsuario;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, UnDMPrincipal, Data.FMTBcd, Data.DB,
+  Data.SqlExpr, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client;
+
+type
+  TDMUsuario = class(TDataModule)
+    DSUsuario: TDataSource;
+    QRYUsuario: TFDQuery;
+    procedure conectarusuario;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DMUsuario: TDMUsuario;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+{ TDataModule2 }
+
+procedure TDMUsuario.conectarusuario;
+begin
+  QRYUsuario.close;
+  QRYUsuario.SQL.clear;
+  QRYUsuario.SQL.Add('SELECT * FROM pessoa');
+  QRYUsuario.open;
+end;
+
+end.

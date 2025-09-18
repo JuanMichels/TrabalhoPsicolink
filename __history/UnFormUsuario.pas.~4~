@@ -1,0 +1,38 @@
+unit UnFormUsuario;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls, UnDMUsuario;
+
+type
+  TFormUsuario = class(TForm)
+    painel_superior: TPanel;
+    Image1: TImage;
+    sub_painel: TPanel;
+    painel_inferior: TPanel;
+    procedure FormShow(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FormUsuario: TFormUsuario;
+  DMUsuario: TDMUsuario;
+implementation
+
+{$R *.dfm}
+
+procedure TFormUsuario.FormShow(Sender: TObject);
+begin
+  DMAgenda := TDMUsuario.create(self);
+  DMUsuario.QRYUsuario.close;
+  DMUsuario.QRYUsuario.SQL.clear;
+  DMUsuario.QRYUsuario.SQL.Add('SELECT * FROM pessoa');
+  DMUsuario.QRYUsuario.open;
+end;
+
+end.

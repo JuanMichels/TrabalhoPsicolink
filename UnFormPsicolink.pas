@@ -8,7 +8,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Imaging.pngimage,
   Vcl.WinXPanels, Vcl.StdCtrls, Vcl.Mask, psicolink2, UnDMPrincipal, Data.DB,
   UnCadastro,
-  Vcl.DBCtrls;
+  Vcl.DBCtrls, UnAgenda;
 
 type
   Tformlogin = class(TForm)
@@ -21,7 +21,6 @@ type
     Edit1: TEdit;
     Edit2: TEdit;
     Cadastro: TPanel;
-    DSLogin: TDataSource;
     CPFEdit: TMaskEdit;
     SenhaEdit: TMaskEdit;
     procedure CadastroClick(Sender: TObject);
@@ -55,9 +54,12 @@ begin
 end;
 
 procedure Tformlogin.ProsseguirClick(Sender: TObject);
-
+var
+  LFormAgenda : TFormAgenda;
 begin
   DMPrincipalP := TDMPrincipalP.create(Self);
+  LFormAgenda := TFormAgenda.create(Self);
+  try
   // DMPrincipalP.conectarbanco;
 
   DMPrincipalP.FDQuery.Close;
@@ -71,11 +73,14 @@ begin
   begin
     ShowMessage('Login realizado com sucesso!' + sLineBreak + 'Bem vindo CPF:' +
       (' ') + DMPrincipalP.FDQuerycpf.Value);
-    selecao_profissional_paciente.showModal;
+    LFormAgenda.showModal;
   end
   else
   begin
     ShowMessage('CPF ou senha inválidos!');
+  end;
+  finally
+    FreeAndNil(LFormAgenda);
   end;
 end;
 

@@ -27,8 +27,6 @@ type
     Label7: TLabel;
     Salvar: TButton;
     Label8: TLabel;
-    DSCadastro: TDataSource;
-    DSPsicologo: TDataSource;
     Label2: TLabel;
     DBEdit1: TDBEdit;
     DBEdit2: TDBEdit;
@@ -77,10 +75,8 @@ begin
   DMCadastro.QRYPsicologo.SQL.Add('Select * from psicologo');
   DMCadastro.QRYPsicologo.open;
 
-  if DMCadastro.QRYCadastro.State in [dsEdit, dsInsert, dsBrowse] then
   DMCadastro.QRYCadastro.Append;
-  if DMCadastro.QRYPsicologo.State in [dsEdit, dsInsert, dsBrowse] then
-  DMCadastro.QRYPsicologo.Append;
+  DMCadastro.QRYPsicologo.append;
 
 
   // DMCadastro.conectarCadastro;
@@ -89,55 +85,96 @@ end;
 
 procedure TUnFormCadastro.CheckPsicoClick(Sender: TObject);
 begin
-
   DBEdit11.Enabled := CheckPsico.Checked;
+
 end;
 
 procedure TUnFormCadastro.SalvarClick(Sender: TObject);
 begin
 
   if DBEdit1.text = '' then
-    Showmessage('Nome Não pode ser vazio!')
-  else if DBEdit2.text = '' then
-    Showmessage('Data de Nascimento Não pode ser vazio!')
-  else if DBEdit3.text = '' then
-    Showmessage('CPF Não pode ser vazio!')
-  else if DBEdit4.text = '' then
-    Showmessage('Telefone Não pode ser vazio!')
-  else if DBEdit5.text = '' then
-    Showmessage('Email Não pode ser vazio!')
-  else if DBEdit6.text = '' then
-    Showmessage('CEP Não pode ser vazio!')
-  else if DBEdit7.text = '' then
-    Showmessage('Rua Não pode ser vazio!')
-  else if DBEdit8.text = '' then
-    Showmessage('Numero Não pode ser vazio!')
-  else if DBEdit9.text = '' then
-    Showmessage('Bairro Não pode ser vazio!')
-  else if DBEdit10.text = '' then
-    Showmessage('Senha Não pode ser vazio!')
-  else if DBEdit11.text = '' then
-    Showmessage('CRP Não pode ser vazio!')
-  else if DBEdit12.text = '' then
-    Showmessage('Confirmar senha Não pode ser vazio!')
-  else if DBEdit12.text <> DBEdit10.Text then
-    Showmessage('As senhas não podem ser diferentes')
-  else
   begin
-    if not DMCadastro.QRYPsicologo.IsEmpty then
+    Showmessage('Nome Não pode ser vazio!');
+    Exit;
+  end
+  else if DBEdit2.text = '' then
+  begin
+    Showmessage('Data de Nascimento Não pode ser vazio!');
+    Exit;
+  end
+  else if DBEdit3.text = '' then
+  begin
+    Showmessage('CPF Não pode ser vazio!');
+    Exit;
+  end
+  else if DBEdit4.text = '' then
+  begin
+    Showmessage('Telefone Não pode ser vazio!');
+    Exit;
+  end
+  else if DBEdit5.text = '' then
+  begin
+    Showmessage('Email Não pode ser vazio!');
+    Exit;
+  end
+  else if DBEdit6.text = '' then
+  begin
+    Showmessage('CEP Não pode ser vazio!');
+    Exit;
+  end
+  else if DBEdit7.text = '' then
+  begin
+    Showmessage('Rua Não pode ser vazio!');
+    Exit;
+  end
+  else if DBEdit8.text = '' then
+  begin
+    Showmessage('Numero Não pode ser vazio!');
+    Exit;
+  end
+  else if DBEdit9.text = '' then
+  begin
+    Showmessage('Bairro Não pode ser vazio!');
+    Exit;
+  end
+  else if DBEdit10.text = '' then
+  begin
+    Showmessage('Senha Não pode ser vazio!');
+    Exit;
+  end
+  else if DBEdit11.Enabled then
+  begin
+    if DBEdit11.text = '' then
     begin
-      DMCadastro.QRYCadastro.FieldByName('fk_psicologo_id').AsInteger :=
-        DMCadastro.QRYPsicologo.FieldByName('id').AsInteger;
-    end;
+      Showmessage('CRP Não pode ser vazio!');
+      Exit;
+    end
+  end
+  else if DBEdit12.text = '' then
+  begin
+    Showmessage('Confirmar senha Não pode ser vazio!');
+    Exit;
+  end
+  else if DBEdit12.text <> DBEdit10.text then
+  begin
+    Showmessage('As senhas não podem ser diferentes');
+    Exit;
+  end
+  else if DMCadastro.QRYCadastro.State in [dsEdit, dsInsert, dsBrowse] then
+  begin
+    DMCadastro.QRYCadastro.Post;
+    if DBEdit11.Enabled then
 
-    if DMCadastro.QRYCadastro.State in [dsEdit, dsInsert] then
-      DMCadastro.QRYCadastro.Post;
-
-    DMCadastro.QRYCadastro.ApplyUpdates();
-    DMCadastro.QRYCadastro.CommitUpdates;
-    Showmessage('Cadastrado com sucesso!');
-    ModalResult := mrOk;
+      DMCadastro.QRYPsicologo.Post;
   end;
+
+  DMCadastro.QRYCadastro.ApplyUpdates();
+  DMCadastro.QRYCadastro.CommitUpdates;
+  DMCadastro.QRYPsicologo.ApplyUpdates();
+  DMCadastro.QRYPsicologo.CommitUpdates;
+  Showmessage('Cadastrado com sucesso!');
+  ModalResult := mrOk;
+
 end;
 
 end.

@@ -1,0 +1,16 @@
+object DataModule2: TDataModule2
+  Height = 750
+  Width = 1000
+  PixelsPerInch = 120
+  object DSUsuario: TDataSource
+    Left = 696
+    Top = 184
+  end
+  object QRYUsuario: TFDQuery
+    Connection = DMPrincipalP.FDConnection
+    SQL.Strings = (
+      'Select * from pessoa')
+    Left = 360
+    Top = 160
+  end
+end

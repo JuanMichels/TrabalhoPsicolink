@@ -1,6 +1,8 @@
 object UnFormCadastro: TUnFormCadastro
   Left = 0
   Top = 0
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
   Caption = 'UnFormCadastro'
   ClientHeight = 471
   ClientWidth = 789
@@ -10,6 +12,7 @@ object UnFormCadastro: TUnFormCadastro
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  Position = poDesktopCenter
   OnShow = FormShow
   DesignSize = (
     789
@@ -942,7 +945,7 @@ object UnFormCadastro: TUnFormCadastro
   object menu_central: TPanel
     Left = 56
     Top = 128
-    Width = 582
+    Width = 578
     Height = 304
     Anchors = [akLeft, akTop, akRight]
     Color = clLightgray
@@ -951,6 +954,7 @@ object UnFormCadastro: TUnFormCadastro
     ParentCtl3D = False
     TabOrder = 2
     StyleName = 'Windows'
+    ExplicitWidth = 576
     object LblNome: TLabel
       Left = 16
       Top = 11
@@ -1068,7 +1072,7 @@ object UnFormCadastro: TUnFormCadastro
       Height = 21
       Ctl3D = False
       DataField = 'nome'
-      DataSource = DSCadastro
+      DataSource = DMCadastro.DSCadastro
       ParentCtl3D = False
       TabOrder = 1
     end
@@ -1079,7 +1083,7 @@ object UnFormCadastro: TUnFormCadastro
       Height = 21
       Ctl3D = False
       DataField = 'datanascimento'
-      DataSource = DSCadastro
+      DataSource = DMCadastro.DSCadastro
       ParentCtl3D = False
       TabOrder = 2
     end
@@ -1090,7 +1094,7 @@ object UnFormCadastro: TUnFormCadastro
       Height = 21
       Ctl3D = False
       DataField = 'cpf'
-      DataSource = DSCadastro
+      DataSource = DMCadastro.DSCadastro
       ParentCtl3D = False
       TabOrder = 3
     end
@@ -1101,7 +1105,7 @@ object UnFormCadastro: TUnFormCadastro
       Height = 21
       Ctl3D = False
       DataField = 'telefone'
-      DataSource = DSCadastro
+      DataSource = DMCadastro.DSCadastro
       ParentCtl3D = False
       TabOrder = 4
     end
@@ -1112,7 +1116,7 @@ object UnFormCadastro: TUnFormCadastro
       Height = 21
       Ctl3D = False
       DataField = 'email'
-      DataSource = DSCadastro
+      DataSource = DMCadastro.DSCadastro
       ParentCtl3D = False
       TabOrder = 5
     end
@@ -1123,7 +1127,7 @@ object UnFormCadastro: TUnFormCadastro
       Height = 21
       Ctl3D = False
       DataField = 'cep'
-      DataSource = DSCadastro
+      DataSource = DMCadastro.DSCadastro
       ParentCtl3D = False
       TabOrder = 6
     end
@@ -1134,7 +1138,7 @@ object UnFormCadastro: TUnFormCadastro
       Height = 21
       Ctl3D = False
       DataField = 'endereco'
-      DataSource = DSCadastro
+      DataSource = DMCadastro.DSCadastro
       ParentCtl3D = False
       TabOrder = 7
     end
@@ -1145,7 +1149,7 @@ object UnFormCadastro: TUnFormCadastro
       Height = 21
       Ctl3D = False
       DataField = 'numerocasa'
-      DataSource = DSCadastro
+      DataSource = DMCadastro.DSCadastro
       ParentCtl3D = False
       TabOrder = 8
     end
@@ -1156,7 +1160,7 @@ object UnFormCadastro: TUnFormCadastro
       Height = 21
       Ctl3D = False
       DataField = 'bairro'
-      DataSource = DSCadastro
+      DataSource = DMCadastro.DSCadastro
       ParentCtl3D = False
       TabOrder = 9
     end
@@ -1167,7 +1171,7 @@ object UnFormCadastro: TUnFormCadastro
       Height = 21
       Ctl3D = False
       DataField = 'senha'
-      DataSource = DSCadastro
+      DataSource = DMCadastro.DSCadastro
       ParentCtl3D = False
       PasswordChar = '*'
       TabOrder = 10
@@ -1179,7 +1183,7 @@ object UnFormCadastro: TUnFormCadastro
       Height = 21
       Ctl3D = False
       DataField = 'crp'
-      DataSource = DSPsicologo
+      DataSource = DMCadastro.DSPsicologo
       Enabled = False
       ParentCtl3D = False
       TabOrder = 11
@@ -1190,7 +1194,7 @@ object UnFormCadastro: TUnFormCadastro
       Width = 114
       Height = 21
       DataField = 'confirmarsenha'
-      DataSource = DSCadastro
+      DataSource = DMCadastro.DSCadastro
       PasswordChar = '*'
       TabOrder = 12
     end
@@ -1216,15 +1220,5 @@ object UnFormCadastro: TUnFormCadastro
     Caption = 'Salvar'
     TabOrder = 4
     OnClick = SalvarClick
-  end
-  object DSCadastro: TDataSource
-    DataSet = DMCadastro.QRYCadastro
-    Left = 712
-    Top = 136
-  end
-  object DSPsicologo: TDataSource
-    DataSet = DMCadastro.QRYPsicologo
-    Left = 712
-    Top = 216
   end
 end

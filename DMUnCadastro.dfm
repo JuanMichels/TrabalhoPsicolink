@@ -4,11 +4,21 @@ object DMCadastro: TDMCadastro
   PixelsPerInch = 120
   object QRYCadastro: TFDQuery
     CachedUpdates = True
+    IndexFieldNames = 'id_psicologo'
+    MasterSource = DSPsicologo
+    MasterFields = 'id_psicologo'
     Connection = DMPrincipalP.FDConnection
     SQL.Strings = (
-      'Select * from pessoa')
-    Left = 432
-    Top = 184
+      'Select * from pessoa'
+      'where id_psicologo = :id_psicologo')
+    Left = 536
+    Top = 160
+    ParamData = <
+      item
+        Name = 'ID_PSICOLOGO'
+        ParamType = ptInput
+        Value = Null
+      end>
     object QRYCadastroid: TLargeintField
       Alignment = taLeftJustify
       FieldName = 'id'
@@ -23,6 +33,7 @@ object DMCadastro: TDMCadastro
     object QRYCadastrocpf: TWideStringField
       FieldName = 'cpf'
       Origin = 'cpf'
+      EditMask = '999.999.999-99;1;_'
       Size = 12
     end
     object QRYCadastrodatanascimento: TDateField
@@ -37,6 +48,7 @@ object DMCadastro: TDMCadastro
     object QRYCadastrotelefone: TWideStringField
       FieldName = 'telefone'
       Origin = 'telefone'
+      EditMask = '(99)99999-9999;1;_'
       Size = 11
     end
     object QRYCadastroemail: TWideStringField
@@ -52,6 +64,7 @@ object DMCadastro: TDMCadastro
     object QRYCadastrocep: TWideStringField
       FieldName = 'cep'
       Origin = 'cep'
+      EditMask = '99999-999;1;_'
       FixedChar = True
       Size = 15
     end
@@ -67,32 +80,45 @@ object DMCadastro: TDMCadastro
       Precision = 15
       Size = 2
     end
-    object QRYCadastrofk_psicologo_id: TIntegerField
-      FieldName = 'fk_psicologo_id'
-      Origin = 'fk_psicologo_id'
-    end
     object QRYCadastroconfirmarsenha: TWideStringField
       FieldName = 'confirmarsenha'
       Origin = 'confirmarsenha'
       Size = 6
     end
+    object QRYCadastroid_psicologo: TIntegerField
+      AutoGenerateValue = arAutoInc
+      FieldName = 'id_psicologo'
+      Origin = 'id_psicologo'
+    end
   end
   object QRYPsicologo: TFDQuery
     CachedUpdates = True
+    IndexFieldNames = 'id_psicologo'
     Connection = DMPrincipalP.FDConnection
     SQL.Strings = (
       'Select * from psicologo')
-    Left = 600
-    Top = 208
-    object QRYPsicologoid: TLargeintField
-      FieldName = 'id'
-      Origin = 'id'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-    end
+    Left = 536
+    Top = 240
     object QRYPsicologocrp: TWideStringField
       FieldName = 'crp'
       Origin = 'crp'
       Size = 5
     end
+    object QRYPsicologoid_psicologo: TLargeintField
+      AutoGenerateValue = arAutoInc
+      FieldName = 'id_psicologo'
+      Origin = 'id_psicologo'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+  end
+  object DSCadastro: TDataSource
+    DataSet = QRYCadastro
+    Left = 712
+    Top = 136
+  end
+  object DSPsicologo: TDataSource
+    DataSet = QRYPsicologo
+    Left = 712
+    Top = 216
   end
 end

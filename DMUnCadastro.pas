@@ -24,10 +24,12 @@ type
     QRYCadastrocep: TWideStringField;
     QRYCadastrobairro: TWideStringField;
     QRYCadastronumerocasa: TBCDField;
-    QRYPsicologoid: TLargeintField;
     QRYPsicologocrp: TWideStringField;
-    QRYCadastrofk_psicologo_id: TIntegerField;
     QRYCadastroconfirmarsenha: TWideStringField;
+    DSCadastro: TDataSource;
+    DSPsicologo: TDataSource;
+    QRYPsicologoid_psicologo: TLargeintField;
+    QRYCadastroid_psicologo: TIntegerField;
     procedure conectarCadastro;
   private
     { Private declarations }
@@ -56,5 +58,7 @@ begin
   QRYPsicologo.SQL.Add('SELECT * FROM psicologo');
   QRYPsicologo.open;
 end;
+
+
 
 end.

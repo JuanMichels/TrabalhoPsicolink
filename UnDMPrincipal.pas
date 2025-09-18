@@ -19,7 +19,7 @@ type
     FDQuerycpf: TWideStringField;
     FDQuerysenha: TWideStringField;
     FDQuerynome: TWideStringField;
-    FDQueryfk_psicologo_id: TIntegerField;
+    DSLogin: TDataSource;
     procedure conectarbanco;
     procedure buscarbanco;
   private

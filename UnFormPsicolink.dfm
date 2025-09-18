@@ -1,6 +1,8 @@
 object formlogin: Tformlogin
   Left = 0
   Top = 0
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
   ClientHeight = 493
   ClientWidth = 624
   Color = clWindow
@@ -10,6 +12,7 @@ object formlogin: Tformlogin
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  Position = poDesktopCenter
   DesignSize = (
     624
     493)
@@ -954,21 +957,21 @@ object formlogin: Tformlogin
   object menu_central: TPanel
     Left = 184
     Top = 144
-    Width = 239
+    Width = 235
     Height = 297
     Anchors = [akLeft, akTop, akRight]
     Color = clLightgray
     ParentBackground = False
     TabOrder = 3
     StyleName = 'Windows'
-    ExplicitWidth = 237
+    ExplicitWidth = 233
     DesignSize = (
-      239
+      235
       297)
     object Prosseguir: TPanel
       Left = 32
       Top = 176
-      Width = 183
+      Width = 179
       Height = 41
       Anchors = [akLeft, akTop, akRight]
       BorderStyle = bsSingle
@@ -984,7 +987,7 @@ object formlogin: Tformlogin
       TabOrder = 0
       StyleName = 'Windows'
       OnClick = ProsseguirClick
-      ExplicitWidth = 181
+      ExplicitWidth = 177
     end
     object Edit1: TEdit
       Left = 32
@@ -1023,7 +1026,7 @@ object formlogin: Tformlogin
     object CPFEdit: TMaskEdit
       Left = 32
       Top = 33
-      Width = 177
+      Width = 176
       Height = 26
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
@@ -1053,7 +1056,7 @@ object formlogin: Tformlogin
   object Cadastro: TPanel
     Left = 216
     Top = 383
-    Width = 183
+    Width = 179
     Height = 41
     Anchors = [akLeft, akTop, akRight]
     BorderStyle = bsSingle
@@ -1069,11 +1072,6 @@ object formlogin: Tformlogin
     TabOrder = 4
     StyleName = 'Windows'
     OnClick = CadastroClick
-    ExplicitWidth = 181
-  end
-  object DSLogin: TDataSource
-    DataSet = DMPrincipalP.FDQuery
-    Left = 528
-    Top = 152
+    ExplicitWidth = 177
   end
 end
