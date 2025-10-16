@@ -1,0 +1,180 @@
+unit UnFormCadastro;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls,
+  Vcl.StdCtrls, Vcl.Mask, Vcl.DBCtrls, DMUnCadastro, Data.DB, UnDMPrincipal;
+
+type
+  TUnFormCadastro = class(TForm)
+    painel_superior: TPanel;
+    Image1: TImage;
+    sub_painel: TPanel;
+    menu_central: TPanel;
+    painel_inferior: TPanel;
+    LblNome: TLabel;
+    Label1: TLabel;
+    CPFEdit: TLabel;
+    Label3: TLabel;
+    CheckPsico: TCheckBox;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Numero: TLabel;
+    Label7: TLabel;
+    Salvar: TButton;
+    Label8: TLabel;
+    Label2: TLabel;
+    DBEdit1: TDBEdit;
+    DBEdit2: TDBEdit;
+    DBEdit3: TDBEdit;
+    DBEdit4: TDBEdit;
+    DBEdit5: TDBEdit;
+    Label9: TLabel;
+    DBEdit6: TDBEdit;
+    DBEdit7: TDBEdit;
+    Label10: TLabel;
+    DBEdit8: TDBEdit;
+    DBEdit9: TDBEdit;
+    DBEdit10: TDBEdit;
+    DBEdit11: TDBEdit;
+    Label11: TLabel;
+    DBEdit12: TDBEdit;
+    procedure CheckPsicoClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure SalvarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  // Form1: TForm1;
+  DMCadastro: TDMCadastro;
+  DMPrincipal: TDMPrincipalP;
+
+implementation
+
+{$R *.dfm}
+
+procedure TUnFormCadastro.FormShow(Sender: TObject);
+begin
+
+  DMCadastro := TDMCadastro.create(self);
+  DMCadastro.QRYCadastro.close;
+  DMCadastro.QRYCadastro.SQL.clear;
+  DMCadastro.QRYCadastro.SQL.Add('SELECT * FROM pessoa');
+  DMCadastro.QRYCadastro.open;
+
+  DMCadastro.QRYPsicologo.close;
+  DMCadastro.QRYPsicologo.SQL.clear;
+  DMCadastro.QRYPsicologo.SQL.Add('Select * from psicologo');
+  DMCadastro.QRYPsicologo.open;
+
+  DMCadastro.QRYCadastro.Append;
+  DMCadastro.QRYPsicologo.append;
+
+
+  // DMCadastro.conectarCadastro;
+
+end;
+
+procedure TUnFormCadastro.CheckPsicoClick(Sender: TObject);
+begin
+  DBEdit11.Enabled := CheckPsico.Checked;
+
+end;
+
+procedure TUnFormCadastro.SalvarClick(Sender: TObject);
+begin
+
+  if DBEdit1.text = '' then
+  begin
+    Showmessage('Nome Não pode ser vazio!');
+    Exit;
+  end
+  else if DBEdit2.text = '' then
+  begin
+    Showmessage('Data de Nascimento Não pode ser vazio!');
+    Exit;
+  end
+  else if DBEdit3.text = '' then
+  begin
+    Showmessage('CPF Não pode ser vazio!');
+    Exit;
+  end
+  else if DBEdit4.text = '' then
+  begin
+    Showmessage('Telefone Não pode ser vazio!');
+    Exit;
+  end
+  else if DBEdit5.text = '' then
+  begin
+    Showmessage('Email Não pode ser vazio!');
+    Exit;
+  end
+  else if DBEdit6.text = '' then
+  begin
+    Showmessage('CEP Não pode ser vazio!');
+    Exit;
+  end
+  else if DBEdit7.text = '' then
+  begin
+    Showmessage('Rua Não pode ser vazio!');
+    Exit;
+  end
+  else if DBEdit8.text = '' then
+  begin
+    Showmessage('Numero Não pode ser vazio!');
+    Exit;
+  end
+  else if DBEdit9.text = '' then
+  begin
+    Showmessage('Bairro Não pode ser vazio!');
+    Exit;
+  end
+  else if DBEdit10.text = '' then
+  begin
+    Showmessage('Senha Não pode ser vazio!');
+    Exit;
+  end
+  else if DBEdit11.Enabled then
+  begin
+    if DBEdit11.text = '' then
+    begin
+      Showmessage('CRP Não pode ser vazio!');
+      Exit;
+    end
+  end
+  else if DBEdit12.text = '' then
+  begin
+    Showmessage('Confirmar senha Não pode ser vazio!');
+    Exit;
+  end
+  else if DBEdit12.text <> DBEdit10.text then
+  begin
+    Showmessage('As senhas não podem ser diferentes');
+    Exit;
+  end
+  else if DMCadastro.QRYCadastro.State in [dsEdit, dsInsert, dsBrowse] then
+  begin
+    DMCadastro.QRYCadastro.Post;
+    if DBEdit11.Enabled then
+
+      DMCadastro.QRYPsicologo.Post;
+  end;
+
+  DMCadastro.QRYCadastro.ApplyUpdates();
+  DMCadastro.QRYCadastro.CommitUpdates;
+  DMCadastro.QRYPsicologo.ApplyUpdates();
+  DMCadastro.QRYPsicologo.CommitUpdates;
+  Showmessage('Cadastrado com sucesso!');
+  ModalResult := mrOk;
+
+end;
+
+end.

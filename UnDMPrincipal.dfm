@@ -20,10 +20,10 @@ object DMPrincipalP: TDMPrincipalP
   object FDQuery: TFDQuery
     Connection = FDConnection
     SQL.Strings = (
-      'Select * from pessoa'
-      'Where CPF = :CPF and Senha = :Senha')
+      '              Select * from pessoa'
+      '              Where cpf = :cpf and Senha = :Senha')
     Left = 664
-    Top = 112
+    Top = 113
     ParamData = <
       item
         Name = 'CPF'
@@ -56,7 +56,7 @@ object DMPrincipalP: TDMPrincipalP
   end
   object DSLogin: TDataSource
     DataSet = FDQuery
-    Left = 432
-    Top = 232
+    Left = 521
+    Top = 193
   end
 end

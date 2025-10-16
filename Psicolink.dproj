@@ -156,6 +156,19 @@
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
+        <DCCReference Include="UnFormUsuario.pas">
+            <Form>FormUsuario</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UnDMUsuario.pas">
+            <Form>DMUsuario</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="UnTelaPrincipal.pas">
+            <Form>FormPrincipal</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

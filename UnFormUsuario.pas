@@ -3,9 +3,11 @@ unit UnFormUsuario;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls, UnDMUsuario,
-  Vcl.StdCtrls, Data.DB, Vcl.Mask, Vcl.DBCtrls;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls,
+  UnDMUsuario,
+  Vcl.StdCtrls, Data.DB, Vcl.Mask, Vcl.DBCtrls, UnDMPrincipal;
 
 type
   TFormUsuario = class(TForm)
@@ -14,9 +16,7 @@ type
     sub_painel: TPanel;
     painel_inferior: TPanel;
     Label1: TLabel;
-    DBEdit1: TDBEdit;
     Label2: TLabel;
-    DBEdit2: TDBEdit;
     Label3: TLabel;
     DBEdit3: TDBEdit;
     Label4: TLabel;
@@ -34,11 +34,13 @@ type
     Label10: TLabel;
     DBEdit10: TDBEdit;
     Sair: TButton;
-    Alterar: TButton;
     Excluir: TButton;
     Salvar: TButton;
+    DBEdit1: TDBEdit;
+    DBEdit2: TDBEdit;
     procedure FormShow(Sender: TObject);
     procedure SairClick(Sender: TObject);
+    procedure SalvarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -47,23 +49,35 @@ type
 
 var
   FormUsuario: TFormUsuario;
-  DMUsuario: TDMUsuario;
+
 implementation
 
 {$R *.dfm}
 
 procedure TFormUsuario.FormShow(Sender: TObject);
+
 begin
-  DMAgenda := TDMUsuario.create(self);
+  DMUsuario := TDMUsuario.create(self);
   DMUsuario.QRYUsuario.close;
   DMUsuario.QRYUsuario.SQL.clear;
-  DMUsuario.QRYUsuario.SQL.Add('SELECT * FROM pessoa');
+  DMUsuario.QRYUsuario.SQL.Add(Format('Select * from pessoa where id =  %0:d',
+    [DMPrincipalP.Usuarioid]));
   DMUsuario.QRYUsuario.open;
 end;
 
 procedure TFormUsuario.SairClick(Sender: TObject);
 begin
   ModalResult := mrOk;
+end;
+
+procedure TFormUsuario.SalvarClick(Sender: TObject);
+begin
+  if DMUsuario.QRYUsuario.State in [dsEdit, dsInsert, dsBrowse] then
+  begin
+    DMUsuario.QRYUsuario.ApplyUpdates();
+    DMUsuario.QRYUsuario.CommitUpdates;
+    Showmessage('Salvo com sucesso!');
+  end;
 end;
 
 end.

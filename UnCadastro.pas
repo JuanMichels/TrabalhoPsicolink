@@ -43,6 +43,8 @@ type
     DBEdit11: TDBEdit;
     Label11: TLabel;
     DBEdit12: TDBEdit;
+    Label12: TLabel;
+    DBComboBox1: TDBComboBox;
     procedure CheckPsicoClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure SalvarClick(Sender: TObject);
@@ -75,8 +77,9 @@ begin
   DMCadastro.QRYPsicologo.SQL.Add('Select * from psicologo');
   DMCadastro.QRYPsicologo.open;
 
-  DMCadastro.QRYCadastro.Append;
+
   DMCadastro.QRYPsicologo.append;
+  DMCadastro.QRYCadastro.Append;
 
 
   // DMCadastro.conectarCadastro;

@@ -25,7 +25,6 @@ type
     QRYUsuarionumerocasa: TBCDField;
     QRYUsuarioconfirmarsenha: TWideStringField;
     QRYUsuarioid_psicologo: TIntegerField;
-    procedure conectarusuario;
   private
     { Private declarations }
   public
@@ -38,17 +37,7 @@ var
 implementation
 
 {%CLASSGROUP 'Vcl.Controls.TControl'}
-
 {$R *.dfm}
-
 { TDataModule2 }
-
-procedure TDMUsuario.conectarusuario;
-begin
-  QRYUsuario.close;
-  QRYUsuario.SQL.clear;
-  QRYUsuario.SQL.Add('SELECT * FROM pessoa');
-  QRYUsuario.open;
-end;
 
 end.

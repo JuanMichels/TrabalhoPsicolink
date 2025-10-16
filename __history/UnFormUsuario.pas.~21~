@@ -1,0 +1,97 @@
+unit UnFormUsuario;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls,
+  UnDMUsuario,
+  Vcl.StdCtrls, Data.DB, Vcl.Mask, Vcl.DBCtrls, UnDMPrincipal;
+
+type
+  TFormUsuario = class(TForm)
+    painel_superior: TPanel;
+    Image1: TImage;
+    sub_painel: TPanel;
+    painel_inferior: TPanel;
+    Label1: TLabel;
+    DBEdit1: TDBEdit;
+    Label2: TLabel;
+    DBEdit2: TDBEdit;
+    Label3: TLabel;
+    DBEdit3: TDBEdit;
+    Label4: TLabel;
+    DBEdit4: TDBEdit;
+    Label5: TLabel;
+    DBEdit5: TDBEdit;
+    Label6: TLabel;
+    DBEdit6: TDBEdit;
+    Label7: TLabel;
+    DBEdit7: TDBEdit;
+    Label8: TLabel;
+    DBEdit8: TDBEdit;
+    Label9: TLabel;
+    DBEdit9: TDBEdit;
+    Label10: TLabel;
+    DBEdit10: TDBEdit;
+    Sair: TButton;
+    Alterar: TButton;
+    Excluir: TButton;
+    Salvar: TButton;
+    procedure AlterarClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure SairClick(Sender: TObject);
+    procedure SalvarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FormUsuario: TFormUsuario;
+  DMUsuario: TDMUsuario;
+//  UsuarioId: Integer;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFormUsuario.AlterarClick(Sender: TObject);
+begin
+  DMUsuario.QRYUsuario.append;
+end;
+
+procedure TFormUsuario.FormShow(Sender: TObject);
+begin
+  DMUsuario := TDMUsuario.create(self);
+  DMUsuario.QRYUsuario.close;
+  DMUsuario.QRYUsuario.SQL.clear;
+  DMUsuario.QRYUsuario.SQL.Add('SELECT * FROM pessoa');
+  DMUsuario.QRYUsuario.open;
+
+  if not DMPrincipalP.Logado then
+  begin
+    ShowMessage('Sessão expirada. Faça login novamente.');
+    Close;
+    Exit;
+  end;
+end;
+
+procedure TFormUsuario.SairClick(Sender: TObject);
+begin
+  ModalResult := mrOk;
+end;
+
+procedure TFormUsuario.SalvarClick(Sender: TObject);
+begin
+  if DMUsuario.QRYUsuario.State in [dsEdit, dsInsert, dsBrowse] then
+  begin
+    DMUsuario.QRYUsuario.ApplyUpdates();
+    DMUsuario.QRYUsuario.CommitUpdates;
+    Showmessage('Salvo com sucesso!');
+  end;
+end;
+
+end.

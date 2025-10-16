@@ -33,7 +33,6 @@ object DMCadastro: TDMCadastro
     object QRYCadastrocpf: TWideStringField
       FieldName = 'cpf'
       Origin = 'cpf'
-      EditMask = '999.999.999-99;1;_'
       Size = 12
     end
     object QRYCadastrodatanascimento: TDateField
@@ -48,7 +47,6 @@ object DMCadastro: TDMCadastro
     object QRYCadastrotelefone: TWideStringField
       FieldName = 'telefone'
       Origin = 'telefone'
-      EditMask = '(99)99999-9999;1;_'
       Size = 11
     end
     object QRYCadastroemail: TWideStringField
@@ -86,7 +84,6 @@ object DMCadastro: TDMCadastro
       Size = 6
     end
     object QRYCadastroid_psicologo: TIntegerField
-      AutoGenerateValue = arAutoInc
       FieldName = 'id_psicologo'
       Origin = 'id_psicologo'
     end
@@ -105,7 +102,6 @@ object DMCadastro: TDMCadastro
       Size = 5
     end
     object QRYPsicologoid_psicologo: TLargeintField
-      AutoGenerateValue = arAutoInc
       FieldName = 'id_psicologo'
       Origin = 'id_psicologo'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -113,12 +109,24 @@ object DMCadastro: TDMCadastro
   end
   object DSCadastro: TDataSource
     DataSet = QRYCadastro
-    Left = 712
+    Left = 713
     Top = 136
   end
   object DSPsicologo: TDataSource
     DataSet = QRYPsicologo
-    Left = 712
+    Left = 713
     Top = 216
+  end
+  object QRYEpresa: TFDQuery
+    Connection = DMPrincipalP.FDConnection
+    SQL.Strings = (
+      'Select * from empresa')
+    Left = 528
+    Top = 368
+  end
+  object DSEmpresa: TDataSource
+    DataSet = QRYEpresa
+    Left = 696
+    Top = 376
   end
 end

@@ -8,7 +8,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Imaging.pngimage,
   Vcl.WinXPanels, Vcl.StdCtrls, Vcl.Mask, psicolink2, UnDMPrincipal, Data.DB,
   UnCadastro,
-  Vcl.DBCtrls, UnAgenda;
+  Vcl.DBCtrls, UnAgenda, UnTelaPrincipal;
 
 type
   Tformlogin = class(TForm)
@@ -23,12 +23,14 @@ type
     Cadastro: TPanel;
     CPFEdit: TMaskEdit;
     SenhaEdit: TMaskEdit;
+    procedure FormCreate(Sender: TObject);
     procedure CadastroClick(Sender: TObject);
     procedure ProsseguirClick(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
+
   end;
 
 var
@@ -40,6 +42,12 @@ uses
   DMUnCadastro;
 
 {$R *.dfm}
+
+procedure Tformlogin.FormCreate(Sender: TObject);
+begin
+//    self.CPFEdit.Text := '12345679800' ;
+//    Self.SenhaEdit.Text := '123456';
+end;
 
 procedure Tformlogin.CadastroClick(Sender: TObject);
 var
@@ -55,32 +63,35 @@ end;
 
 procedure Tformlogin.ProsseguirClick(Sender: TObject);
 var
-  LFormAgenda : TFormAgenda;
+  LFormtela : TFormPrincipal;
 begin
   DMPrincipalP := TDMPrincipalP.create(Self);
-  LFormAgenda := TFormAgenda.create(Self);
+  LFormtela := TFormPrincipal.create(Self);
   try
   // DMPrincipalP.conectarbanco;
 
   DMPrincipalP.FDQuery.Close;
   DMPrincipalP.FDQuery.ClearBlobs;
-
   DMPrincipalP.FDQuery.ParamByName('cpf').AsString := CPFEdit.Text;
   DMPrincipalP.FDQuery.ParamByName('senha').AsString := SenhaEdit.Text;
   DMPrincipalP.FDQuery.open;
 
   if (DMPrincipalP.FDQuery.RecordCount > 0) then
   begin
-    ShowMessage('Login realizado com sucesso!' + sLineBreak + 'Bem vindo CPF:' +
-      (' ') + DMPrincipalP.FDQuerycpf.Value);
-    LFormAgenda.showModal;
+    DMPrincipalP.UsuarioID := DMPrincipalP.FDQuery.FieldByName('id').AsInteger;
+    DMPrincipalP.Logado := True;
+    ShowMessage('Login realizado com sucesso!' + sLineBreak + 'Bem vindo Usuario:' +
+      (' ') + DMPrincipalP.FDQuerynome.Value);
+    LFormtela.showModal;
+    Self.hide;
   end
   else
   begin
     ShowMessage('CPF ou senha inválidos!');
   end;
   finally
-    FreeAndNil(LFormAgenda);
+    FreeAndNil(LFormtela);
+    DMPrincipalP.FDQuery.free;
   end;
 end;
 

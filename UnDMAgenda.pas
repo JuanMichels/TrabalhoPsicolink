@@ -14,8 +14,6 @@ type
     DSAgenda: TDataSource;
     QRYAgendaid: TLargeintField;
     QRYAgendadata_agendamento: TDateField;
-    QRYAgendafk_pessoa: TLargeintField;
-    QRYAgendafk_psicologo: TLargeintField;
     procedure concetaragenda;
   private
     { Private declarations }
