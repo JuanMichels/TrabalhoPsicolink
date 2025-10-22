@@ -951,20 +951,22 @@ object FormPrincipal: TFormPrincipal
     ParentBackground = False
     TabOrder = 2
     StyleName = 'Windows'
+    ExplicitTop = 440
+    ExplicitWidth = 690
   end
   object menu_central: TPanel
     Left = 128
     Top = 168
-    Width = 431
+    Width = 429
     Height = 257
     Anchors = [akLeft, akTop, akRight]
     Color = clLightgray
     ParentBackground = False
     TabOrder = 3
     StyleName = 'Windows'
-    ExplicitWidth = 429
+    ExplicitWidth = 427
     DesignSize = (
-      431
+      429
       257)
     object Label1: TLabel
       Left = 120
@@ -1893,9 +1895,9 @@ object FormPrincipal: TFormPrincipal
       Stretch = True
     end
     object Usuario: TPanel
-      Left = 0
+      Left = 8
       Top = 200
-      Width = 191
+      Width = 189
       Height = 41
       Anchors = [akLeft, akTop, akRight]
       BorderStyle = bsSingle
@@ -1915,7 +1917,7 @@ object FormPrincipal: TFormPrincipal
     object Agenda: TPanel
       Left = 232
       Top = 200
-      Width = 191
+      Width = 189
       Height = 41
       Anchors = [akLeft, akTop, akRight]
       BorderStyle = bsSingle
@@ -1931,7 +1933,16 @@ object FormPrincipal: TFormPrincipal
       TabOrder = 1
       StyleName = 'Windows'
       OnClick = AgendaClick
-      ExplicitWidth = 189
+      ExplicitWidth = 187
     end
+  end
+  object Button1: TButton
+    Left = 584
+    Top = 336
+    Width = 75
+    Height = 25
+    Caption = 'Button1'
+    TabOrder = 4
+    OnClick = Button1Click
   end
 end

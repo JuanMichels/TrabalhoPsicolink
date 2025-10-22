@@ -18,9 +18,6 @@ type
     LblNome: TLabel;
     Label1: TLabel;
     CPFEdit: TLabel;
-    Label3: TLabel;
-    CheckPsico: TCheckBox;
-    Label4: TLabel;
     Label5: TLabel;
     Label6: TLabel;
     Numero: TLabel;
@@ -31,7 +28,6 @@ type
     DBEdit1: TDBEdit;
     DBEdit2: TDBEdit;
     DBEdit3: TDBEdit;
-    DBEdit4: TDBEdit;
     DBEdit5: TDBEdit;
     Label9: TLabel;
     DBEdit6: TDBEdit;
@@ -40,12 +36,10 @@ type
     DBEdit8: TDBEdit;
     DBEdit9: TDBEdit;
     DBEdit10: TDBEdit;
-    DBEdit11: TDBEdit;
     Label11: TLabel;
     DBEdit12: TDBEdit;
     Label12: TLabel;
     DBComboBox1: TDBComboBox;
-    procedure CheckPsicoClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure SalvarClick(Sender: TObject);
   private
@@ -66,31 +60,16 @@ implementation
 procedure TUnFormCadastro.FormShow(Sender: TObject);
 begin
 
-  DMCadastro := TDMCadastro.create(self);
+  DMCadastro := TDMCadastro.create(nil);
   DMCadastro.QRYCadastro.close;
   DMCadastro.QRYCadastro.SQL.clear;
   DMCadastro.QRYCadastro.SQL.Add('SELECT * FROM pessoa');
   DMCadastro.QRYCadastro.open;
 
-  DMCadastro.QRYPsicologo.close;
-  DMCadastro.QRYPsicologo.SQL.clear;
-  DMCadastro.QRYPsicologo.SQL.Add('Select * from psicologo');
-  DMCadastro.QRYPsicologo.open;
-
-
-  DMCadastro.QRYPsicologo.append;
   DMCadastro.QRYCadastro.Append;
 
-
-  // DMCadastro.conectarCadastro;
-
 end;
 
-procedure TUnFormCadastro.CheckPsicoClick(Sender: TObject);
-begin
-  DBEdit11.Enabled := CheckPsico.Checked;
-
-end;
 
 procedure TUnFormCadastro.SalvarClick(Sender: TObject);
 begin
@@ -108,11 +87,6 @@ begin
   else if DBEdit3.text = '' then
   begin
     Showmessage('CPF Não pode ser vazio!');
-    Exit;
-  end
-  else if DBEdit4.text = '' then
-  begin
-    Showmessage('Telefone Não pode ser vazio!');
     Exit;
   end
   else if DBEdit5.text = '' then
@@ -145,14 +119,6 @@ begin
     Showmessage('Senha Não pode ser vazio!');
     Exit;
   end
-  else if DBEdit11.Enabled then
-  begin
-    if DBEdit11.text = '' then
-    begin
-      Showmessage('CRP Não pode ser vazio!');
-      Exit;
-    end
-  end
   else if DBEdit12.text = '' then
   begin
     Showmessage('Confirmar senha Não pode ser vazio!');
@@ -162,19 +128,17 @@ begin
   begin
     Showmessage('As senhas não podem ser diferentes');
     Exit;
-  end
-  else if DMCadastro.QRYCadastro.State in [dsEdit, dsInsert, dsBrowse] then
-  begin
-    DMCadastro.QRYCadastro.Post;
-    if DBEdit11.Enabled then
-
-      DMCadastro.QRYPsicologo.Post;
-  end;
+  end ;
+//  else if DMCadastro.QRYCadastro.State in [dsEdit, dsInsert, dsBrowse] then
+//  begin
+//    DMCadastro.QRYCadastro.Post;
+//    if DBEdit11.Enabled then
+//
+//      DMCadastro.QRYPsicologo.Post;
+//  end;
 
   DMCadastro.QRYCadastro.ApplyUpdates();
   DMCadastro.QRYCadastro.CommitUpdates;
-  DMCadastro.QRYPsicologo.ApplyUpdates();
-  DMCadastro.QRYPsicologo.CommitUpdates;
   Showmessage('Cadastrado com sucesso!');
   ModalResult := mrOk;
 

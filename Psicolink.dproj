@@ -169,6 +169,15 @@
             <Form>FormPrincipal</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="UnAdiconarTelefone.pas">
+            <Form>FormTelefone</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UnDMTelefone.pas">
+            <Form>DMTelefone</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

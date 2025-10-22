@@ -45,15 +45,15 @@ uses
 
 procedure Tformlogin.FormCreate(Sender: TObject);
 begin
-//    self.CPFEdit.Text := '12345679800' ;
-//    Self.SenhaEdit.Text := '123456';
+  self.CPFEdit.Text := '08840214917';
+  self.SenhaEdit.Text := '123456';
 end;
 
 procedure Tformlogin.CadastroClick(Sender: TObject);
 var
   LFormCadastro: TUnFormCadastro;
 begin
-  LFormCadastro := TUnFormCadastro.create(Self);
+  LFormCadastro := TUnFormCadastro.create(self);
   try
     LFormCadastro.showModal;
   finally
@@ -63,32 +63,35 @@ end;
 
 procedure Tformlogin.ProsseguirClick(Sender: TObject);
 var
-  LFormtela : TFormPrincipal;
+  LFormtela: TFormPrincipal;
 begin
-  DMPrincipalP := TDMPrincipalP.create(Self);
-  LFormtela := TFormPrincipal.create(Self);
+  DMPrincipalP := TDMPrincipalP.create(self);
+  LFormtela := TFormPrincipal.create(self);
   try
-  // DMPrincipalP.conectarbanco;
+    // DMPrincipalP.conectarbanco;
 
-  DMPrincipalP.FDQuery.Close;
-  DMPrincipalP.FDQuery.ClearBlobs;
-  DMPrincipalP.FDQuery.ParamByName('cpf').AsString := CPFEdit.Text;
-  DMPrincipalP.FDQuery.ParamByName('senha').AsString := SenhaEdit.Text;
-  DMPrincipalP.FDQuery.open;
+    DMPrincipalP.FDQuery.Close;
+    DMPrincipalP.FDQuery.ClearBlobs;
+    DMPrincipalP.FDQuery.ParamByName('cpf').AsString := CPFEdit.Text;
+    DMPrincipalP.FDQuery.ParamByName('senha').AsString := SenhaEdit.Text;
+    DMPrincipalP.FDQuery.open;
 
-  if (DMPrincipalP.FDQuery.RecordCount > 0) then
-  begin
-    DMPrincipalP.UsuarioID := DMPrincipalP.FDQuery.FieldByName('id').AsInteger;
-    DMPrincipalP.Logado := True;
-    ShowMessage('Login realizado com sucesso!' + sLineBreak + 'Bem vindo Usuario:' +
-      (' ') + DMPrincipalP.FDQuerynome.Value);
-    LFormtela.showModal;
-    Self.hide;
-  end
-  else
-  begin
-    ShowMessage('CPF ou senha inválidos!');
-  end;
+    if (DMPrincipalP.FDQuery.RecordCount > 0) then
+    begin
+      DMPrincipalP.UsuarioID := DMPrincipalP.FDQuery.FieldByName('id')
+        .AsInteger;
+      DMPrincipalP.Logado := True;
+      ShowMessage('Login realizado com sucesso!' + sLineBreak +
+        'Bem vindo Usuario:' + (' ') + DMPrincipalP.FDQuerynome.Value);
+      DMPrincipalP.Nome := DMPrincipalP.FDQuerynome.Value;
+      LFormtela.showModal;
+
+      self.hide;
+    end
+    else
+    begin
+      ShowMessage('CPF ou senha inválidos!');
+    end;
   finally
     FreeAndNil(LFormtela);
     DMPrincipalP.FDQuery.free;

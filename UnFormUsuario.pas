@@ -38,6 +38,7 @@ type
     Salvar: TButton;
     DBEdit1: TDBEdit;
     DBEdit2: TDBEdit;
+    procedure ExcluirClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure SairClick(Sender: TObject);
     procedure SalvarClick(Sender: TObject);
@@ -54,16 +55,31 @@ implementation
 
 {$R *.dfm}
 
+
 procedure TFormUsuario.FormShow(Sender: TObject);
 
 begin
-  DMUsuario := TDMUsuario.create(self);
+  DMUsuario := TDMUsuario.create(nil);
   DMUsuario.QRYUsuario.close;
   DMUsuario.QRYUsuario.SQL.clear;
   DMUsuario.QRYUsuario.SQL.Add(Format('Select * from pessoa where id =  %0:d',
     [DMPrincipalP.Usuarioid]));
   DMUsuario.QRYUsuario.open;
+
+  DMUsuario.QRYUsuarioContatos.close;
+  DMUsuario.QRYUsuarioContatos.SQL.clear;
+  DMUsuario.QRYUsuarioContatos.SQL.Add('Select * from contatos');
+  DMUsuario.QRYUsuarioContatos.open;
 end;
+
+procedure TFormUsuario.ExcluirClick(Sender: TObject);
+begin
+  DMUsuario.QRYUsuario.open;
+  DMUsuario.QRYUsuarioContatos.open;
+  DMUsuario.QRYUsuario.delete;
+  DMUsuario.QRYUsuarioContatos.delete;
+end;
+
 
 procedure TFormUsuario.SairClick(Sender: TObject);
 begin
@@ -76,6 +92,8 @@ begin
   begin
     DMUsuario.QRYUsuario.ApplyUpdates();
     DMUsuario.QRYUsuario.CommitUpdates;
+    DMUsuario.QRYUsuarioContatos.ApplyUpdates();
+    DMUsuario.QRYUsuarioContatos.CommitUpdates;
     Showmessage('Salvo com sucesso!');
   end;
 end;

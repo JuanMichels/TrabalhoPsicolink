@@ -11,9 +11,8 @@ object DMUsuario: TDMUsuario
     CachedUpdates = True
     Connection = DMPrincipalP.FDConnection
     SQL.Strings = (
-      'Select * from pessoa'
-      'where id = 61')
-    Left = 312
+      'Select * from pessoa')
+    Left = 313
     Top = 160
     object QRYUsuarioid: TLargeintField
       FieldName = 'id'
@@ -28,7 +27,6 @@ object DMUsuario: TDMUsuario
     object QRYUsuariocpf: TWideStringField
       FieldName = 'cpf'
       Origin = 'cpf'
-      EditMask = '999.999.999-99'
       Size = 12
     end
     object QRYUsuariodatanascimento: TDateField
@@ -39,11 +37,6 @@ object DMUsuario: TDMUsuario
       FieldName = 'endereco'
       Origin = 'endereco'
       Size = 150
-    end
-    object QRYUsuariotelefone: TWideStringField
-      FieldName = 'telefone'
-      Origin = 'telefone'
-      Size = 11
     end
     object QRYUsuarioemail: TWideStringField
       FieldName = 'email'
@@ -78,9 +71,36 @@ object DMUsuario: TDMUsuario
       Origin = 'confirmarsenha'
       Size = 6
     end
-    object QRYUsuarioid_psicologo: TIntegerField
-      FieldName = 'id_psicologo'
-      Origin = 'id_psicologo'
+  end
+  object QRYUsuarioContatos: TFDQuery
+    CachedUpdates = True
+    Connection = DMPrincipalP.FDConnection
+    SQL.Strings = (
+      'Select * from contatos')
+    Left = 313
+    Top = 273
+    object QRYUsuarioContatosid_telefone: TLargeintField
+      FieldName = 'id_telefone'
+      Origin = 'id_telefone'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
     end
+    object QRYUsuarioContatoscontato1: TWideStringField
+      FieldName = 'contato1'
+      Origin = 'contato1'
+      Size = 11
+    end
+    object QRYUsuarioContatosfk_pessoas: TLargeintField
+      FieldName = 'fk_pessoas'
+      Origin = 'fk_pessoas'
+    end
+    object QRYUsuarioContatoscontatoempresaid: TIntegerField
+      FieldName = 'contatoempresaid'
+      Origin = 'contatoempresaid'
+    end
+  end
+  object DSContatos: TDataSource
+    DataSet = QRYUsuarioContatos
+    Left = 408
+    Top = 273
   end
 end

@@ -7,7 +7,7 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls,
   Vcl.StdCtrls, UnFormUsuario, UnAgenda, UnDMPrincipal,
-  Vcl.ComCtrls;
+  Vcl.ComCtrls, UnAdiconarTelefone;
 
 type
   TFormPrincipal = class(TForm)
@@ -21,7 +21,9 @@ type
     Label1: TLabel;
     Label2: TLabel;
     Image2: TImage;
+    Button1: TButton;
     procedure AgendaClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure UsuarioClick(Sender: TObject);
   private
@@ -47,6 +49,19 @@ begin
   finally
     FreeAndNil(LFormAgenda);
   end;
+end;
+
+procedure TFormPrincipal.Button1Click(Sender: TObject);
+var
+  LformTelefone: TFormTelefone;
+begin
+  LformTelefone := TFormTelefone.create(nil);
+  try
+    LformTelefone.ShowModal;
+  finally
+    FreeAndNil(LformTelefone);
+  end;
+
 end;
 
 procedure TFormPrincipal.FormClose(Sender: TObject; var Action: TCloseAction);

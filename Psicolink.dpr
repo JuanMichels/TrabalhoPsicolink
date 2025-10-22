@@ -11,7 +11,9 @@ uses
   UnDMAgenda in 'UnDMAgenda.pas' {DMAgenda: TDataModule},
   UnFormUsuario in 'UnFormUsuario.pas' {FormUsuario},
   UnDMUsuario in 'UnDMUsuario.pas' {DMUsuario: TDataModule},
-  UnTelaPrincipal in 'UnTelaPrincipal.pas' {FormPrincipal};
+  UnTelaPrincipal in 'UnTelaPrincipal.pas' {FormPrincipal},
+  UnAdiconarTelefone in 'UnAdiconarTelefone.pas' {FormTelefone},
+  UnDMTelefone in 'UnDMTelefone.pas' {DMTelefone: TDataModule};
 
 {$R *.res}
 

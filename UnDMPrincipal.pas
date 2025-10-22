@@ -28,7 +28,8 @@ type
   public
     { Public declarations }
     Usuarioid: Integer;
-    Logado: Boolean
+    Logado: Boolean;
+    Nome: string;
   end;
 
 var

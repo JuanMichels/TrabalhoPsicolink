@@ -17,14 +17,18 @@ type
     QRYUsuariocpf: TWideStringField;
     QRYUsuariodatanascimento: TDateField;
     QRYUsuarioendereco: TWideStringField;
-    QRYUsuariotelefone: TWideStringField;
     QRYUsuarioemail: TWideStringField;
     QRYUsuariosenha: TWideStringField;
     QRYUsuariocep: TWideStringField;
     QRYUsuariobairro: TWideStringField;
     QRYUsuarionumerocasa: TBCDField;
     QRYUsuarioconfirmarsenha: TWideStringField;
-    QRYUsuarioid_psicologo: TIntegerField;
+    QRYUsuarioContatos: TFDQuery;
+    DSContatos: TDataSource;
+    QRYUsuarioContatosid_telefone: TLargeintField;
+    QRYUsuarioContatoscontato1: TWideStringField;
+    QRYUsuarioContatosfk_pessoas: TLargeintField;
+    QRYUsuarioContatoscontatoempresaid: TIntegerField;
   private
     { Private declarations }
   public

@@ -12,27 +12,18 @@ uses
 type
   TDMCadastro = class(TDataModule)
     QRYCadastro: TFDQuery;
-    QRYPsicologo: TFDQuery;
     QRYCadastroid: TLargeintField;
     QRYCadastronome: TWideStringField;
     QRYCadastrocpf: TWideStringField;
     QRYCadastrodatanascimento: TDateField;
     QRYCadastroendereco: TWideStringField;
-    QRYCadastrotelefone: TWideStringField;
     QRYCadastroemail: TWideStringField;
     QRYCadastrosenha: TWideStringField;
     QRYCadastrocep: TWideStringField;
     QRYCadastrobairro: TWideStringField;
     QRYCadastronumerocasa: TBCDField;
-    QRYPsicologocrp: TWideStringField;
     QRYCadastroconfirmarsenha: TWideStringField;
     DSCadastro: TDataSource;
-    DSPsicologo: TDataSource;
-    QRYPsicologoid_psicologo: TLargeintField;
-    QRYCadastroid_psicologo: TIntegerField;
-    QRYEpresa: TFDQuery;
-    DSEmpresa: TDataSource;
-    procedure conectarCadastro;
   private
     { Private declarations }
   public
@@ -47,19 +38,6 @@ implementation
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 {$R *.dfm}
 { TDMCadastro }
-
-procedure TDMCadastro.conectarCadastro;
-begin
-  QRYCadastro.close;
-  QRYCadastro.SQL.clear;
-  QRYCadastro.SQL.Add('SELECT * FROM pessoa');
-  QRYCadastro.open;
-
-  QRYPsicologo.close;
-  QRYPsicologo.SQL.clear;
-  QRYPsicologo.SQL.Add('SELECT * FROM psicologo');
-  QRYPsicologo.open;
-end;
 
 
 
