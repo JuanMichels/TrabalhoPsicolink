@@ -1,0 +1,30 @@
+object DMAgenda: TDMAgenda
+  Height = 750
+  Width = 1000
+  PixelsPerInch = 120
+  object QRYAgenda: TFDQuery
+    CachedUpdates = True
+    Connection = DMPrincipalP.FDConnection
+    SQL.Strings = (
+      'Select * from agenda')
+    Left = 400
+    Top = 176
+  end
+  object DSAgenda: TDataSource
+    DataSet = QRYAgenda
+    Left = 536
+    Top = 184
+  end
+  object QRYPsicologo: TFDQuery
+    Connection = DMPrincipalP.FDConnection
+    SQL.Strings = (
+      'Select * from psicologo')
+    Left = 400
+    Top = 328
+  end
+  object DSPsicologo: TDataSource
+    DataSet = QRYPsicologo
+    Left = 520
+    Top = 360
+  end
+end

@@ -12,18 +12,9 @@ uses
 type
   TDMCadastro = class(TDataModule)
     QRYCadastro: TFDQuery;
-    QRYCadastroid: TLargeintField;
-    QRYCadastronome: TWideStringField;
-    QRYCadastrocpf: TWideStringField;
-    QRYCadastrodatanascimento: TDateField;
-    QRYCadastroendereco: TWideStringField;
-    QRYCadastroemail: TWideStringField;
-    QRYCadastrosenha: TWideStringField;
-    QRYCadastrocep: TWideStringField;
-    QRYCadastrobairro: TWideStringField;
-    QRYCadastronumerocasa: TBCDField;
-    QRYCadastroconfirmarsenha: TWideStringField;
     DSCadastro: TDataSource;
+    QRYEmpresa: TFDQuery;
+    DSEmpresa: TDataSource;
   private
     { Private declarations }
   public

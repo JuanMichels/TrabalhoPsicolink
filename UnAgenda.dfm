@@ -21,14 +21,20 @@ object FormAgenda: TFormAgenda
     Width = 117
     Height = 15
     Caption = 'data do agendamento'
-    FocusControl = DBEdit1
   end
   object Label2: TLabel
-    Left = 16
-    Top = 200
-    Width = 41
+    Left = 167
+    Top = 139
+    Width = 103
     Height = 15
-    Caption = 'Agenda'
+    Caption = 'Hora agendamento'
+  end
+  object Label3: TLabel
+    Left = 8
+    Top = 195
+    Width = 77
+    Height = 15
+    Caption = 'CRP Psicologo'
   end
   object painel_superior: TPanel
     Left = 0
@@ -967,24 +973,13 @@ object FormAgenda: TFormAgenda
     ExplicitTop = 408
     ExplicitWidth = 622
   end
-  object DBEdit1: TDBEdit
-    Left = 8
-    Top = 160
-    Width = 154
-    Height = 21
-    Ctl3D = False
-    DataField = 'data_agendamento'
-    DataSource = DMAgenda.DSAgenda
-    ParentCtl3D = False
-    TabOrder = 3
-  end
   object Salvar: TButton
-    Left = 208
-    Top = 159
+    Left = 384
+    Top = 199
     Width = 75
     Height = 25
     Caption = 'Salvar'
-    TabOrder = 4
+    TabOrder = 3
     OnClick = SalvarClick
   end
   object DBGrid1: TDBGrid
@@ -994,11 +989,59 @@ object FormAgenda: TFormAgenda
     Height = 144
     Align = alBottom
     DataSource = DMAgenda.DSAgenda
-    TabOrder = 5
+    TabOrder = 4
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -12
     TitleFont.Name = 'Segoe UI'
     TitleFont.Style = []
+  end
+  object DBLookupComboBox1: TDBLookupComboBox
+    Left = 8
+    Top = 216
+    Width = 153
+    Height = 23
+    DataField = 'fk_psicologo'
+    DataSource = DMAgenda.DSAgenda
+    KeyField = 'id_psicologo'
+    ListField = 'crp'
+    ListSource = DMAgenda.DSPsicologo
+    TabOrder = 5
+  end
+  object Novo: TButton
+    Left = 384
+    Top = 159
+    Width = 75
+    Height = 25
+    Caption = 'Nova'
+    TabOrder = 6
+    OnClick = NovoClick
+  end
+  object Cancelar: TButton
+    Left = 480
+    Top = 159
+    Width = 75
+    Height = 25
+    Caption = 'Cancelar'
+    TabOrder = 7
+    OnClick = CancelarClick
+  end
+  object DBEdit1: TDBEdit
+    Left = 8
+    Top = 166
+    Width = 121
+    Height = 23
+    DataField = 'data_agendamento'
+    DataSource = DMAgenda.DSAgenda
+    TabOrder = 8
+  end
+  object DBEdit2: TDBEdit
+    Left = 167
+    Top = 166
+    Width = 121
+    Height = 23
+    DataField = 'hora_consulta'
+    DataSource = DMAgenda.DSAgenda
+    TabOrder = 9
   end
 end

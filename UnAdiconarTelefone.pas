@@ -17,10 +17,19 @@ type
     painel_inferior: TPanel;
     menu_central: TPanel;
     Label1: TLabel;
-    DBEdit1: TDBEdit;
     DBGrid1: TDBGrid;
     Salvar: TButton;
+    Sair: TButton;
+    Button1: TButton;
+    Button2: TButton;
+    Button3: TButton;
+    DBEdit1: TDBEdit;
+    DBLookupComboBox1: TDBLookupComboBox;
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure SairClick(Sender: TObject);
     procedure SalvarClick(Sender: TObject);
   private
     { Private declarations }
@@ -36,34 +45,57 @@ implementation
 
 {$R *.dfm}
 
+procedure TFormTelefone.Button1Click(Sender: TObject);
+begin
+  DMTelefone.QRYContato.append;
+end;
+
+procedure TFormTelefone.Button2Click(Sender: TObject);
+begin
+  DMTelefone.QRYContato.Cancel;
+end;
+
+procedure TFormTelefone.Button3Click(Sender: TObject);
+begin
+  DMTelefone.QRYContato.Delete;
+end;
+
 procedure TFormTelefone.FormShow(Sender: TObject);
 begin
   DMTelefone := TDMTelefone.create(nil);
   DMTelefone.QRYContato.close;
   DMTelefone.QRYContato.SQL.Clear;
-  DMTelefone.QRYContato.SQL.Add('Select * from contatos where fk_pessoas = ' + IntToStr(DMPrincipalP.Usuarioid));
+  DMTelefone.QRYContato.SQL.Add('Select * from contatos where fk_pessoas = '+
+    IntToStr(DMPrincipalP.Usuarioid));
   DMTelefone.QRYContato.Open;
 
   DMTelefone.QRYPessoa.close;
   DMTelefone.QRYPessoa.SQL.Clear;
   DMTelefone.QRYPessoa.SQL.Add(Format('Select * from pessoa where id =  %0:d',
     [DMPrincipalP.Usuarioid]));
+  // DMTelefone.QRYPessoa.SQL.ADD('Select * from pessoa');
   DMTelefone.QRYPessoa.Open;
 
   DMTelefone.QRYContato.Append;
 
 end;
 
+procedure TFormTelefone.SairClick(Sender: TObject);
+begin
+  close;
+end;
+
 procedure TFormTelefone.SalvarClick(Sender: TObject);
 begin
-//  DMTelefone.DSContato.DataSet.FieldByName('Nome').AsString := 'teste';
-  DMTelefone.DSContato.DataSet.FieldByName('fk_pessoas').AsInteger := DMPrincipalP.Usuarioid;
+  // DMTelefone.DSContato.DataSet.FieldByName('Nome').AsString := 'teste';
+if DMTelefone.QRYContato.State in [dsEdit, dsBrowse] then
+  DMTelefone.DSContato.DataSet.FieldByName('fk_pessoas').AsInteger :=
+    DMPrincipalP.Usuarioid;
   DMTelefone.QRYContato.ApplyUpdates();
   DMTelefone.QRYContato.CommitUpdates;
 
-
-
   DMTelefone.QRYContato.Append;
+
 end;
 
 end.

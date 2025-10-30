@@ -1,0 +1,91 @@
+object DMTelefone: TDMTelefone
+  Height = 750
+  Width = 1000
+  PixelsPerInch = 120
+  object QRYPessoa: TFDQuery
+    CachedUpdates = True
+    Connection = DMPrincipalP.FDConnection
+    SQL.Strings = (
+      'Select * from pessoa')
+    Left = 304
+    Top = 184
+    object QRYPessoaid: TLargeintField
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object QRYPessoanome: TWideStringField
+      FieldName = 'nome'
+      Origin = 'nome'
+      Size = 50
+    end
+    object QRYPessoacpf: TWideStringField
+      FieldName = 'cpf'
+      Origin = 'cpf'
+    end
+    object QRYPessoadatanascimento: TDateField
+      FieldName = 'datanascimento'
+      Origin = 'datanascimento'
+    end
+    object QRYPessoaendereco: TWideStringField
+      FieldName = 'endereco'
+      Origin = 'endereco'
+      Size = 150
+    end
+    object QRYPessoaemail: TWideStringField
+      FieldName = 'email'
+      Origin = 'email'
+      Size = 150
+    end
+    object QRYPessoasenha: TWideStringField
+      FieldName = 'senha'
+      Origin = 'senha'
+      Size = 6
+    end
+    object QRYPessoacep: TWideStringField
+      FieldName = 'cep'
+      Origin = 'cep'
+      FixedChar = True
+      Size = 15
+    end
+    object QRYPessoabairro: TWideStringField
+      FieldName = 'bairro'
+      Origin = 'bairro'
+      Size = 50
+    end
+    object QRYPessoanumerocasa: TBCDField
+      FieldName = 'numerocasa'
+      Origin = 'numerocasa'
+      Precision = 15
+      Size = 2
+    end
+    object QRYPessoaconfirmarsenha: TWideStringField
+      FieldName = 'confirmarsenha'
+      Origin = 'confirmarsenha'
+      Size = 6
+    end
+    object QRYPessoaempresaid: TIntegerField
+      FieldName = 'empresaid'
+      Origin = 'empresaid'
+    end
+  end
+  object QRYContato: TFDQuery
+    CachedUpdates = True
+    MasterSource = DSPessoa
+    Connection = DMPrincipalP.FDConnection
+    SQL.Strings = (
+      'Select * from contatos')
+    Left = 288
+    Top = 296
+  end
+  object DSPessoa: TDataSource
+    DataSet = QRYPessoa
+    Left = 408
+    Top = 184
+  end
+  object DSContato: TDataSource
+    DataSet = QRYContato
+    Left = 400
+    Top = 296
+  end
+end

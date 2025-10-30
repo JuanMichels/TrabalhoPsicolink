@@ -1,0 +1,74 @@
+object DMPrincipalP: TDMPrincipalP
+  Height = 750
+  Width = 1000
+  PixelsPerInch = 120
+  object FDConnection: TFDConnection
+    Params.Strings = (
+      'Database=PSICOLINK'
+      'User_Name=postgres'
+      'Password=Juan2006'
+      'DriverID=PG')
+    Left = 376
+    Top = 113
+  end
+  object FDPhysPgDriverLink: TFDPhysPgDriverLink
+    DriverID = 'Pg'
+    VendorLib = 'C:\Program Files (x86)\PostgreSQL\psqlODBC\bin\libpq.dll'
+    Left = 520
+    Top = 113
+  end
+  object FDQuery: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      '              Select * from pessoa'
+      '              Where cpf = :cpf and Senha = :Senha')
+    Left = 664
+    Top = 113
+    ParamData = <
+      item
+        Name = 'CPF'
+        ParamType = ptInput
+      end
+      item
+        Name = 'SENHA'
+        ParamType = ptInput
+      end>
+    object FDQueryid: TLargeintField
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object FDQuerycpf: TWideStringField
+      FieldName = 'cpf'
+      Origin = 'cpf'
+      Size = 12
+    end
+    object FDQuerysenha: TWideStringField
+      FieldName = 'senha'
+      Origin = 'senha'
+      Size = 6
+    end
+    object FDQuerynome: TWideStringField
+      FieldName = 'nome'
+      Origin = 'nome'
+      Size = 50
+    end
+  end
+  object DSLogin: TDataSource
+    DataSet = FDQuery
+    Left = 521
+    Top = 193
+  end
+  object QRYPsicologo: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      'Select * from psicologo')
+    Left = 393
+    Top = 336
+  end
+  object DSPsicologo: TDataSource
+    DataSet = QRYPsicologo
+    Left = 504
+    Top = 336
+  end
+end

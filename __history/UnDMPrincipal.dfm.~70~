@@ -1,0 +1,91 @@
+object DMPrincipalP: TDMPrincipalP
+  Height = 750
+  Width = 1000
+  PixelsPerInch = 120
+  object FDConnection: TFDConnection
+    Params.Strings = (
+      'Database=PSICOLINK'
+      'User_Name=postgres'
+      'Password=Juan2006'
+      'DriverID=PG')
+    Left = 376
+    Top = 113
+  end
+  object FDPhysPgDriverLink: TFDPhysPgDriverLink
+    VendorLib = 'C:\Program Files\PostgreSQL\psqlODBC\bin\libpq.dll'
+    Left = 520
+    Top = 113
+  end
+  object FDQuery: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      '              Select * from pessoa'
+      '              Where cpf = :cpf and Senha = :Senha')
+    Left = 664
+    Top = 113
+    ParamData = <
+      item
+        Name = 'CPF'
+        ParamType = ptInput
+      end
+      item
+        Name = 'SENHA'
+        ParamType = ptInput
+      end>
+    object FDQueryid: TLargeintField
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object FDQuerycpf: TWideStringField
+      FieldName = 'cpf'
+      Origin = 'cpf'
+      Size = 12
+    end
+    object FDQuerysenha: TWideStringField
+      FieldName = 'senha'
+      Origin = 'senha'
+      Size = 6
+    end
+    object FDQuerynome: TWideStringField
+      FieldName = 'nome'
+      Origin = 'nome'
+      Size = 50
+    end
+  end
+  object DSLogin: TDataSource
+    DataSet = FDQuery
+    Left = 521
+    Top = 193
+  end
+  object QRYPsicologo: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      'Select * from psicologo')
+    Left = 392
+    Top = 336
+    object QRYPsicologoid_psicologo: TLargeintField
+      FieldName = 'id_psicologo'
+      Origin = 'id_psicologo'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object QRYPsicologocrp: TWideStringField
+      FieldName = 'crp'
+      Origin = 'crp'
+      Size = 6
+    end
+    object QRYPsicologoempresaidpsico: TIntegerField
+      FieldName = 'empresaidpsico'
+      Origin = 'empresaidpsico'
+    end
+    object QRYPsicologoid_pessoa: TLargeintField
+      FieldName = 'id_pessoa'
+      Origin = 'id_pessoa'
+    end
+  end
+  object DSPsicologo: TDataSource
+    DataSet = QRYPsicologo
+    Left = 568
+    Top = 368
+  end
+end

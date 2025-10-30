@@ -1,0 +1,27 @@
+program Psicolink;
+
+uses
+  Vcl.Forms,
+  UnFormPsicolink in 'UnFormPsicolink.pas' {formlogin},
+  psicolink2 in 'psicolink2.pas' {selecao_profissional_paciente},
+  UnDMPrincipal in 'UnDMPrincipal.pas' {DMPrincipalP: TDataModule},
+  UnCadastro in 'UnCadastro.pas' {UnFormCadastro},
+  DMUnCadastro in 'DMUnCadastro.pas' {DMCadastro: TDataModule},
+  UnAgenda in 'UnAgenda.pas' {FormAgenda},
+  UnDMAgenda in 'UnDMAgenda.pas' {DMAgenda: TDataModule},
+  UnFormUsuario in 'UnFormUsuario.pas' {FormUsuario},
+  UnDMUsuario in 'UnDMUsuario.pas' {DMUsuario: TDataModule},
+  UnTelaPrincipal in 'UnTelaPrincipal.pas' {FormPrincipal},
+  UnAdiconarTelefone in 'UnAdiconarTelefone.pas' {FormTelefone},
+  UnDMTelefone in 'UnDMTelefone.pas' {DMTelefone: TDataModule};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TDMPrincipalP, DMPrincipalP);
+  Application.CreateForm(Tformlogin, formlogin);
+  Application.CreateForm(Tselecao_profissional_paciente, selecao_profissional_paciente);
+  Application.Run;
+end.

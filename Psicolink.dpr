@@ -13,7 +13,10 @@ uses
   UnDMUsuario in 'UnDMUsuario.pas' {DMUsuario: TDataModule},
   UnTelaPrincipal in 'UnTelaPrincipal.pas' {FormPrincipal},
   UnAdiconarTelefone in 'UnAdiconarTelefone.pas' {FormTelefone},
-  UnDMTelefone in 'UnDMTelefone.pas' {DMTelefone: TDataModule};
+  UnDMTelefone in 'UnDMTelefone.pas' {DMTelefone: TDataModule},
+  UnFormPsicologo in 'UnFormPsicologo.pas' {FormPsicologo},
+  UnDMPsicologo in 'UnDMPsicologo.pas' {DMPsicologo: TDataModule},
+  UnTelefoneCadastro in 'UnTelefoneCadastro.pas' {FormCadastroTelefone};
 
 {$R *.res}
 

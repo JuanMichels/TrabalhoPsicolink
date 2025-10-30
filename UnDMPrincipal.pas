@@ -20,6 +20,8 @@ type
     FDQuerysenha: TWideStringField;
     FDQuerynome: TWideStringField;
     DSLogin: TDataSource;
+    QRYPsicologo: TFDQuery;
+    DSPsicologo: TDataSource;
     procedure conectarbanco;
     procedure buscarbanco;
   private
@@ -28,7 +30,6 @@ type
   public
     { Public declarations }
     Usuarioid: Integer;
-    Logado: Boolean;
     Nome: string;
   end;
 
@@ -47,21 +48,21 @@ var
   Lcaminho: string;
 begin
   Lcaminho := ExtractFilePath(ParamStr(0));
-  if FileExists(Lcaminho + 'config.ini') then
-  begin
-    LInifile := TIniFile.Create(Lcaminho + 'config.ini');
-    try
-      result := LInifile.ReadString('configuracao', 'caminhobanco', '');
-    finally
-      FreeAndNil(LInifile);
-    end;
-  end
-  else
-  begin
-    ShowMessage(' Arquivo' + Lcaminho + 'config.ini não encontrado!' + #13 +
-      'Verifique!');
-    Abort;
-  end;
+//  if FileExists(Lcaminho + 'config.ini') then
+//  begin
+//    LInifile := TIniFile.Create(Lcaminho + 'config.ini');
+//    try
+//      result := LInifile.ReadString('configuracao', '');
+//    finally
+//      FreeAndNil(LInifile);
+//    end;
+//  end
+//  else
+//  begin
+//    ShowMessage(' Arquivo' + Lcaminho + 'config.ini não encontrado!' + #13 +
+//      'Verifique!');
+//    Abort;
+//  end;
 end;
 
 procedure TDMPrincipalP.conectarbanco;
@@ -69,7 +70,7 @@ begin
   try
     FDConnection.close;
     FDConnection.Params.add('DRIVEID=PG');
-    FDConnection.Params.add('Database=' + buscarcaminhobase);
+    FDConnection.Params.add('Database=PSICOLINK');
     FDConnection.Params.add('User_Name=postgres');
     FDConnection.Params.add('Password=Juan2006');
     FDConnection.Connected := True;
@@ -85,6 +86,11 @@ begin
   FDQuery.SQL.clear;
   FDQuery.SQL.add('SELECT * FROM pessoa');
   FDQuery.open;
+
+  QRYPsicologo.close;
+  QRYPsicologo.SQL.clear;
+  QRYPsicologo.SQL.add('SELECT * FROM psicologo');
+  QRYPsicologo.open;
 end;
 
 end.

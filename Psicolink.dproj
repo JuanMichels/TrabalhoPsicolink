@@ -1,6 +1,6 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-        <ProjectGuid>{0DFBAC66-22DC-4264-9C83-9DEDEF1ED0D1}</ProjectGuid>
+        <ProjectGuid>{FEC3E7D1-F893-4F30-8EED-6ECE40318B1B}</ProjectGuid>
         <ProjectVersion>20.3</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <Base>True</Base>
@@ -177,6 +177,19 @@
             <Form>DMTelefone</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="UnFormPsicologo.pas">
+            <Form>FormPsicologo</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UnDMPsicologo.pas">
+            <Form>DMPsicologo</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="UnTelefoneCadastro.pas">
+            <Form>FormCadastroTelefone</Form>
+            <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

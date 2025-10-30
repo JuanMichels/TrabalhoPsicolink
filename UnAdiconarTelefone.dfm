@@ -953,10 +953,10 @@ object FormTelefone: TFormTelefone
     ExplicitWidth = 787
   end
   object menu_central: TPanel
-    Left = 152
-    Top = 168
-    Width = 543
-    Height = 153
+    Left = 48
+    Top = 128
+    Width = 600
+    Height = 209
     Anchors = [akLeft, akTop, akRight]
     Color = clLightgray
     Ctl3D = False
@@ -964,32 +964,20 @@ object FormTelefone: TFormTelefone
     ParentCtl3D = False
     TabOrder = 3
     StyleName = 'Windows'
-    ExplicitWidth = 541
     object Label1: TLabel
       Left = 16
       Top = 19
       Width = 78
       Height = 15
       Caption = 'Inserir telefone'
-      FocusControl = DBEdit1
-    end
-    object DBEdit1: TDBEdit
-      Left = 16
-      Top = 40
-      Width = 165
-      Height = 21
-      DataField = 'contato1'
-      DataSource = DMTelefone.DSContato
-      TabOrder = 0
     end
     object DBGrid1: TDBGrid
-      Left = 208
-      Top = 16
+      Left = 272
+      Top = 19
       Width = 320
       Height = 120
-      DataSource = DMTelefone.DSContato
-      Enabled = False
-      TabOrder = 1
+      DataSource = DMTelefone.DSPessoa
+      TabOrder = 0
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText
       TitleFont.Height = -12
@@ -1000,16 +988,78 @@ object FormTelefone: TFormTelefone
           Expanded = False
           FieldName = 'contato1'
           Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'nome'
+          Visible = True
         end>
     end
     object Salvar: TButton
-      Left = 19
-      Top = 104
+      Left = 16
+      Top = 152
       Width = 118
       Height = 25
       Caption = 'Salvar'
-      TabOrder = 2
+      TabOrder = 1
       OnClick = SalvarClick
     end
+    object Button1: TButton
+      Left = 16
+      Top = 121
+      Width = 118
+      Height = 25
+      Caption = 'Novo'
+      TabOrder = 2
+      OnClick = Button1Click
+    end
+    object Button2: TButton
+      Left = 140
+      Top = 121
+      Width = 118
+      Height = 25
+      Caption = 'Cancelar'
+      TabOrder = 3
+      OnClick = Button2Click
+    end
+    object Button3: TButton
+      Left = 140
+      Top = 152
+      Width = 118
+      Height = 25
+      Caption = 'Deletar'
+      TabOrder = 4
+      OnClick = Button3Click
+    end
+    object DBEdit1: TDBEdit
+      Left = 19
+      Top = 40
+      Width = 165
+      Height = 21
+      DataField = 'contato1'
+      DataSource = DMTelefone.DSContato
+      TabOrder = 5
+    end
+    object DBLookupComboBox1: TDBLookupComboBox
+      Left = 16
+      Top = 80
+      Width = 145
+      Height = 21
+      DataField = 'fk_pessoas'
+      DataSource = DMTelefone.DSContato
+      KeyField = 'id'
+      ListField = 'nome'
+      ListSource = DMTelefone.DSPessoa
+      TabOrder = 6
+    end
+  end
+  object Sair: TButton
+    Left = 671
+    Top = 415
+    Width = 118
+    Height = 25
+    Caption = 'Sair'
+    TabOrder = 4
+    OnClick = SairClick
   end
 end

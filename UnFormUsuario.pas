@@ -7,7 +7,8 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls,
   UnDMUsuario,
-  Vcl.StdCtrls, Data.DB, Vcl.Mask, Vcl.DBCtrls, UnDMPrincipal;
+  Vcl.StdCtrls, Data.DB, Vcl.Mask, Vcl.DBCtrls, UnDMPrincipal,
+  UnAdiconarTelefone, UnFormPsicologo;
 
 type
   TFormUsuario = class(TForm)
@@ -24,7 +25,6 @@ type
     Label5: TLabel;
     DBEdit5: TDBEdit;
     Label6: TLabel;
-    DBEdit6: TDBEdit;
     Label7: TLabel;
     DBEdit7: TDBEdit;
     Label8: TLabel;
@@ -38,6 +38,8 @@ type
     Salvar: TButton;
     DBEdit1: TDBEdit;
     DBEdit2: TDBEdit;
+    Button1: TButton;
+    procedure Button1Click(Sender: TObject);
     procedure ExcluirClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure SairClick(Sender: TObject);
@@ -55,6 +57,18 @@ implementation
 
 {$R *.dfm}
 
+procedure TFormUsuario.Button1Click(Sender: TObject);
+var
+  LformTelefone: TFormTelefone;
+begin
+  if DMUsuario.QRYUsuarioContatos.State in [dsEdit, dsBrowse] then
+    LformTelefone := TFormTelefone.create(nil);
+  try
+    LformTelefone.showModal;
+  finally
+    FreeAndNil(LformTelefone);
+  end
+end;
 
 procedure TFormUsuario.FormShow(Sender: TObject);
 
@@ -74,12 +88,12 @@ end;
 
 procedure TFormUsuario.ExcluirClick(Sender: TObject);
 begin
-  DMUsuario.QRYUsuario.open;
-  DMUsuario.QRYUsuarioContatos.open;
   DMUsuario.QRYUsuario.delete;
-  DMUsuario.QRYUsuarioContatos.delete;
+  DMUsuario.QRYUsuario.ApplyUpdates();
+  DMUsuario.QRYUsuario.CommitUpdates;
+  ShowMessage('Usuario Excluido com sucesso');
+  close;
 end;
-
 
 procedure TFormUsuario.SairClick(Sender: TObject);
 begin
@@ -90,11 +104,12 @@ procedure TFormUsuario.SalvarClick(Sender: TObject);
 begin
   if DMUsuario.QRYUsuario.State in [dsEdit, dsInsert, dsBrowse] then
   begin
+    DMUsuario.QRYUsuario.Post;
     DMUsuario.QRYUsuario.ApplyUpdates();
     DMUsuario.QRYUsuario.CommitUpdates;
     DMUsuario.QRYUsuarioContatos.ApplyUpdates();
     DMUsuario.QRYUsuarioContatos.CommitUpdates;
-    Showmessage('Salvo com sucesso!');
+    ShowMessage('Salvo com sucesso!');
   end;
 end;
 

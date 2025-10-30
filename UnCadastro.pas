@@ -6,7 +6,8 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls,
-  Vcl.StdCtrls, Vcl.Mask, Vcl.DBCtrls, DMUnCadastro, Data.DB, UnDMPrincipal;
+  Vcl.StdCtrls, Vcl.Mask, Vcl.DBCtrls, DMUnCadastro, Data.DB, UnDMPrincipal,
+  UnAdiconarTelefone, UnFormPsicologo, UnTelefoneCadastro;
 
 type
   TUnFormCadastro = class(TForm)
@@ -39,8 +40,14 @@ type
     Label11: TLabel;
     DBEdit12: TDBEdit;
     Label12: TLabel;
-    DBComboBox1: TDBComboBox;
-    procedure FormShow(Sender: TObject);
+    ADDTelefone: TButton;
+    ADDCRP: TButton;
+    Sair: TButton;
+    DBLookupComboBox1: TDBLookupComboBox;
+    procedure FormCreate(Sender: TObject);
+    procedure ADDCRPClick(Sender: TObject);
+    procedure ADDTelefoneClick(Sender: TObject);
+    procedure SairClick(Sender: TObject);
     procedure SalvarClick(Sender: TObject);
   private
     { Private declarations }
@@ -57,7 +64,7 @@ implementation
 
 {$R *.dfm}
 
-procedure TUnFormCadastro.FormShow(Sender: TObject);
+procedure TUnFormCadastro.FormCreate(Sender: TObject);
 begin
 
   DMCadastro := TDMCadastro.create(nil);
@@ -66,12 +73,50 @@ begin
   DMCadastro.QRYCadastro.SQL.Add('SELECT * FROM pessoa');
   DMCadastro.QRYCadastro.open;
 
+   DMCadastro.QRYEmpresa.close;
+  DMCadastro.QRYEmpresa.SQL.clear;
+  DMCadastro.QRYEmpresa.SQL.Add('SELECT * FROM empresa');
+  DMCadastro.QRYEmpresa.open;
+
   DMCadastro.QRYCadastro.Append;
 
 end;
 
+procedure TUnFormCadastro.ADDCRPClick(Sender: TObject);
+var
+  LFormPsicologo: TFormPsicologo;
+begin
+  // if DMCadastro.QRYCadastro.State in [dsEdit, dsBrowse] then
+  LFormPsicologo := TFormPsicologo.create(nil);
+  try
+    LFormPsicologo.showModal;
+  finally
+    FreeAndNil(LFormPsicologo);
+  end;
+end;
+
+procedure TUnFormCadastro.ADDTelefoneClick(Sender: TObject);
+var
+  LformTelefone: TFormCadastroTelefone;
+begin
+  DMCadastro.QRYCadastro.FieldByName('ID').AsInteger;
+  LformTelefone := TFormCadastroTelefone.create(nil);
+  try
+    LformTelefone.idpaciente := DMCadastro.QRYCadastro.FieldByName('id').AsLargeInt;
+    LformTelefone.showModal;
+  finally
+    FreeAndNil(LformTelefone);
+  end
+end;
+
+
+procedure TUnFormCadastro.SairClick(Sender: TObject);
+begin
+  close;
+end;
 
 procedure TUnFormCadastro.SalvarClick(Sender: TObject);
+
 begin
 
   if DBEdit1.text = '' then
@@ -128,19 +173,22 @@ begin
   begin
     Showmessage('As senhas não podem ser diferentes');
     Exit;
-  end ;
-//  else if DMCadastro.QRYCadastro.State in [dsEdit, dsInsert, dsBrowse] then
-//  begin
-//    DMCadastro.QRYCadastro.Post;
-//    if DBEdit11.Enabled then
-//
-//      DMCadastro.QRYPsicologo.Post;
-//  end;
+  end;
+  // else if DMCadastro.QRYCadastro.State in [dsEdit, dsInsert, dsBrowse] then
+  // begin
+  // DMCadastro.QRYCadastro.Post;
+  // if DBEdit11.Enabled then
+  //
+  // DMCadastro.QRYPsicologo.Post;
+  // end;
+  DMCadastro.QRYCadastro.post;
+
 
   DMCadastro.QRYCadastro.ApplyUpdates();
   DMCadastro.QRYCadastro.CommitUpdates;
   Showmessage('Cadastrado com sucesso!');
-  ModalResult := mrOk;
+  // ModalResult := mrOk;
+  // procedure TFormPrincipal.Button1Click(Sender: TObject);
 
 end;
 

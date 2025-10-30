@@ -12,8 +12,12 @@ type
   TDMAgenda = class(TDataModule)
     QRYAgenda: TFDQuery;
     DSAgenda: TDataSource;
-    QRYAgendaid: TLargeintField;
-    QRYAgendadata_agendamento: TDateField;
+    QRYPsicologo: TFDQuery;
+    DSPsicologo: TDataSource;
+    QRYTipo: TFDQuery;
+    DSTipo: TDataSource;
+    QRYPessoa: TFDQuery;
+    DSpessoa: TDataSource;
     procedure concetaragenda;
   private
     { Private declarations }

@@ -7,7 +7,8 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls,
   UnDMAgenda,
-  Vcl.StdCtrls, Vcl.Mask, Vcl.DBCtrls, Data.DB, Vcl.Grids, Vcl.DBGrids;
+  Vcl.StdCtrls, Vcl.Mask, Vcl.DBCtrls, Data.DB, Vcl.Grids, Vcl.DBGrids,
+  UnDMPrincipal;
 
 type
   TFormAgenda = class(TForm)
@@ -16,11 +17,18 @@ type
     sub_painel: TPanel;
     painel_inferior: TPanel;
     Label1: TLabel;
-    DBEdit1: TDBEdit;
-    Label2: TLabel;
     Salvar: TButton;
     DBGrid1: TDBGrid;
+    DBLookupComboBox1: TDBLookupComboBox;
+    Novo: TButton;
+    Cancelar: TButton;
+    Label2: TLabel;
+    Label3: TLabel;
+    DBEdit1: TDBEdit;
+    DBEdit2: TDBEdit;
+    procedure CancelarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure NovoClick(Sender: TObject);
     procedure SalvarClick(Sender: TObject);
   private
     { Private declarations }
@@ -37,18 +45,48 @@ implementation
 {$R *.dfm}
 
 procedure TFormAgenda.FormShow(Sender: TObject);
+
 begin
-  DMAgenda := TDMAgenda.create(self);
-  DMAgenda.QRYAgenda.close;
-  DMAgenda.QRYAgenda.SQL.clear;
-  DMAgenda.QRYAgenda.SQL.Add('SELECT * FROM agenda');
-  DMAgenda.QRYAgenda.open;
+  DMAgenda := TDMAgenda.create(nil);
+
+  DMAgenda.QRYPessoa.Close;
+  DMAgenda.QRYPessoa.SQL.Clear;
+  DMAgenda.QRYPessoa.SQL.Add(Format('Select * from pessoa where id =  %0:d',
+    [DMPrincipalP.Usuarioid]));
+  DMAgenda.QRYPessoa.Open;
+
+  DMAgenda.QRYPsicologo.Close;
+  DMAgenda.QRYPsicologo.SQL.Clear;
+  DMAgenda.QRYPsicologo.SQL.Add('SELECT * FROM psicologo');
+  DMAgenda.QRYPsicologo.Open;
+
+  DMAgenda.QRYAgenda.Close;
+  DMAgenda.QRYAgenda.SQL.Clear;
+  DMAgenda.QRYAgenda.SQL.Add('SELECT * FROM AGENDA ' + #13 +
+    'where fk_pessoa = ' + #13 + IntToStr(DMPrincipalP.Usuarioid));
+
+  DMAgenda.QRYAgenda.Open;
 
   DMAgenda.QRYAgenda.append;
 end;
 
+procedure TFormAgenda.NovoClick(Sender: TObject);
+begin
+  DMAgenda.QRYAgenda.append;
+end;
+
+procedure TFormAgenda.CancelarClick(Sender: TObject);
+begin
+  DMAgenda.QRYAgenda.delete;
+end;
+
 procedure TFormAgenda.SalvarClick(Sender: TObject);
 begin
+
+  if DMAgenda.QRYAgenda.State in [dsEdit, dsInsert] then
+    DMAgenda.Dsagenda.DataSet.FieldByName('fk_pessoa').AsInteger :=
+      DMPrincipalP.Usuarioid;
+
   DMAgenda.QRYAgenda.Post;
   DMAgenda.QRYAgenda.ApplyUpdates();
   DMAgenda.QRYAgenda.append;

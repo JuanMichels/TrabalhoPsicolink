@@ -1,0 +1,15 @@
+object DataModule3: TDataModule3
+  Height = 750
+  Width = 1000
+  PixelsPerInch = 120
+  object QRYPsicologo: TFDQuery
+    CachedUpdates = True
+    Left = 160
+    Top = 136
+  end
+  object DSPsicologo: TDataSource
+    DataSet = QRYPsicologo
+    Left = 456
+    Top = 168
+  end
+end
