@@ -25,7 +25,6 @@ type
     DBEdit1: TDBEdit;
     Sair: TButton;
     painel_inferior: TPanel;
-    DBLookupComboBox1: TDBLookupComboBox;
     procedure CancelarClick(Sender: TObject);
     procedure DeletarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);

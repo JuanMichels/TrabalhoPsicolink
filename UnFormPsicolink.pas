@@ -96,47 +96,49 @@ begin
   LFormtela := TFormPrincipal.create(nil);
   Lformpsico := TFormprincipalpsicologo.create(nil);
 
-  // DMPrincipalP.conectarbanco;
-
-  DMPrincipalP.QRYPsicologo.close;
-  DMPrincipalP.QRYPsicologo.SQL.Clear;
 
   DMPrincipalP.FDQuery.close;
   DMPrincipalP.FDQuery.SQL.Clear;
 
   if CheckBox1.Checked then
   begin
-
+    DMPrincipalP.QRYPsicologo.close;
+    DMPrincipalP.QRYPsicologo.SQL.Clear;
     DMPrincipalP.QRYPsicologo.SQL.Add
-      ('SELECT psicologo.crp, pessoa.nome' + #13 + 'FROM psicologo' + #13 + 'join pessoa' + #13 +
-       'on (psicologo.id_pessoa = pessoa.id)' + #13 + 'WHERE crp = :crp');
+      ('SELECT psicologo.crp, psicologo.id_pessoa' + #13 + 'FROM psicologo' +
+      #13 + 'WHERE psicologo.crp = :crp');
     DMPrincipalP.QRYPsicologo.ParamByName('crp').AsString := CRP.Text;
-    DMPrincipalP.FDQuery.SQL.Add('SELECT * FROM pessoa WHERE senha = :senha');
-    DMPrincipalP.FDQuery.ParamByName('senha').AsString := SenhaEdit.Text;
 
     DMPrincipalP.QRYPsicologo.open;
+
+  DMPrincipalP.FDQuery.SQL.Add
+    ('SELECT * FROM pessoa WHERE senha = :senha');
+  DMPrincipalP.FDQuery.ParamByName('senha').AsString := SenhaEdit.Text;
   end
   else
   begin
 
     DMPrincipalP.FDQuery.SQL.Add
-      ('SELECT * FROM pessoa WHERE cpf = :cpf and senha = :senha');
+      ('SELECT * FROM pessoa WHERE cpf = :cpf');
 
     DMPrincipalP.FDQuery.ParamByName('cpf').AsString := CPFEdit.Text;
-    DMPrincipalP.FDQuery.ParamByName('senha').AsString := SenhaEdit.Text;
+
   end;
 
   DMPrincipalP.FDQuery.open;
 
   if (DMPrincipalP.FDQuery.RecordCount > 0) then
   begin
-    DMPrincipalP.UsuarioID := DMPrincipalP.FDQuery.FieldByName('id').AsInteger;
-    ShowMessage('Login realizado com sucesso!' + sLineBreak +
-      'Bem vindo Usuario:' + (' ') + DMPrincipalP.FDQuerynome.Value);
-    DMPrincipalP.Nome := DMPrincipalP.FDQuerynome.Value;
+
     if CheckBox1.Checked then
     begin
       try
+        DMPrincipalP.UsuarioID := DMPrincipalP.QRYPsicologo.FieldByName
+          ('id_pessoa').AsInteger;
+        ShowMessage('Login realizado com sucesso!');
+//        + sLineBreak +
+//          'Bem vindo Usuario:' + (' ') + DMPrincipalP.FDQuerynome.Value);
+//        DMPrincipalP.Nome := DMPrincipalP.FDQuerynome.Value;
         Lformpsico.showModal;
       finally
         FreeAndNil(Lformpsico);
@@ -145,6 +147,12 @@ begin
     else
     begin
       try
+        DMPrincipalP.UsuarioID := DMPrincipalP.FDQuery.FieldByName('id')
+          .AsInteger;
+        ShowMessage('Login realizado com sucesso!');
+//         + sLineBreak +
+//          'Bem vindo Usuario:' + (' ') + DMPrincipalP.FDQuerynome.Value);
+//        DMPrincipalP.Nome := DMPrincipalP.FDQuerynome.Value;
         LFormtela.showModal;
       finally
         FreeAndNil(LFormtela);

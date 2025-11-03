@@ -1079,7 +1079,7 @@ object formlogin: Tformlogin
     object CRP: TDBEdit
       Left = 32
       Top = 33
-      Width = 171
+      Width = 177
       Height = 26
       Ctl3D = False
       DataField = 'crp'

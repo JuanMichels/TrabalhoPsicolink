@@ -10,7 +10,7 @@ object FormTelefone: TFormTelefone
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
-  OnShow = FormShow
+  OnCreate = FormCreate
   DesignSize = (
     789
     471)
@@ -955,7 +955,7 @@ object FormTelefone: TFormTelefone
   object menu_central: TPanel
     Left = 48
     Top = 128
-    Width = 600
+    Width = 592
     Height = 209
     Anchors = [akLeft, akTop, akRight]
     Color = clLightgray
@@ -964,6 +964,7 @@ object FormTelefone: TFormTelefone
     ParentCtl3D = False
     TabOrder = 3
     StyleName = 'Windows'
+    ExplicitWidth = 590
     object Label1: TLabel
       Left = 16
       Top = 19
@@ -976,7 +977,7 @@ object FormTelefone: TFormTelefone
       Top = 19
       Width = 320
       Height = 120
-      DataSource = DMTelefone.DSPessoa
+      DataSource = DMTelefone.DSContato
       TabOrder = 0
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText
@@ -1039,18 +1040,6 @@ object FormTelefone: TFormTelefone
       DataField = 'contato1'
       DataSource = DMTelefone.DSContato
       TabOrder = 5
-    end
-    object DBLookupComboBox1: TDBLookupComboBox
-      Left = 16
-      Top = 80
-      Width = 145
-      Height = 21
-      DataField = 'fk_pessoas'
-      DataSource = DMTelefone.DSContato
-      KeyField = 'id'
-      ListField = 'nome'
-      ListSource = DMTelefone.DSPessoa
-      TabOrder = 6
     end
   end
   object Sair: TButton

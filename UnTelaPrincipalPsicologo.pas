@@ -3,7 +3,8 @@ unit UnTelaPrincipalPsicologo;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
   Vcl.Imaging.pngimage, UnFormUsuario, Unformagendapsico;
 
@@ -17,6 +18,7 @@ type
     pacientes: TButton;
     Perfil: TButton;
     procedure agendaClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure PerfilClick(Sender: TObject);
   private
     { Private declarations }
@@ -43,6 +45,11 @@ begin
   end;
 end;
 
+procedure TFormprincipalpsicologo.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  Application.Terminate;
+end;
 
 procedure TFormprincipalpsicologo.PerfilClick(Sender: TObject);
 var

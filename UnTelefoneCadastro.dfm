@@ -942,7 +942,7 @@ object FormCadastroTelefone: TFormCadastroTelefone
   object menu_central: TPanel
     Left = 24
     Top = 128
-    Width = 592
+    Width = 590
     Height = 209
     Anchors = [akLeft, akTop, akRight]
     Color = clLightgray
@@ -951,7 +951,7 @@ object FormCadastroTelefone: TFormCadastroTelefone
     ParentCtl3D = False
     TabOrder = 2
     StyleName = 'Windows'
-    ExplicitWidth = 590
+    ExplicitWidth = 588
     object Label1: TLabel
       Left = 16
       Top = 19
@@ -1027,18 +1027,6 @@ object FormCadastroTelefone: TFormCadastroTelefone
       DataField = 'contato1'
       DataSource = DMTelefone.DSContato
       TabOrder = 5
-    end
-    object DBLookupComboBox1: TDBLookupComboBox
-      Left = 19
-      Top = 80
-      Width = 145
-      Height = 21
-      DataField = 'fk_pessoas'
-      DataSource = DMTelefone.DSContato
-      KeyField = 'id'
-      ListField = 'nome'
-      ListSource = DMTelefone.DSPessoa
-      TabOrder = 6
     end
   end
   object Sair: TButton

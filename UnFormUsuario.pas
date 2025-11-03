@@ -107,8 +107,6 @@ begin
     DMUsuario.QRYUsuario.Post;
     DMUsuario.QRYUsuario.ApplyUpdates();
     DMUsuario.QRYUsuario.CommitUpdates;
-    DMUsuario.QRYUsuarioContatos.ApplyUpdates();
-    DMUsuario.QRYUsuarioContatos.CommitUpdates;
     ShowMessage('Salvo com sucesso!');
   end;
 end;

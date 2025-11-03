@@ -10,6 +10,7 @@ object Formprincipalpsicologo: TFormprincipalpsicologo
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnClose = FormClose
   TextHeight = 15
   object Image1: TImage
     Left = 64
@@ -8190,6 +8191,7 @@ object Formprincipalpsicologo: TFormprincipalpsicologo
     ParentBackground = False
     TabOrder = 0
     StyleName = 'Windows'
+    ExplicitWidth = 622
   end
   object Panel1: TPanel
     Left = 0
@@ -8201,6 +8203,8 @@ object Formprincipalpsicologo: TFormprincipalpsicologo
     ParentBackground = False
     TabOrder = 1
     StyleName = 'Windows'
+    ExplicitTop = 408
+    ExplicitWidth = 622
   end
   object Panel2: TPanel
     Left = 0
