@@ -80,6 +80,7 @@ begin
 
   DMCadastro.QRYCadastro.Append;
 
+
 end;
 
 procedure TUnFormCadastro.ADDCRPClick(Sender: TObject);

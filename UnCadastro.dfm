@@ -945,7 +945,7 @@ object UnFormCadastro: TUnFormCadastro
   object menu_central: TPanel
     Left = 168
     Top = 128
-    Width = 431
+    Width = 427
     Height = 312
     Anchors = [akLeft, akTop, akRight]
     Color = clLightgray
@@ -954,7 +954,7 @@ object UnFormCadastro: TUnFormCadastro
     ParentCtl3D = False
     TabOrder = 2
     StyleName = 'Windows'
-    ExplicitWidth = 429
+    ExplicitWidth = 425
     object LblNome: TLabel
       Left = 16
       Top = 11

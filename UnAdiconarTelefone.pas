@@ -23,7 +23,7 @@ type
     Button1: TButton;
     Button2: TButton;
     Button3: TButton;
-    DBEdit1: TDBEdit;
+    Telefone: TDBEdit;
     procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
@@ -50,7 +50,7 @@ begin
   DMTelefone.QRYContato.close;
   DMTelefone.QRYContato.SQL.Clear;
   DMTelefone.QRYContato.SQL.Add
-    ('Select contatos.contato1, pessoa.nome from contatos join pessoa' + #13 +
+    ('Select contatos.contato1, pessoa.nome, contatos.fk_pessoas from contatos join pessoa' + #13 +
     'on contatos.fk_pessoas = pessoa.id' + #13 + 'where fk_pessoas = ' +
     IntToStr(DMPrincipalP.Usuarioid));
   DMTelefone.QRYContato.Open;
@@ -86,15 +86,16 @@ end;
 
 procedure TFormTelefone.SalvarClick(Sender: TObject);
 begin
-  // DMTelefone.DSContato.DataSet.FieldByName('Nome').AsString := 'teste';
-  if DMTelefone.QRYContato.State in [dsEdit, dsBrowse] then
-    DMTelefone.DSContato.DataSet.FieldByName('fk_pessoas').AsInteger :=
-      DMPrincipalP.Usuarioid;
-  DMTelefone.QRYContato.Post;
-  DMTelefone.QRYContato.ApplyUpdates();
-  DMTelefone.QRYContato.CommitUpdates;
+if DMTelefone.QRYContato.State in [dsEdit, dsInsert] then
+
+  DMTelefone.DSContato.DataSet.FieldByName('fk_pessoas').AsInteger :=
+   DMPrincipalP.usuarioid;
+    DMTelefone.QRYContato.post;
+    DMTelefone.QRYContato.ApplyUpdates();
+    ShowMessage('Salvo com sucesso!');
 
   DMTelefone.QRYContato.append;
+//  end;
 
 end;
 

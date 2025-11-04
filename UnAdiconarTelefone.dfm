@@ -955,7 +955,7 @@ object FormTelefone: TFormTelefone
   object menu_central: TPanel
     Left = 48
     Top = 128
-    Width = 592
+    Width = 681
     Height = 209
     Anchors = [akLeft, akTop, akRight]
     Color = clLightgray
@@ -964,7 +964,6 @@ object FormTelefone: TFormTelefone
     ParentCtl3D = False
     TabOrder = 3
     StyleName = 'Windows'
-    ExplicitWidth = 590
     object Label1: TLabel
       Left = 16
       Top = 19
@@ -975,8 +974,8 @@ object FormTelefone: TFormTelefone
     object DBGrid1: TDBGrid
       Left = 272
       Top = 19
-      Width = 320
-      Height = 120
+      Width = 393
+      Height = 166
       DataSource = DMTelefone.DSContato
       TabOrder = 0
       TitleFont.Charset = DEFAULT_CHARSET
@@ -1032,10 +1031,10 @@ object FormTelefone: TFormTelefone
       TabOrder = 4
       OnClick = Button3Click
     end
-    object DBEdit1: TDBEdit
+    object Telefone: TDBEdit
       Left = 19
       Top = 40
-      Width = 165
+      Width = 239
       Height = 21
       DataField = 'contato1'
       DataSource = DMTelefone.DSContato

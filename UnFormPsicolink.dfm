@@ -1050,13 +1050,15 @@ object formlogin: Tformlogin
     object CPFEdit: TMaskEdit
       Left = 32
       Top = 33
-      Width = 171
+      Width = 170
       Height = 26
+      EditMask = '999.999.999-99;0;_'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
       Font.Height = -15
       Font.Name = 'Segoe UI'
       Font.Style = []
+      MaxLength = 14
       ParentFont = False
       TabOrder = 3
       Text = ''

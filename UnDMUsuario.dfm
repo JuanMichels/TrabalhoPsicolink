@@ -27,6 +27,7 @@ object DMUsuario: TDMUsuario
     object QRYUsuariocpf: TWideStringField
       FieldName = 'cpf'
       Origin = 'cpf'
+      EditMask = '999.999.999-99;0;_'
       Size = 12
     end
     object QRYUsuariodatanascimento: TDateField

@@ -88,6 +88,7 @@ begin
    idpaciente;
     DMTelefone.QRYContato.post;
     DMTelefone.QRYContato.ApplyUpdates();
+    ShowMessage('Telefone cadastrado com sucesso!');
 end;
 
 end.
