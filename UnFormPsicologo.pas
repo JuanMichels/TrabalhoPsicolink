@@ -3,9 +3,11 @@ unit UnFormPsicologo;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.Grids,
-  Vcl.DBGrids, Vcl.Mask, Vcl.ExtCtrls, Vcl.DBCtrls, Vcl.Imaging.pngimage, UnDMPsicologo, UnDMPrincipal;
+  Vcl.DBGrids, Vcl.Mask, Vcl.ExtCtrls, Vcl.DBCtrls, Vcl.Imaging.pngimage,
+  UnDMPsicologo, UnDMPrincipal;
 
 type
   TFormPsicologo = class(TForm)
@@ -18,12 +20,14 @@ type
     DBGrid1: TDBGrid;
     Salvar: TButton;
     painel_inferior: TPanel;
-    procedure FormShow(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
     procedure SalvarClick(Sender: TObject);
   private
+    fidpaciente: Int64;
     { Private declarations }
   public
     { Public declarations }
+    property idpaciente: Int64 read fidpaciente write fidpaciente;
   end;
 
 var
@@ -34,12 +38,23 @@ implementation
 
 {$R *.dfm}
 
-procedure TFormPsicologo.FormShow(Sender: TObject);
+procedure TFormPsicologo.FormCreate(Sender: TObject);
 begin
   DMPsicologo := TDMPsicologo.create(nil);
   DMPsicologo.QRYPsicologos.close;
   DMPsicologo.QRYPsicologos.SQL.Clear;
-  DMPsicologo.QRYPsicologos.SQL.Add('Select * from psicologo where id_pessoa = ' + IntToStr(DMPrincipalP.Usuarioid));
+  DMPsicologo.QRYPsicologos.SQL.Add
+    ('Select psicologo.id_psicologo, psicologo.crp, pessoa.nome' + #13 +
+    'from psicologo' + #13 + 'join pessoa' + #13 +
+    'on (psicologo.id_pessoa = pessoa.id)' + #13 +
+    'where psicologo.id_pessoa = ' + IntToStr(fidpaciente));
+  DMPsicologo.QRYPsicologos.Open;
+
+  DMPsicologo.QRYPsicologos.close;
+  DMPsicologo.QRYPsicologos.SQL.Clear;
+  DMPsicologo.QRYPsicologos.SQL.Add('Select * from pessoa');
+//   where id =' + IntToStr(fidpaciente));
+  // [DMPrincipalP.Usuarioid]));
   DMPsicologo.QRYPsicologos.Open;
 
   DMPsicologo.QRYPsicologos.Append;
@@ -47,7 +62,9 @@ end;
 
 procedure TFormPsicologo.SalvarClick(Sender: TObject);
 begin
-  DMPsicologo.DSPsicologo.DataSet.FieldByName('id_pessoa').AsInteger := DMPrincipalP.Usuarioid;
+  DMPsicologo.DSPsicologo.DataSet.FieldByName('id_pessoa').AsInteger :=
+    idpaciente;
+  DMPsicologo.QRYPsicologos.post;
   DMPsicologo.QRYPsicologos.ApplyUpdates();
   DMPsicologo.QRYPsicologos.CommitUpdates;
 end;

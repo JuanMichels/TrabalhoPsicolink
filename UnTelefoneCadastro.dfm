@@ -942,7 +942,7 @@ object FormCadastroTelefone: TFormCadastroTelefone
   object menu_central: TPanel
     Left = 24
     Top = 128
-    Width = 590
+    Width = 584
     Height = 209
     Anchors = [akLeft, akTop, akRight]
     Color = clLightgray
@@ -951,7 +951,7 @@ object FormCadastroTelefone: TFormCadastroTelefone
     ParentCtl3D = False
     TabOrder = 2
     StyleName = 'Windows'
-    ExplicitWidth = 588
+    ExplicitWidth = 582
     object Label1: TLabel
       Left = 16
       Top = 19
@@ -960,9 +960,9 @@ object FormCadastroTelefone: TFormCadastroTelefone
       Caption = 'Inserir telefone'
     end
     object DBGrid1: TDBGrid
-      Left = 272
+      Left = 264
       Top = 19
-      Width = 320
+      Width = 312
       Height = 120
       DataSource = DMTelefone.DSContato
       TabOrder = 0
@@ -979,7 +979,7 @@ object FormCadastroTelefone: TFormCadastroTelefone
         end
         item
           Expanded = False
-          FieldName = 'fk_pessoas'
+          FieldName = 'nome'
           Visible = True
         end>
     end

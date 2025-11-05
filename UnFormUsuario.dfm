@@ -35,7 +35,6 @@ object FormUsuario: TFormUsuario
     Width = 17
     Height = 15
     Caption = 'cpf'
-    FocusControl = DBEdit3
   end
   object Label4: TLabel
     Left = 8
@@ -1029,15 +1028,6 @@ object FormUsuario: TFormUsuario
     ExplicitTop = 408
     ExplicitWidth = 622
   end
-  object DBEdit3: TDBEdit
-    Left = 118
-    Top = 192
-    Width = 184
-    Height = 23
-    DataField = 'cpf'
-    DataSource = DMUsuario.DSUsuario
-    TabOrder = 3
-  end
   object DBEdit4: TDBEdit
     Left = 8
     Top = 192
@@ -1045,7 +1035,7 @@ object FormUsuario: TFormUsuario
     Height = 23
     DataField = 'datanascimento'
     DataSource = DMUsuario.DSUsuario
-    TabOrder = 4
+    TabOrder = 3
   end
   object DBEdit5: TDBEdit
     Left = 183
@@ -1054,7 +1044,7 @@ object FormUsuario: TFormUsuario
     Height = 23
     DataField = 'endereco'
     DataSource = DMUsuario.DSUsuario
-    TabOrder = 5
+    TabOrder = 4
   end
   object DBEdit7: TDBEdit
     Left = 8
@@ -1063,7 +1053,7 @@ object FormUsuario: TFormUsuario
     Height = 23
     DataField = 'email'
     DataSource = DMUsuario.DSUsuario
-    TabOrder = 6
+    TabOrder = 5
   end
   object DBEdit8: TDBEdit
     Left = 8
@@ -1072,7 +1062,7 @@ object FormUsuario: TFormUsuario
     Height = 23
     DataField = 'cep'
     DataSource = DMUsuario.DSUsuario
-    TabOrder = 7
+    TabOrder = 6
   end
   object DBEdit9: TDBEdit
     Left = 476
@@ -1081,7 +1071,7 @@ object FormUsuario: TFormUsuario
     Height = 23
     DataField = 'numerocasa'
     DataSource = DMUsuario.DSUsuario
-    TabOrder = 8
+    TabOrder = 7
   end
   object DBEdit10: TDBEdit
     Left = 8
@@ -1090,7 +1080,7 @@ object FormUsuario: TFormUsuario
     Height = 23
     DataField = 'bairro'
     DataSource = DMUsuario.DSUsuario
-    TabOrder = 9
+    TabOrder = 8
   end
   object Sair: TButton
     Left = 492
@@ -1098,7 +1088,7 @@ object FormUsuario: TFormUsuario
     Width = 132
     Height = 25
     Caption = 'Sair'
-    TabOrder = 10
+    TabOrder = 9
     OnClick = SairClick
   end
   object Excluir: TButton
@@ -1107,7 +1097,7 @@ object FormUsuario: TFormUsuario
     Width = 132
     Height = 25
     Caption = 'Excluir Usuario'
-    TabOrder = 11
+    TabOrder = 10
     OnClick = ExcluirClick
   end
   object Salvar: TButton
@@ -1116,7 +1106,7 @@ object FormUsuario: TFormUsuario
     Width = 132
     Height = 25
     Caption = 'Salvar'
-    TabOrder = 12
+    TabOrder = 11
     OnClick = SalvarClick
   end
   object DBEdit1: TDBEdit
@@ -1126,7 +1116,7 @@ object FormUsuario: TFormUsuario
     Height = 23
     DataField = 'id'
     DataSource = DMUsuario.DSUsuario
-    TabOrder = 13
+    TabOrder = 12
   end
   object DBEdit2: TDBEdit
     Left = 118
@@ -1135,7 +1125,7 @@ object FormUsuario: TFormUsuario
     Height = 23
     DataField = 'nome'
     DataSource = DMUsuario.DSUsuario
-    TabOrder = 14
+    TabOrder = 13
   end
   object Button1: TButton
     Left = 308
@@ -1143,7 +1133,16 @@ object FormUsuario: TFormUsuario
     Width = 117
     Height = 25
     Caption = 'Telefones'
-    TabOrder = 15
+    TabOrder = 14
     OnClick = Button1Click
+  end
+  object DBEdit3: TDBEdit
+    Left = 118
+    Top = 197
+    Width = 184
+    Height = 23
+    DataField = 'cpf'
+    DataSource = DMUsuario.DSUsuario
+    TabOrder = 15
   end
 end

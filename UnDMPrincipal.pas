@@ -48,21 +48,26 @@ var
   Lcaminho: string;
 begin
   Lcaminho := ExtractFilePath(ParamStr(0));
-//  if FileExists(Lcaminho + 'config.ini') then
-//  begin
-//    LInifile := TIniFile.Create(Lcaminho + 'config.ini');
-//    try
-//      result := LInifile.ReadString('configuracao', '');
-//    finally
-//      FreeAndNil(LInifile);
-//    end;
-//  end
-//  else
-//  begin
-//    ShowMessage(' Arquivo' + Lcaminho + 'config.ini não encontrado!' + #13 +
-//      'Verifique!');
-//    Abort;
-//  end;
+  if FileExists(Lcaminho + 'config.ini') then
+  begin
+    LInifile := TIniFile.Create(Lcaminho + 'config.ini');
+    try
+      Result := LInifile.ReadString('Conexao', 'DriverId', 'PG') +
+            ' Host=' + LInifile.ReadString('Conexao', 'Host', 'localhost') +
+            ' Database=' + LInifile.ReadString('Conexao', 'Database', 'PSICOLINK') +
+            ' User=' + LInifile.ReadString('Conexao', 'User', 'Postgres') +
+            'password' + LInifile.ReadString('conexao', 'password', 'Juan2006') +
+            'Port' + LInifile.ReadString('conexao', 'port', '5432');
+    finally
+      FreeAndNil(LInifile);
+    end;
+  end
+  else
+  begin
+    ShowMessage(' Arquivo' + Lcaminho + 'config.ini não encontrado!' + #13 +
+      'Verifique!');
+    Abort;
+  end;
 end;
 
 procedure TDMPrincipalP.conectarbanco;

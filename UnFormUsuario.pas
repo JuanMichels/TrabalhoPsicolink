@@ -19,7 +19,6 @@ type
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
-    DBEdit3: TDBEdit;
     Label4: TLabel;
     DBEdit4: TDBEdit;
     Label5: TLabel;
@@ -39,6 +38,7 @@ type
     DBEdit1: TDBEdit;
     DBEdit2: TDBEdit;
     Button1: TButton;
+    DBEdit3: TDBEdit;
     procedure Button1Click(Sender: TObject);
     procedure ExcluirClick(Sender: TObject);
     procedure FormShow(Sender: TObject);

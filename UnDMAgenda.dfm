@@ -41,6 +41,8 @@ object DMAgenda: TDMAgenda
   end
   object QRYPessoa: TFDQuery
     Connection = DMPrincipalP.FDConnection
+    SQL.Strings = (
+      'Select * from pessoa')
     Left = 376
     Top = 352
   end

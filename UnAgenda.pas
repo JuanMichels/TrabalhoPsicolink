@@ -24,8 +24,6 @@ type
     Cancelar: TButton;
     Label2: TLabel;
     Label3: TLabel;
-    DBEdit1: TDBEdit;
-    DBEdit2: TDBEdit;
     procedure CancelarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure NovoClick(Sender: TObject);

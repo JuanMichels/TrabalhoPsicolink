@@ -16,6 +16,7 @@ object DMCadastro: TDMCadastro
     Top = 48
   end
   object QRYEmpresa: TFDQuery
+    CachedUpdates = True
     Connection = DMPrincipalP.FDConnection
     SQL.Strings = (
       'Select * from empresa')

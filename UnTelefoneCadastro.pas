@@ -51,18 +51,22 @@ procedure TFormCadastroTelefone.FormCreate(Sender: TObject);
 begin
 
   DMTelefone := TDMTelefone.Create(nil);
-  DMTelefone.QRYContato.close;
-  DMTelefone.QRYContato.SQL.clear;
-  DMTelefone.QRYContato.SQL.Add
-    ('Select * from contatos where contatos.fk_pessoas = ' +
-    IntToStr(fidpaciente));
-  DMTelefone.QRYContato.Open;
-
   DMTelefone.QRYPessoa.close;
   DMTelefone.QRYPessoa.SQL.clear;
   DMTelefone.QRYPessoa.SQL.Add('Select * from pessoa');
-//    [DMPrincipalP.Usuarioid]));
+  // + #13 +'where id =' + IntToStr(fidpaciente));
   DMTelefone.QRYPessoa.Open;
+
+  DMTelefone.QRYContato.close;
+  DMTelefone.QRYContato.SQL.clear;
+  DMTelefone.QRYContato.SQL.Add
+    ('Select contatos.id_telefone, contatos.contato1, pessoa.nome' + #13 +
+    'from contatos' + #13 + 'join pessoa' + #13 +
+    'on contatos.fk_pessoas = pessoa.id' + #13 + 'where contatos.fk_pessoas = '
+    + IntToStr(fidpaciente));
+  DMTelefone.QRYContato.Open;
+
+
 end;
 
 procedure TFormCadastroTelefone.NovoClick(Sender: TObject);
@@ -84,11 +88,11 @@ procedure TFormCadastroTelefone.SalvarClick(Sender: TObject);
 begin
   if DMTelefone.QRYContato.State in [dsEdit, dsInsert] then
 
-  DMTelefone.DSContato.DataSet.FieldByName('fk_pessoas').AsInteger :=
-   idpaciente;
-    DMTelefone.QRYContato.post;
-    DMTelefone.QRYContato.ApplyUpdates();
-    ShowMessage('Telefone cadastrado com sucesso!');
+    DMTelefone.DSContato.DataSet.FieldByName('fk_pessoas').AsInteger :=
+      idpaciente;
+  DMTelefone.QRYContato.post;
+  DMTelefone.QRYContato.ApplyUpdates();
+  ShowMessage('Telefone cadastrado com sucesso!');
 end;
 
 end.

@@ -32,9 +32,9 @@ object FormAgenda: TFormAgenda
   object Label3: TLabel
     Left = 8
     Top = 195
-    Width = 77
+    Width = 52
     Height = 15
-    Caption = 'CRP Psicologo'
+    Caption = 'Psicologo'
   end
   object painel_superior: TPanel
     Left = 0
@@ -1001,11 +1001,11 @@ object FormAgenda: TFormAgenda
     Top = 216
     Width = 153
     Height = 23
-    DataField = 'fk_psicologo'
-    DataSource = DMAgenda.DSAgenda
-    KeyField = 'id_psicologo'
-    ListField = 'crp'
-    ListSource = DMAgenda.DSPsicologo
+    DataField = 'id_pessoa'
+    DataSource = DMAgenda.DSPsicologo
+    KeyField = 'id'
+    ListField = 'nome'
+    ListSource = DMAgenda.DSpessoa
     TabOrder = 5
   end
   object Novo: TButton
@@ -1025,23 +1025,5 @@ object FormAgenda: TFormAgenda
     Caption = 'Cancelar'
     TabOrder = 7
     OnClick = CancelarClick
-  end
-  object DBEdit1: TDBEdit
-    Left = 8
-    Top = 166
-    Width = 121
-    Height = 23
-    DataField = 'data_agendamento'
-    DataSource = DMAgenda.DSAgenda
-    TabOrder = 8
-  end
-  object DBEdit2: TDBEdit
-    Left = 167
-    Top = 166
-    Width = 121
-    Height = 23
-    DataField = 'hora_consulta'
-    DataSource = DMAgenda.DSAgenda
-    TabOrder = 9
   end
 end

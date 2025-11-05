@@ -73,47 +73,13 @@ begin
   DMCadastro.QRYCadastro.SQL.Add('SELECT * FROM pessoa');
   DMCadastro.QRYCadastro.open;
 
-   DMCadastro.QRYEmpresa.close;
+  DMCadastro.QRYEmpresa.close;
   DMCadastro.QRYEmpresa.SQL.clear;
   DMCadastro.QRYEmpresa.SQL.Add('SELECT * FROM empresa');
   DMCadastro.QRYEmpresa.open;
 
   DMCadastro.QRYCadastro.Append;
 
-
-end;
-
-procedure TUnFormCadastro.ADDCRPClick(Sender: TObject);
-var
-  LFormPsicologo: TFormPsicologo;
-begin
-  // if DMCadastro.QRYCadastro.State in [dsEdit, dsBrowse] then
-  LFormPsicologo := TFormPsicologo.create(nil);
-  try
-    LFormPsicologo.showModal;
-  finally
-    FreeAndNil(LFormPsicologo);
-  end;
-end;
-
-procedure TUnFormCadastro.ADDTelefoneClick(Sender: TObject);
-var
-  LformTelefone: TFormCadastroTelefone;
-begin
-  DMCadastro.QRYCadastro.FieldByName('ID').AsInteger;
-  LformTelefone := TFormCadastroTelefone.create(nil);
-  try
-    LformTelefone.idpaciente := DMCadastro.QRYCadastro.FieldByName('id').AsLargeInt;
-    LformTelefone.showModal;
-  finally
-    FreeAndNil(LformTelefone);
-  end
-end;
-
-
-procedure TUnFormCadastro.SairClick(Sender: TObject);
-begin
-  close;
 end;
 
 procedure TUnFormCadastro.SalvarClick(Sender: TObject);
@@ -184,13 +150,49 @@ begin
   // end;
   DMCadastro.QRYCadastro.post;
 
-
   DMCadastro.QRYCadastro.ApplyUpdates();
   DMCadastro.QRYCadastro.CommitUpdates;
+  DMCadastro.QRYCadastro.Refresh;
   Showmessage('Cadastrado com sucesso!');
+//  DMCadastro.QRYCadastro.FieldByName('id').AsInteger;
+
   // ModalResult := mrOk;
   // procedure TFormPrincipal.Button1Click(Sender: TObject);
 
+end;
+
+procedure TUnFormCadastro.ADDCRPClick(Sender: TObject);
+var
+  LFormPsicologo: TFormPsicologo;
+begin
+  // if DMCadastro.QRYCadastro.State in [dsEdit, dsBrowse] then
+  LFormPsicologo := TFormPsicologo.create(nil);
+  try
+    LFormPsicologo.idpaciente := DMCadastro.QRYCadastro.FieldByName('id')
+      .AsLargeInt;
+    LFormPsicologo.showModal;
+  finally
+    FreeAndNil(LFormPsicologo);
+  end;
+end;
+
+procedure TUnFormCadastro.ADDTelefoneClick(Sender: TObject);
+var
+  LformTelefone: TFormCadastroTelefone;
+begin
+  LformTelefone := TFormCadastroTelefone.create(nil);
+  try
+    LformTelefone.idpaciente := DMCadastro.QRYCadastro.FieldByName('id')
+      .AsLargeInt;
+    LformTelefone.showModal;
+  finally
+    FreeAndNil(LformTelefone);
+  end
+end;
+
+procedure TUnFormCadastro.SairClick(Sender: TObject);
+begin
+  close;
 end;
 
 end.
