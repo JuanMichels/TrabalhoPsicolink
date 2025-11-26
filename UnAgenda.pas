@@ -8,7 +8,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls,
   UnDMAgenda,
   Vcl.StdCtrls, Vcl.Mask, Vcl.DBCtrls, Data.DB, Vcl.Grids, Vcl.DBGrids,
-  UnDMPrincipal;
+  UnDMPrincipal, Vcl.ComCtrls;
 
 type
   TFormAgenda = class(TForm)
@@ -17,14 +17,17 @@ type
     sub_painel: TPanel;
     painel_inferior: TPanel;
     Label1: TLabel;
-    Salvar: TButton;
     DBGrid1: TDBGrid;
     DBLookupComboBox1: TDBLookupComboBox;
     Novo: TButton;
     Cancelar: TButton;
     Label2: TLabel;
     Label3: TLabel;
+    DBComboBox2: TDBComboBox;
+    DateTimePicker1: TDateTimePicker;
+    Salvar: TButton;
     procedure CancelarClick(Sender: TObject);
+    procedure DateTimePicker1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure NovoClick(Sender: TObject);
     procedure SalvarClick(Sender: TObject);
@@ -60,12 +63,20 @@ begin
 
   DMAgenda.QRYAgenda.Close;
   DMAgenda.QRYAgenda.SQL.Clear;
-  DMAgenda.QRYAgenda.SQL.Add('SELECT * FROM AGENDA ' + #13 +
-    'where fk_pessoa = ' + #13 + IntToStr(DMPrincipalP.Usuarioid));
+  DMAgenda.QRYAgenda.SQL.Add
+    ('SELECT agenda.data_agendamento, agenda.hora_consulta, pessoa.nome, agenda.fk_pessoa'
+    + #13 + 'FROM AGENDA ' + #13 + 'join pessoa' + #13 +
+    'on (agenda.fk_pessoa = pessoa.id)' + #13 + 'where fk_pessoa = ' + #13 +
+    IntToStr(DMPrincipalP.Usuarioid));
 
   DMAgenda.QRYAgenda.Open;
 
+  DBComboBox2.Items.Clear;
+  DBComboBox2.Items.AddStrings(['08:00', '09:00', '10:00', '11:00', '13:00',
+    '14:00', '15:00', '16:00', '17:00']);
+
   DMAgenda.QRYAgenda.append;
+  DMAgenda.QRYPsicologo.append;
 end;
 
 procedure TFormAgenda.NovoClick(Sender: TObject);
@@ -78,12 +89,27 @@ begin
   DMAgenda.QRYAgenda.delete;
 end;
 
+procedure TFormAgenda.DateTimePicker1Click(Sender: TObject);
+begin
+  if DateTimePicker1.Date < Date then
+  begin
+    ShowMessage('Você não pode agendar uma data anterior à de hoje.');
+    exit;
+  end;
+
+end;
+
 procedure TFormAgenda.SalvarClick(Sender: TObject);
 begin
-
   if DMAgenda.QRYAgenda.State in [dsEdit, dsInsert] then
     DMAgenda.Dsagenda.DataSet.FieldByName('fk_pessoa').AsInteger :=
       DMPrincipalP.Usuarioid;
+
+  DMAgenda.QRYAgenda.FieldByName('data_agendamento').AsDateTime :=
+    DateTimePicker1.Date;
+
+  // DMAgenda.QRYAgenda.FieldByName('fk_psicologo').AsInteger :=
+  // DBLookupComboBox1.KeyValue;
 
   DMAgenda.QRYAgenda.Post;
   DMAgenda.QRYAgenda.ApplyUpdates();

@@ -33,14 +33,13 @@ type
     Label10: TLabel;
     DBEdit10: TDBEdit;
     Sair: TButton;
-    Excluir: TButton;
     Salvar: TButton;
     DBEdit1: TDBEdit;
     DBEdit2: TDBEdit;
     Button1: TButton;
     DBEdit3: TDBEdit;
+    Label11: TLabel;
     procedure Button1Click(Sender: TObject);
-    procedure ExcluirClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure SairClick(Sender: TObject);
     procedure SalvarClick(Sender: TObject);
@@ -84,15 +83,11 @@ begin
   DMUsuario.QRYUsuarioContatos.SQL.clear;
   DMUsuario.QRYUsuarioContatos.SQL.Add('Select * from contatos');
   DMUsuario.QRYUsuarioContatos.open;
-end;
 
-procedure TFormUsuario.ExcluirClick(Sender: TObject);
-begin
-  DMUsuario.QRYUsuario.delete;
-  DMUsuario.QRYUsuario.ApplyUpdates();
-  DMUsuario.QRYUsuario.CommitUpdates;
-  ShowMessage('Usuario Excluido com sucesso');
-  close;
+  Label11.caption := 'Usuario: ' + DMPrincipalP.FDQuery.FieldByName('nome')
+    .AsString + sLineBreak + 'CPF: ' + DMPrincipalP.FDQuery.FieldByName
+    ('cpf').AsString;
+
 end;
 
 procedure TFormUsuario.SairClick(Sender: TObject);
@@ -102,7 +97,7 @@ end;
 
 procedure TFormUsuario.SalvarClick(Sender: TObject);
 begin
-  if DMUsuario.QRYUsuario.State in [dsEdit, dsInsert, dsBrowse] then
+  if DMUsuario.QRYUsuario.State in [dsEdit, dsInsert] then
   begin
     DMUsuario.QRYUsuario.Post;
     DMUsuario.QRYUsuario.ApplyUpdates();

@@ -16,11 +16,11 @@ type
     sub_painel: TPanel;
     menu_central: TPanel;
     Label1: TLabel;
-    DBEdit1: TDBEdit;
     DBGrid1: TDBGrid;
     Salvar: TButton;
     painel_inferior: TPanel;
-    procedure FormCreate(Sender: TObject);
+    DBEdit1: TDBEdit;
+    procedure FormShow(Sender: TObject);
     procedure SalvarClick(Sender: TObject);
   private
     fidpaciente: Int64;
@@ -38,23 +38,25 @@ implementation
 
 {$R *.dfm}
 
-procedure TFormPsicologo.FormCreate(Sender: TObject);
+procedure TFormPsicologo.FormShow(Sender: TObject);
 begin
   DMPsicologo := TDMPsicologo.create(nil);
-  DMPsicologo.QRYPsicologos.close;
-  DMPsicologo.QRYPsicologos.SQL.Clear;
-  DMPsicologo.QRYPsicologos.SQL.Add
-    ('Select psicologo.id_psicologo, psicologo.crp, pessoa.nome' + #13 +
-    'from psicologo' + #13 + 'join pessoa' + #13 +
-    'on (psicologo.id_pessoa = pessoa.id)' + #13 +
-    'where psicologo.id_pessoa = ' + IntToStr(fidpaciente));
-  DMPsicologo.QRYPsicologos.Open;
+  DMPsicologo.QRYPessoa.close;
+  DMPsicologo.QRYPessoa.SQL.Clear;
+  DMPsicologo.QRYPessoa.SQL.Add('Select * from pessoa');
+  // 'where id = ' +
+  // IntToStr(fidpaciente));
+  // + 'where pessoa.id = ' + IntToStr(fidpaciente));
+  // [DMPrincipalP.Usuarioid]));
+  DMPsicologo.QRYPessoa.Open;
 
   DMPsicologo.QRYPsicologos.close;
   DMPsicologo.QRYPsicologos.SQL.Clear;
-  DMPsicologo.QRYPsicologos.SQL.Add('Select * from pessoa');
-//   where id =' + IntToStr(fidpaciente));
-  // [DMPrincipalP.Usuarioid]));
+  DMPsicologo.QRYPsicologos.SQL.Add
+    ('Select psicologo.crp, pessoa.nome, psicologo.id_psicologo, psicologo.id_pessoa'
+    + #13 + 'from psicologo' + #13 + 'join pessoa' + #13 +
+    'on (psicologo.id_pessoa = pessoa.id)' + #13 +
+    'where psicologo.id_pessoa = ' + IntToStr(fidpaciente));
   DMPsicologo.QRYPsicologos.Open;
 
   DMPsicologo.QRYPsicologos.Append;
@@ -66,7 +68,7 @@ begin
     idpaciente;
   DMPsicologo.QRYPsicologos.post;
   DMPsicologo.QRYPsicologos.ApplyUpdates();
-  DMPsicologo.QRYPsicologos.CommitUpdates;
+  // DMPsicologo.QRYPsicologos.CommitUpdates;
 end;
 
 end.

@@ -23,7 +23,6 @@ type
     Image2: TImage;
     Label3: TLabel;
     procedure AgendaClick(Sender: TObject);
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure UsuarioClick(Sender: TObject);
   private
@@ -53,14 +52,12 @@ begin
   end;
 end;
 
-procedure TFormPrincipal.FormClose(Sender: TObject; var Action: TCloseAction);
-begin
-  Application.Terminate;
-end;
+
 
 procedure TFormPrincipal.FormShow(Sender: TObject);
 begin
-label3.caption := DMPrincipalP.FDQuerynome.Value + sLineBreak + DMPrincipalP.FDQuerycpf.value;
+  Label3.caption := 'Usuario: ' + DMPrincipalP.FDQuery.FieldByName('nome').AsString + sLineBreak +
+   'CPF: ' + DMPrincipalP.FDQuery.FieldByName('cpf').AsString;
 end;
 
 

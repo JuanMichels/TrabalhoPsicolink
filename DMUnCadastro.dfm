@@ -5,10 +5,11 @@ object DMCadastro: TDMCadastro
   object QRYCadastro: TFDQuery
     CachedUpdates = True
     Connection = DMPrincipalP.FDConnection
+    UpdateOptions.AutoIncFields = 'id'
     SQL.Strings = (
       'Select * from pessoa')
     Left = 400
-    Top = 48
+    Top = 56
   end
   object DSCadastro: TDataSource
     DataSet = QRYCadastro
@@ -20,12 +21,12 @@ object DMCadastro: TDMCadastro
     Connection = DMPrincipalP.FDConnection
     SQL.Strings = (
       'Select * from empresa')
-    Left = 392
+    Left = 393
     Top = 168
   end
   object DSEmpresa: TDataSource
     DataSet = QRYEmpresa
     Left = 560
-    Top = 192
+    Top = 193
   end
 end

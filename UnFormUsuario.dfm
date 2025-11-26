@@ -17,14 +17,14 @@ object FormUsuario: TFormUsuario
   TextHeight = 15
   object Label1: TLabel
     Left = 8
-    Top = 120
+    Top = 126
     Width = 10
     Height = 15
     Caption = 'id'
   end
   object Label2: TLabel
-    Left = 112
-    Top = 120
+    Left = 118
+    Top = 126
     Width = 31
     Height = 15
     Caption = 'nome'
@@ -1002,6 +1002,19 @@ object FormUsuario: TFormUsuario
         000049454E44AE426082}
       Stretch = True
     end
+    object Label11: TLabel
+      Left = 456
+      Top = 16
+      Width = 40
+      Height = 15
+      Caption = 'Label11'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -12
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+    end
   end
   object sub_painel: TPanel
     Left = 0
@@ -1091,22 +1104,13 @@ object FormUsuario: TFormUsuario
     TabOrder = 9
     OnClick = SairClick
   end
-  object Excluir: TButton
-    Left = 190
-    Top = 385
-    Width = 132
-    Height = 25
-    Caption = 'Excluir Usuario'
-    TabOrder = 10
-    OnClick = ExcluirClick
-  end
   object Salvar: TButton
     Left = 345
     Top = 385
     Width = 132
     Height = 25
     Caption = 'Salvar'
-    TabOrder = 11
+    TabOrder = 10
     OnClick = SalvarClick
   end
   object DBEdit1: TDBEdit
@@ -1116,7 +1120,8 @@ object FormUsuario: TFormUsuario
     Height = 23
     DataField = 'id'
     DataSource = DMUsuario.DSUsuario
-    TabOrder = 12
+    Enabled = False
+    TabOrder = 11
   end
   object DBEdit2: TDBEdit
     Left = 118
@@ -1125,7 +1130,7 @@ object FormUsuario: TFormUsuario
     Height = 23
     DataField = 'nome'
     DataSource = DMUsuario.DSUsuario
-    TabOrder = 13
+    TabOrder = 12
   end
   object Button1: TButton
     Left = 308
@@ -1133,7 +1138,7 @@ object FormUsuario: TFormUsuario
     Width = 117
     Height = 25
     Caption = 'Telefones'
-    TabOrder = 14
+    TabOrder = 13
     OnClick = Button1Click
   end
   object DBEdit3: TDBEdit
@@ -1143,6 +1148,6 @@ object FormUsuario: TFormUsuario
     Height = 23
     DataField = 'cpf'
     DataSource = DMUsuario.DSUsuario
-    TabOrder = 15
+    TabOrder = 14
   end
 end

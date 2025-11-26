@@ -1,0 +1,113 @@
+unit UnUsuarioPsico;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls,
+  Vcl.StdCtrls, Vcl.Mask, Vcl.DBCtrls, DMUsuarioPsico, UnDMPrincipal,
+  UnAdiconarTelefone, Data.DB;
+
+type
+  TFormUsuarioPsico = class(TForm)
+    Telefone: TButton;
+    DBEdit1: TDBEdit;
+    DBEdit6: TDBEdit;
+    DBEdit2: TDBEdit;
+    DBEdit3: TDBEdit;
+    DBEdit4: TDBEdit;
+    DBEdit5: TDBEdit;
+    DBEdit7: TDBEdit;
+    DBEdit8: TDBEdit;
+    DBEdit9: TDBEdit;
+    Label1: TLabel;
+    Label10: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
+    painel_inferior: TPanel;
+    painel_superior: TPanel;
+    Image1: TImage;
+    Label11: TLabel;
+    Sair: TButton;
+    Salvar: TButton;
+    sub_painel: TPanel;
+    DBEdit10: TDBEdit;
+    Label12: TLabel;
+    procedure FormCreate(Sender: TObject);
+    procedure SairClick(Sender: TObject);
+    procedure SalvarClick(Sender: TObject);
+    procedure TelefoneClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FormUsuarioPsico: TFormUsuarioPsico;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFormUsuarioPsico.FormCreate(Sender: TObject);
+begin
+  DMUsuarioPsicol := TDMUsuarioPsicol.Create(nil);
+  DMUsuarioPsicol.QRYPessoa.Close;
+  DMUsuarioPsicol.QRYPessoa.SQL.Clear;
+  DMUsuarioPsicol.QRYPessoa.SQL.Add
+    (Format('Select * from pessoa where id =  %0:d', [DMPrincipalP.Usuarioid]));
+  DMUsuarioPsicol.QRYPessoa.Open;
+
+  DMUsuarioPsicol.QRYPsicologo.Close;
+  DMUsuarioPsicol.QRYPsicologo.SQL.Clear;
+  DMUsuarioPsicol.QRYPsicologo.SQL.Add
+    ('Select psicologo.crp, pessoa.id, psicologo.id_pessoa' + #13 +
+    'from psicologo' + #13 + 'join pessoa' + #13 +
+    'on(pessoa.id = psicologo.id_pessoa)' + #13 + 'where psicologo.id_pessoa = '
+    + IntToStr(DMPrincipalP.Usuarioid));
+  DMUsuarioPsicol.QRYPsicologo.Open;
+
+  Label11.caption := 'Usuario: ' + DMPrincipalP.FDQuery.FieldByName('nome')
+    .AsString + sLineBreak + 'CRP: ' + DMPrincipalP.QRYPsicologo.FieldByName
+    ('crp').AsString;
+end;
+
+procedure TFormUsuarioPsico.SairClick(Sender: TObject);
+begin
+  Close;
+end;
+
+procedure TFormUsuarioPsico.SalvarClick(Sender: TObject);
+begin
+  if DMUsuarioPsicol.QRYPessoa.State in [dsEdit, dsInsert] then
+  begin
+    DMUsuarioPsicol.QRYPessoa.Post;
+    DMUsuarioPsicol.QRYPessoa.ApplyUpdates();
+    DMUsuarioPsicol.QRYPessoa.CommitUpdates;
+    ShowMessage('Salvo com sucesso');
+  end;
+
+end;
+
+procedure TFormUsuarioPsico.TelefoneClick(Sender: TObject);
+var
+  Ltelefone: TFormTelefone;
+begin
+  Ltelefone := TFormTelefone.Create(nil);
+  try
+    Ltelefone.ShowModal;
+  finally
+    FreeAndNil(Ltelefone);
+  end;
+
+end;
+
+end.

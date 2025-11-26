@@ -16,7 +16,13 @@ uses
   UnDMTelefone in 'UnDMTelefone.pas' {DMTelefone: TDataModule},
   UnFormPsicologo in 'UnFormPsicologo.pas' {FormPsicologo},
   UnDMPsicologo in 'UnDMPsicologo.pas' {DMPsicologo: TDataModule},
-  UnTelefoneCadastro in 'UnTelefoneCadastro.pas' {FormCadastroTelefone};
+  UnTelefoneCadastro in 'UnTelefoneCadastro.pas' {FormCadastroTelefone},
+  UnTelaPrincipalPsicologo in 'UnTelaPrincipalPsicologo.pas',
+  Unformagendapsico in 'Unformagendapsico.pas',
+  UnUsuarioPsico in 'UnUsuarioPsico.pas' {FormUsuarioPsico},
+  DMUsuarioPsico in 'DMUsuarioPsico.pas' {DMUsuarioPsicol: TDataModule},
+  UnGridPaciente in 'UnGridPaciente.pas' {Gridpaciente},
+  UnProntuárioPaciente in 'UnProntuárioPaciente.pas' {formprontuario};
 
 {$R *.res}
 
@@ -26,5 +32,6 @@ begin
   Application.CreateForm(TDMPrincipalP, DMPrincipalP);
   Application.CreateForm(Tformlogin, formlogin);
   Application.CreateForm(Tselecao_profissional_paciente, selecao_profissional_paciente);
+  Application.CreateForm(Tformprontuario, formprontuario);
   Application.Run;
 end.

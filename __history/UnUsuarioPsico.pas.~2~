@@ -1,0 +1,54 @@
+unit UnUsuarioPsico;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls,
+  Vcl.StdCtrls, Vcl.Mask, Vcl.DBCtrls;
+
+type
+  TFormUsuarioPsico = class(TForm)
+    Button1: TButton;
+    DBEdit1: TDBEdit;
+    DBEdit6: TDBEdit;
+    DBEdit2: TDBEdit;
+    DBEdit3: TDBEdit;
+    DBEdit4: TDBEdit;
+    DBEdit5: TDBEdit;
+    DBEdit7: TDBEdit;
+    DBEdit8: TDBEdit;
+    DBEdit9: TDBEdit;
+    Label1: TLabel;
+    Label10: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
+    painel_inferior: TPanel;
+    painel_superior: TPanel;
+    Image1: TImage;
+    Label11: TLabel;
+    Sair: TButton;
+    Salvar: TButton;
+    sub_painel: TPanel;
+    DBEdit10: TDBEdit;
+    Label12: TLabel;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FormUsuarioPsico: TFormUsuarioPsico;
+
+implementation
+
+{$R *.dfm}
+
+end.

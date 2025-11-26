@@ -1,0 +1,192 @@
+unit UnCadastro;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls,
+  Vcl.StdCtrls, Vcl.Mask, Vcl.DBCtrls, DMUnCadastro, Data.DB, UnDMPrincipal,
+  UnAdiconarTelefone, UnFormPsicologo, UnTelefoneCadastro;
+
+type
+  TUnFormCadastro = class(TForm)
+    painel_superior: TPanel;
+    Image1: TImage;
+    sub_painel: TPanel;
+    menu_central: TPanel;
+    painel_inferior: TPanel;
+    LblNome: TLabel;
+    Label1: TLabel;
+    CPFEdit: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Numero: TLabel;
+    Label7: TLabel;
+    Salvar: TButton;
+    Label8: TLabel;
+    Label2: TLabel;
+    DBEdit1: TDBEdit;
+    DBEdit2: TDBEdit;
+    DBEdit3: TDBEdit;
+    DBEdit5: TDBEdit;
+    Label9: TLabel;
+    DBEdit6: TDBEdit;
+    DBEdit7: TDBEdit;
+    Label10: TLabel;
+    DBEdit8: TDBEdit;
+    DBEdit9: TDBEdit;
+    DBEdit10: TDBEdit;
+    Label11: TLabel;
+    DBEdit12: TDBEdit;
+    Label12: TLabel;
+    ADDTelefone: TButton;
+    ADDCRP: TButton;
+    Sair: TButton;
+    DBLookupComboBox1: TDBLookupComboBox;
+    procedure ADDCRPClick(Sender: TObject);
+    procedure ADDTelefoneClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure SairClick(Sender: TObject);
+    procedure SalvarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  // Form1: TForm1;
+  DMCadastro: TDMCadastro;
+  DMPrincipal: TDMPrincipalP;
+  IDAtual: Int64;
+
+implementation
+
+{$R *.dfm}
+
+procedure TUnFormCadastro.FormShow(Sender: TObject);
+begin
+
+  DMCadastro := TDMCadastro.create(nil);
+  DMCadastro.QRYCadastro.close;
+  DMCadastro.QRYCadastro.SQL.clear;
+  DMCadastro.QRYCadastro.SQL.Add('SELECT * FROM pessoa');
+  DMCadastro.QRYCadastro.open;
+
+  DMCadastro.QRYEmpresa.close;
+  DMCadastro.QRYEmpresa.SQL.clear;
+  DMCadastro.QRYEmpresa.SQL.Add('SELECT * FROM empresa');
+  DMCadastro.QRYEmpresa.open;
+
+  DMCadastro.QRYCadastro.Append;
+
+  ADDTelefone.Enabled := False;
+  ADDCRP.Enabled := False;
+end;
+
+procedure TUnFormCadastro.SalvarClick(Sender: TObject);
+
+begin
+  if DBEdit1.text = '' then
+  begin
+    Showmessage('Nome Não pode ser vazio!');
+    Exit;
+  end
+  else if DBEdit2.text = '' then
+  begin
+    Showmessage('Data de Nascimento Não pode ser vazio!');
+    Exit;
+  end
+  else if DBEdit3.text = '' then
+  begin
+    Showmessage('CPF Não pode ser vazio!');
+    Exit;
+  end
+  else if DBEdit5.text = '' then
+  begin
+    Showmessage('Email Não pode ser vazio!');
+    Exit;
+  end
+  else if DBEdit6.text = '' then
+  begin
+    Showmessage('CEP Não pode ser vazio!');
+    Exit;
+  end
+  else if DBEdit7.text = '' then
+  begin
+    Showmessage('Rua Não pode ser vazio!');
+    Exit;
+  end
+  else if DBEdit8.text = '' then
+  begin
+    Showmessage('Numero Não pode ser vazio!');
+    Exit;
+  end
+  else if DBEdit9.text = '' then
+  begin
+    Showmessage('Bairro Não pode ser vazio!');
+    Exit;
+  end
+  else if DBEdit10.text = '' then
+  begin
+    Showmessage('Senha Não pode ser vazio!');
+    Exit;
+  end
+  else if DBEdit12.text = '' then
+  begin
+    Showmessage('Confirmar senha Não pode ser vazio!');
+    Exit;
+  end
+  else if DBEdit12.text <> DBEdit10.text then
+  begin
+    Showmessage('As senhas não podem ser diferentes');
+    Exit;
+  end;
+  if DMCadastro.QRYCadastro.State in [dsedit, dsinsert] then
+
+  DMCadastro.QRYCadastro.Post;
+
+  DMCadastro.QRYCadastro.ApplyUpdates;
+
+
+  ShowMessage('Cadastrado com sucesso!');
+
+  ADDTelefone.Enabled := True;
+  ADDCRP.Enabled := True;
+end;
+
+procedure TUnFormCadastro.ADDCRPClick(Sender: TObject);
+var
+  LFormPsicologo: TFormPsicologo;
+begin
+  LFormPsicologo := TFormPsicologo.create(nil);
+  try
+    LFormPsicologo.idpaciente := DMCadastro.QRYCadastro.FieldByName('id')
+      .AsLargeInt;
+    LFormPsicologo.showModal;
+  finally
+    FreeAndNil(LFormPsicologo);
+  end;
+end;
+
+procedure TUnFormCadastro.ADDTelefoneClick(Sender: TObject);
+var
+  LformTelefone: TFormCadastroTelefone;
+begin
+  LformTelefone := TFormCadastroTelefone.create(nil);
+  try
+    LformTelefone.idpaciente := DMCadastro.QRYCadastro.FieldByName('id')
+      .AsLargeInt;
+    LformTelefone.showModal;
+  finally
+    FreeAndNil(LformTelefone);
+  end
+end;
+
+procedure TUnFormCadastro.SairClick(Sender: TObject);
+begin
+  close;
+end;
+
+end.

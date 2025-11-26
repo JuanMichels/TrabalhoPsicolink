@@ -18,6 +18,9 @@ type
     DSTipo: TDataSource;
     QRYPessoa: TFDQuery;
     DSpessoa: TDataSource;
+    QRYConsulta: TFDQuery;
+    DSConsulta: TDataSource;
+    procedure DataModuleCreate(Sender: TObject);
     procedure concetaragenda;
   private
     { Private declarations }
@@ -33,6 +36,11 @@ implementation
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
 {$R *.dfm}
+
+procedure TDMAgenda.DataModuleCreate(Sender: TObject);
+begin
+
+end;
 
 { TDMAgenda }
 

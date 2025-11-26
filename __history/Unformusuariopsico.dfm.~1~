@@ -1,0 +1,62 @@
+inherited FormUsuario2: TFormUsuario2
+  Caption = 'FormUsuario2'
+  StyleElements = [seFont, seClient, seBorder]
+  TextHeight = 15
+  inherited Label1: TLabel
+    StyleElements = [seFont, seClient, seBorder]
+  end
+  inherited Label2: TLabel
+    StyleElements = [seFont, seClient, seBorder]
+  end
+  inherited Label3: TLabel
+    StyleElements = [seFont, seClient, seBorder]
+  end
+  inherited Label4: TLabel
+    StyleElements = [seFont, seClient, seBorder]
+  end
+  inherited Label5: TLabel
+    StyleElements = [seFont, seClient, seBorder]
+  end
+  inherited Label6: TLabel
+    StyleElements = [seFont, seClient, seBorder]
+  end
+  inherited Label7: TLabel
+    StyleElements = [seFont, seClient, seBorder]
+  end
+  inherited Label8: TLabel
+    StyleElements = [seFont, seClient, seBorder]
+  end
+  inherited Label9: TLabel
+    StyleElements = [seFont, seClient, seBorder]
+  end
+  inherited Label10: TLabel
+    StyleElements = [seFont, seClient, seBorder]
+  end
+  inherited DBEdit4: TDBEdit
+    StyleElements = [seFont, seClient, seBorder]
+  end
+  inherited DBEdit5: TDBEdit
+    StyleElements = [seFont, seClient, seBorder]
+  end
+  inherited DBEdit7: TDBEdit
+    StyleElements = [seFont, seClient, seBorder]
+  end
+  inherited DBEdit8: TDBEdit
+    StyleElements = [seFont, seClient, seBorder]
+  end
+  inherited DBEdit9: TDBEdit
+    StyleElements = [seFont, seClient, seBorder]
+  end
+  inherited DBEdit10: TDBEdit
+    StyleElements = [seFont, seClient, seBorder]
+  end
+  inherited DBEdit1: TDBEdit
+    StyleElements = [seFont, seClient, seBorder]
+  end
+  inherited DBEdit2: TDBEdit
+    StyleElements = [seFont, seClient, seBorder]
+  end
+  inherited DBEdit3: TDBEdit
+    StyleElements = [seFont, seClient, seBorder]
+  end
+end

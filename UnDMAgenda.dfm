@@ -1,4 +1,5 @@
 object DMAgenda: TDMAgenda
+  OnCreate = DataModuleCreate
   Height = 750
   Width = 1000
   PixelsPerInch = 120
@@ -13,13 +14,13 @@ object DMAgenda: TDMAgenda
   object DSAgenda: TDataSource
     DataSet = QRYAgenda
     Left = 536
-    Top = 72
+    Top = 73
   end
   object QRYPsicologo: TFDQuery
     Connection = DMPrincipalP.FDConnection
     SQL.Strings = (
       'Select * from psicologo')
-    Left = 392
+    Left = 393
     Top = 168
   end
   object DSPsicologo: TDataSource
@@ -31,7 +32,7 @@ object DMAgenda: TDMAgenda
     Connection = DMPrincipalP.FDConnection
     SQL.Strings = (
       'Select * from psicologo')
-    Left = 392
+    Left = 393
     Top = 256
   end
   object DSTipo: TDataSource
@@ -44,11 +45,23 @@ object DMAgenda: TDMAgenda
     SQL.Strings = (
       'Select * from pessoa')
     Left = 376
-    Top = 352
+    Top = 353
   end
   object DSpessoa: TDataSource
     DataSet = QRYPessoa
     Left = 520
-    Top = 352
+    Top = 353
+  end
+  object QRYConsulta: TFDQuery
+    Connection = DMPrincipalP.FDConnection
+    SQL.Strings = (
+      'Select * from consulta')
+    Left = 360
+    Top = 440
+  end
+  object DSConsulta: TDataSource
+    DataSet = QRYConsulta
+    Left = 488
+    Top = 440
   end
 end

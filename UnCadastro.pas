@@ -44,9 +44,9 @@ type
     ADDCRP: TButton;
     Sair: TButton;
     DBLookupComboBox1: TDBLookupComboBox;
-    procedure FormCreate(Sender: TObject);
     procedure ADDCRPClick(Sender: TObject);
     procedure ADDTelefoneClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
     procedure SairClick(Sender: TObject);
     procedure SalvarClick(Sender: TObject);
   private
@@ -59,12 +59,13 @@ var
   // Form1: TForm1;
   DMCadastro: TDMCadastro;
   DMPrincipal: TDMPrincipalP;
+  IDAtual: Int64;
 
 implementation
 
 {$R *.dfm}
 
-procedure TUnFormCadastro.FormCreate(Sender: TObject);
+procedure TUnFormCadastro.FormShow(Sender: TObject);
 begin
 
   DMCadastro := TDMCadastro.create(nil);
@@ -80,12 +81,13 @@ begin
 
   DMCadastro.QRYCadastro.Append;
 
+  ADDTelefone.Enabled := False;
+  ADDCRP.Enabled := False;
 end;
 
 procedure TUnFormCadastro.SalvarClick(Sender: TObject);
 
 begin
-
   if DBEdit1.text = '' then
   begin
     Showmessage('Nome Não pode ser vazio!');
@@ -141,31 +143,24 @@ begin
     Showmessage('As senhas não podem ser diferentes');
     Exit;
   end;
-  // else if DMCadastro.QRYCadastro.State in [dsEdit, dsInsert, dsBrowse] then
-  // begin
-  // DMCadastro.QRYCadastro.Post;
-  // if DBEdit11.Enabled then
-  //
-  // DMCadastro.QRYPsicologo.Post;
-  // end;
-  DMCadastro.QRYCadastro.post;
+  if DMCadastro.QRYCadastro.State in [dsedit, dsinsert] then
 
-  DMCadastro.QRYCadastro.ApplyUpdates();
+    DMCadastro.QRYCadastro.Post;
+  DMCadastro.QRYCadastro.ApplyUpdates;
   DMCadastro.QRYCadastro.CommitUpdates;
   DMCadastro.QRYCadastro.Refresh;
+
   Showmessage('Cadastrado com sucesso!');
-//  DMCadastro.QRYCadastro.FieldByName('id').AsInteger;
 
-  // ModalResult := mrOk;
-  // procedure TFormPrincipal.Button1Click(Sender: TObject);
 
+  ADDTelefone.Enabled := True;
+  ADDCRP.Enabled := True;
 end;
 
 procedure TUnFormCadastro.ADDCRPClick(Sender: TObject);
 var
   LFormPsicologo: TFormPsicologo;
 begin
-  // if DMCadastro.QRYCadastro.State in [dsEdit, dsBrowse] then
   LFormPsicologo := TFormPsicologo.create(nil);
   try
     LFormPsicologo.idpaciente := DMCadastro.QRYCadastro.FieldByName('id')

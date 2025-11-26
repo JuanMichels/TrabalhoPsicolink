@@ -1,0 +1,101 @@
+unit Unformagendapsico;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls,
+  Data.DB, Vcl.Grids, Vcl.DBGrids, UnDMAgenda, Vcl.Buttons, Vcl.StdCtrls,
+  UnGridPaciente, UnDMPrincipal, UnProntuárioPaciente, Vcl.Mask, Vcl.DBCtrls;
+
+type
+  TFormAgendaPsico = class(TForm)
+    painel_superior: TPanel;
+    Image1: TImage;
+    sub_painel: TPanel;
+    painel_inferior: TPanel;
+    Label1: TLabel;
+    SpeedButton1: TSpeedButton;
+    DBEdit1: TDBEdit;
+    Label2: TLabel;
+    DBEdit2: TDBEdit;
+    Label3: TLabel;
+    DBEdit3: TDBEdit;
+    Label4: TLabel;
+    DBEdit4: TDBEdit;
+    Label5: TLabel;
+    DBEdit5: TDBEdit;
+    Label6: TLabel;
+    DBEdit6: TDBEdit;
+    Label7: TLabel;
+    DBEdit7: TDBEdit;
+    Label8: TLabel;
+    Label9: TLabel;
+    DBEdit8: TDBEdit;
+    procedure FormCreate(Sender: TObject);
+    procedure SpeedButton1Click(Sender: TObject);
+  private
+    FAgendaID: Integer;
+    FPacienteID: Integer;
+    { Private declarations }
+  public
+    { Public declarations }
+    property PacienteID: Integer read FPacienteID write FPacienteID;
+  property AgendaID: Integer read FAgendaID write FAgendaID;
+  end;
+
+var
+  FormAgendaPsico: TFormAgendaPsico;
+
+implementation
+
+{$R *.dfm}
+
+
+procedure TFormAgendaPsico.FormCreate(Sender: TObject);
+var
+Lgridpaciente: TGridpaciente;
+begin
+  DMAgenda := TDMAgenda.Create(nil);
+
+  DMAgenda.QRYPessoa.Close;
+  DMAgenda.QRYPessoa.SQL.Clear;
+  DMAgenda.QRYPessoa.SQL.Add('Select * from pessoa');
+//   where id = %0:d', [DMPrincipalP.Usuarioid]));
+// DMAgenda.QRYPessoa.SQL.Text :=
+//        'SELECT * FROM pessoa WHERE id = :id';
+      DMAgenda.QRYPessoa.ParamByName('id').AsInteger := PacienteID;
+  DMAgenda.QRYPessoa.Open;
+
+  DMAgenda.QRYPsicologo.Close;
+  DMAgenda.QRYPsicologo.SQL.Clear;
+  DMAgenda.QRYPsicologo.SQL.Add('SELECT * FROM psicologo where id_psicologo = '
+    + IntToStr(DMPrincipalP.Usuarioid));
+    DMAgenda.QRYPessoa.ParamByName('id').AsInteger := FPacienteID;
+  DMAgenda.QRYPsicologo.Open;
+
+  DMAgenda.QRYAgenda.Close;
+  DMAgenda.QRYAgenda.SQL.Clear;
+  DMAgenda.QRYAgenda.SQL.Add
+    ('SELECT agenda.data_agendamento, agenda.hora_consulta, pessoa.nome, agenda.fk_pessoa'
+    + #13 + 'FROM AGENDA ' + #13 + 'join pessoa' + #13 +
+    'on (agenda.fk_pessoa = pessoa.id)' + #13 + 'where fk_pessoa = ' + #13 +
+    IntToStr(DMPrincipalP.Usuarioid));
+    DMAgenda.QRYAgenda.ParamByName('id').AsInteger := FAgendaID;
+  DMAgenda.QRYAgenda.Open;
+end;
+
+procedure TFormAgendaPsico.SpeedButton1Click(Sender: TObject);
+var
+  Lgridpaciente: TGridpaciente;
+begin
+  Lgridpaciente := TGridpaciente.Create(nil);
+  try
+    Lgridpaciente.ShowModal
+  finally
+    FreeAndNil(Lgridpaciente);
+  end;
+end;
+
+end.

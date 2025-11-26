@@ -12,6 +12,8 @@ type
   TDMPsicologo = class(TDataModule)
     QRYPsicologos: TFDQuery;
     DSPsicologo: TDataSource;
+    QRYPessoa: TFDQuery;
+    DSPessoa: TDataSource;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }

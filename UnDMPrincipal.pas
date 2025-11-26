@@ -15,10 +15,6 @@ type
     FDConnection: TFDConnection;
     FDPhysPgDriverLink: TFDPhysPgDriverLink;
     FDQuery: TFDQuery;
-    FDQueryid: TLargeintField;
-    FDQuerycpf: TWideStringField;
-    FDQuerysenha: TWideStringField;
-    FDQuerynome: TWideStringField;
     DSLogin: TDataSource;
     QRYPsicologo: TFDQuery;
     DSPsicologo: TDataSource;

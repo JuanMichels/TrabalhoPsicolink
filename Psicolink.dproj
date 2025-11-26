@@ -1,6 +1,6 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-        <ProjectGuid>{FEC3E7D1-F893-4F30-8EED-6ECE40318B1B}</ProjectGuid>
+        <ProjectGuid>{69D70019-F08D-408D-B5A4-BD3FBB8467D5}</ProjectGuid>
         <ProjectVersion>20.3</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <Base>True</Base>
@@ -189,6 +189,29 @@
         </DCCReference>
         <DCCReference Include="UnTelefoneCadastro.pas">
             <Form>FormCadastroTelefone</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UnTelaPrincipalPsicologo.pas">
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Unformagendapsico.pas">
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UnUsuarioPsico.pas">
+            <Form>FormUsuarioPsico</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="DMUsuarioPsico.pas">
+            <Form>DMUsuarioPsicol</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="UnGridPaciente.pas">
+            <Form>Gridpaciente</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UnProntuárioPaciente.pas">
+            <Form>formprontuario</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Base">

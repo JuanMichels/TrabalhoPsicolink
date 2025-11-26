@@ -12,7 +12,6 @@ object FormPrincipal: TFormPrincipal
   Font.Name = 'Segoe UI'
   Font.Style = []
   Position = poDesktopCenter
-  OnClose = FormClose
   OnShow = FormShow
   DesignSize = (
     692
@@ -28,8 +27,7 @@ object FormPrincipal: TFormPrincipal
     ParentBackground = False
     TabOrder = 0
     StyleName = 'Windows'
-    ExplicitLeft = 8
-    ExplicitTop = -6
+    ExplicitWidth = 690
     object Image1: TImage
       Left = 8
       Top = 6
@@ -974,16 +972,16 @@ object FormPrincipal: TFormPrincipal
   object menu_central: TPanel
     Left = 128
     Top = 168
-    Width = 421
+    Width = 417
     Height = 257
     Anchors = [akLeft, akTop, akRight]
     Color = clLightgray
     ParentBackground = False
     TabOrder = 3
     StyleName = 'Windows'
-    ExplicitWidth = 419
+    ExplicitWidth = 415
     DesignSize = (
-      421
+      417
       257)
     object Label1: TLabel
       Left = 120
@@ -1914,7 +1912,7 @@ object FormPrincipal: TFormPrincipal
     object Usuario: TPanel
       Left = 8
       Top = 200
-      Width = 181
+      Width = 177
       Height = 41
       Anchors = [akLeft, akTop, akRight]
       BorderStyle = bsSingle
@@ -1930,12 +1928,12 @@ object FormPrincipal: TFormPrincipal
       TabOrder = 0
       StyleName = 'Windows'
       OnClick = UsuarioClick
-      ExplicitWidth = 179
+      ExplicitWidth = 175
     end
     object Agenda: TPanel
       Left = 232
       Top = 200
-      Width = 181
+      Width = 177
       Height = 41
       Anchors = [akLeft, akTop, akRight]
       BorderStyle = bsSingle
@@ -1951,7 +1949,7 @@ object FormPrincipal: TFormPrincipal
       TabOrder = 1
       StyleName = 'Windows'
       OnClick = AgendaClick
-      ExplicitWidth = 179
+      ExplicitWidth = 175
     end
   end
 end

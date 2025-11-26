@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
-  Vcl.Imaging.pngimage, UnFormUsuario, Unformagendapsico;
+  Vcl.Imaging.pngimage, UnUsuarioPsico, Unformagendapsico, UnDMPrincipal, UnDMAgenda;
 
 type
   TFormprincipalpsicologo = class(TForm)
@@ -17,8 +17,10 @@ type
     agenda: TButton;
     pacientes: TButton;
     Perfil: TButton;
+    Label1: TLabel;
+    Relatorio: TButton;
     procedure agendaClick(Sender: TObject);
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormShow(Sender: TObject);
     procedure PerfilClick(Sender: TObject);
   private
     { Private declarations }
@@ -39,23 +41,25 @@ var
 begin
   LFormAgenda := TFormAgendaPsico.create(nil);
   try
+
     LFormAgenda.showModal;
   finally
     FreeAndNil(LFormAgenda);
   end;
 end;
 
-procedure TFormprincipalpsicologo.FormClose(Sender: TObject;
-  var Action: TCloseAction);
+
+procedure TFormprincipalpsicologo.FormShow(Sender: TObject);
 begin
-  Application.Terminate;
+  label1.caption := 'Usuario: ' + DMPrincipalP.FDQuery.FieldByName('nome').AsString + sLineBreak +
+  'CRP: ' + DMPrincipalP.QRYPsicologo.FieldByName('crp').AsString;
 end;
 
 procedure TFormprincipalpsicologo.PerfilClick(Sender: TObject);
 var
-  LFormUsuario: TFormUsuario;
+  LFormUsuario: TFormUsuarioPsico;
 begin
-  LFormUsuario := TFormUsuario.create(nil);
+  LFormUsuario := TFormUsuarioPsico.create(nil);
   try
     LFormUsuario.showModal;
 

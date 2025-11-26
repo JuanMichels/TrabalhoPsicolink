@@ -1,0 +1,25 @@
+unit Unformusuariopsico;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, UnFormUsuario, Vcl.StdCtrls, Vcl.Mask,
+  Vcl.ExtCtrls, Vcl.DBCtrls, Vcl.Imaging.pngimage;
+
+type
+  TFormUsuario2 = class(TFormUsuario)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FormUsuario2: TFormUsuario2;
+
+implementation
+
+{$R *.dfm}
+
+end.
