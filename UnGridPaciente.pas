@@ -17,12 +17,13 @@ type
     { Private declarations }
   public
     { Public declarations }
+    SelectIDAgenda: Integer;
+  SelectIDPaciente: Integer;
   end;
 
 var
   Gridpaciente: TGridpaciente;
-  SelectIDAgenda: Integer;
-  SelectIDPaciente: Integer;
+
 
 implementation
 
@@ -51,7 +52,7 @@ begin
   DMAgenda.QRYAgenda.SQL.Clear;
   DMAgenda.QRYAgenda.Params.Clear;
   DMAgenda.QRYAgenda.SQL.Add
-    ('SELECT  pessoa.nome, agenda.data_agendamento, agenda.hora_consulta, agenda.fk_pessoa, pessoa.id, agenda.id'
+    ('SELECT  pessoa.nome, pessoa.cpf, agenda.data_agendamento, agenda.hora_consulta, agenda.id, agenda.fk_pessoa, pessoa.id as idpaciente'
     + #13 + 'FROM AGENDA ' + #13 + 'join pessoa' + #13 +
     'on (agenda.fk_pessoa = pessoa.id)'
      + #13 + 'where pessoa.id = ' + #13 +

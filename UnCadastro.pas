@@ -39,11 +39,9 @@ type
     DBEdit10: TDBEdit;
     Label11: TLabel;
     DBEdit12: TDBEdit;
-    Label12: TLabel;
     ADDTelefone: TButton;
     ADDCRP: TButton;
     Sair: TButton;
-    DBLookupComboBox1: TDBLookupComboBox;
     procedure ADDCRPClick(Sender: TObject);
     procedure ADDTelefoneClick(Sender: TObject);
     procedure FormShow(Sender: TObject);

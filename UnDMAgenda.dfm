@@ -53,6 +53,7 @@ object DMAgenda: TDMAgenda
     Top = 353
   end
   object QRYConsulta: TFDQuery
+    CachedUpdates = True
     Connection = DMPrincipalP.FDConnection
     SQL.Strings = (
       'Select * from consulta')

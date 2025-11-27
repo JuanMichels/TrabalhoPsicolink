@@ -1,0 +1,126 @@
+unit Unformagendapsico;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls,
+  Data.DB, Vcl.Grids, Vcl.DBGrids, UnDMAgenda, Vcl.Buttons, Vcl.StdCtrls,
+  UnGridPaciente, UnDMPrincipal, UnProntuárioPaciente, Vcl.Mask, Vcl.DBCtrls;
+
+type
+  TFormAgendaPsico = class(TForm)
+    painel_superior: TPanel;
+    Image1: TImage;
+    sub_painel: TPanel;
+    painel_inferior: TPanel;
+    Label1: TLabel;
+    SpeedButton1: TSpeedButton;
+    DBEdit1: TDBEdit;
+    Label2: TLabel;
+    DBEdit2: TDBEdit;
+    Label3: TLabel;
+    DBEdit3: TDBEdit;
+    Label4: TLabel;
+    DBEdit4: TDBEdit;
+    Label5: TLabel;
+    DBEdit5: TDBEdit;
+    Label6: TLabel;
+    DBEdit6: TDBEdit;
+    Label7: TLabel;
+    DBEdit7: TDBEdit;
+    Label8: TLabel;
+    Label9: TLabel;
+    DBEdit8: TDBEdit;
+    Salvar: TButton;
+    Novo: TButton;
+    Label10: TLabel;
+    procedure FormShow(Sender: TObject);
+    procedure NovoClick(Sender: TObject);
+    procedure SalvarClick(Sender: TObject);
+    procedure SpeedButton1Click(Sender: TObject);
+  private
+    FAgendaID: Integer;
+    FPacienteID: Integer;
+    { Private declarations }
+  public
+    { Public declarations }
+    // property PacienteID: Integer read FPacienteID write FPacienteID;
+    // property AgendaID: Integer read FAgendaID write FAgendaID;
+    PacienteID: Integer;
+    AgendaID: Integer;
+  end;
+
+var
+  FormAgendaPsico: TFormAgendaPsico;
+  Idpaciente: Int64;
+  idagenda: Int64;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFormAgendaPsico.FormShow(Sender: TObject);
+begin
+  Label10.caption := 'Usuario: ' + DMPrincipalP.FDQuery.FieldByName('nome')
+    .AsString + sLineBreak + 'CRP: ' + DMPrincipalP.QRYPsicologo.FieldByName
+    ('crp').AsString;
+
+end;
+
+procedure TFormAgendaPsico.NovoClick(Sender: TObject);
+begin
+  DMAgenda.QRYConsulta.Append;
+  DMAgenda.QRYAgenda.Append;
+  DMAgenda.QRYPessoa.Append;
+end;
+
+
+
+
+procedure TFormAgendaPsico.SpeedButton1Click(Sender: TObject);
+var
+  Lgridpaciente: TGridpaciente;
+begin
+  Lgridpaciente := TGridpaciente.Create(nil);
+  try
+    Lgridpaciente.ShowModal;
+
+    DMAgenda.QRYAgenda.Locate(' fk_pessoa; id',
+      VarArrayOf([Lgridpaciente.SelectIDPaciente,
+      Lgridpaciente.SelectIDAgenda]), []);
+    DBEdit1.Text := DMAgenda.QRYAgenda.FieldByName('fk_pessoa').AsString;
+    DBEdit2.Text := DMAgenda.QRYAgenda.FieldByName('nome').AsString;
+    DBEdit3.Text := DMAgenda.QRYAgenda.FieldByName('cpf').AsString;
+    Idpaciente := DMAgenda.QRYAgenda.FieldByName('fk_pessoa').AsInteger;
+    idagenda := DMAgenda.QRYAgenda.FieldByName('id').AsInteger;
+
+    DMAgenda.QRYConsulta.Close;
+    DMAgenda.QRYConsulta.SQL.Clear;
+    DMAgenda.QRYConsulta.SQL.Add('Select * from consulta');
+    DMAgenda.QRYConsulta.Open;
+
+  finally
+    FreeAndNil(Lgridpaciente);
+  end;
+end;
+
+procedure TFormAgendaPsico.SalvarClick(Sender: TObject);
+begin
+  if DMAgenda.QRYConsulta.State in [dsInsert, dsEdit] then
+  begin
+  DMAgenda.DSConsulta.DataSet.FieldByName('fk_pessoa').AsInteger := Idpaciente;
+  DMAgenda.DSConsulta.DataSet.FieldByName('fk_agenda').AsInteger := idagenda;
+  DMAgenda.DSConsulta.DataSet.FieldByName('id').Value := + 2;
+
+    DMAgenda.QRYConsulta.post;
+    DMAgenda.QRYConsulta.ApplyUpdates();
+    DMAgenda.QRYConsulta.CommitUpdates;
+    DMAgenda.QRYConsulta.Refresh;
+    ShowMessage('Diagnostico salvo');
+    DMAgenda.QRYConsulta.Append;
+  end;
+end;
+
+end.

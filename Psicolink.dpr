@@ -22,7 +22,9 @@ uses
   UnUsuarioPsico in 'UnUsuarioPsico.pas' {FormUsuarioPsico},
   DMUsuarioPsico in 'DMUsuarioPsico.pas' {DMUsuarioPsicol: TDataModule},
   UnGridPaciente in 'UnGridPaciente.pas' {Gridpaciente},
-  UnProntuárioPaciente in 'UnProntuárioPaciente.pas' {formprontuario};
+  UnProntuárioPaciente in 'UnProntuárioPaciente.pas' {formprontuario},
+  UnRelatórioFiltro in 'UnRelatórioFiltro.pas' {RelatorioBusca},
+  UnRelatorioPCT in 'UnRelatorioPCT.pas' {RelatorioPCTES};
 
 {$R *.res}
 
@@ -32,6 +34,6 @@ begin
   Application.CreateForm(TDMPrincipalP, DMPrincipalP);
   Application.CreateForm(Tformlogin, formlogin);
   Application.CreateForm(Tselecao_profissional_paciente, selecao_profissional_paciente);
-  Application.CreateForm(Tformprontuario, formprontuario);
+  Application.CreateForm(TRelatorioPCTES, RelatorioPCTES);
   Application.Run;
 end.

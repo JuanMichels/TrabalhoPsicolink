@@ -214,6 +214,14 @@
             <Form>formprontuario</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="UnRelatórioFiltro.pas">
+            <Form>RelatorioBusca</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UnRelatorioPCT.pas">
+            <Form>RelatorioPCTES</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

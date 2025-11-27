@@ -1,0 +1,26 @@
+unit RelatorioFiltro;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RLReport, Data.DB;
+
+type
+  TRelatorioPCT = class(TForm)
+    RelatorioPCTE: TRLReport;
+    DSRelatorio: TDataSource;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  RelatorioPCT: TRelatorioPCT;
+
+implementation
+
+{$R *.dfm}
+
+end.

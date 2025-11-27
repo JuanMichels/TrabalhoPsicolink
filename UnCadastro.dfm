@@ -945,7 +945,7 @@ object UnFormCadastro: TUnFormCadastro
   object menu_central: TPanel
     Left = 160
     Top = 128
-    Width = 433
+    Width = 431
     Height = 312
     Anchors = [akLeft, akTop, akRight]
     Color = clLightgray
@@ -954,6 +954,7 @@ object UnFormCadastro: TUnFormCadastro
     ParentCtl3D = False
     TabOrder = 2
     StyleName = 'Windows'
+    ExplicitWidth = 429
     object LblNome: TLabel
       Left = 20
       Top = 11
@@ -1040,13 +1041,6 @@ object UnFormCadastro: TUnFormCadastro
       Height = 15
       Caption = 'confirmarsenha'
       FocusControl = DBEdit12
-    end
-    object Label12: TLabel
-      Left = 280
-      Top = 259
-      Width = 45
-      Height = 15
-      Caption = 'Empresa'
     end
     object DBEdit1: TDBEdit
       Left = 16
@@ -1157,18 +1151,6 @@ object UnFormCadastro: TUnFormCadastro
       DataSource = DMCadastro.DSCadastro
       PasswordChar = '*'
       TabOrder = 9
-    end
-    object DBLookupComboBox1: TDBLookupComboBox
-      Left = 280
-      Top = 280
-      Width = 145
-      Height = 21
-      DataField = 'empresaid'
-      DataSource = DMCadastro.DSCadastro
-      KeyField = 'id'
-      ListField = 'nome'
-      ListSource = DMCadastro.DSEmpresa
-      TabOrder = 10
     end
   end
   object painel_inferior: TPanel

@@ -1,0 +1,76 @@
+unit UnRelatórioFiltro;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
+  Vcl.Imaging.pngimage, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB,
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, UnRelatorioPCT, Vcl.Mask,
+  Vcl.DBCtrls, UnDMPrincipal;
+
+type
+  TRelatorioBusca = class(TForm)
+    painel_superior: TPanel;
+    Label1: TLabel;
+    Panel1: TPanel;
+    Image1: TImage;
+    Gerar: TButton;
+    Label2: TLabel;
+    QRYRelatorio: TFDQuery;
+    NomePct: TEdit;
+    procedure FormShow(Sender: TObject);
+    procedure GerarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  RelatorioBusca: TRelatorioBusca;
+
+implementation
+
+{$R *.dfm}
+
+procedure TRelatorioBusca.FormShow(Sender: TObject);
+begin
+  Label1.caption := 'Usuario: ' + DMPrincipalP.FDQuery.FieldByName('nome')
+    .AsString + sLineBreak + 'CRP: ' + DMPrincipalP.QRYPsicologo.FieldByName
+    ('crp').AsString;
+end;
+
+procedure TRelatorioBusca.GerarClick(Sender: TObject);
+const
+  CSql = 'Select consulta.data_consulta, pessoa.nome, pessoa.cpf, agenda.hora_consulta, consulta.hora_consulta as saida' + #13 +
+    'from pessoa' + #13 + 'join consulta' + #13 +
+    'on (pessoa.id = consulta.fk_pessoa)' + #13 + 'join agenda' + #13 + 'on (consulta.fk_agenda = agenda.id)'
+    + #13 + 'where consulta.id > 0';
+var
+  LSQL: string;
+  LformRelatorio: TRelatorioPCTES;
+begin
+  LSQL := CSql;
+  if trim(NomePct.Text) <> EmptyStr then
+  begin
+    LSQL := LSQL + #13 + 'AND UPPER(pessoa.nome) LIKE ' +
+      QuotedStr('%' + UpperCase(trim(NomePct.Text)) + '%');
+  end;
+  QRYRelatorio.close;
+  QRYRelatorio.SQL.Clear;
+  QRYRelatorio.SQL.Add(LSQL);
+  QRYRelatorio.Open;
+  LformRelatorio := TRelatorioPCTES.Create(nil);
+  try
+    LformRelatorio.DSRelatorio.DataSet := QRYRelatorio;
+    LformRelatorio.RLReportPCT.preview;
+  finally
+    FreeAndNil(LformRelatorio);
+  end;
+end;
+
+end.

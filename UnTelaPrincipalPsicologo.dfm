@@ -8236,30 +8236,23 @@ object Formprincipalpsicologo: TFormprincipalpsicologo
       TabOrder = 0
       OnClick = agendaClick
     end
-    object pacientes: TButton
-      Left = 8
-      Top = 64
-      Width = 105
-      Height = 25
-      Caption = 'Pacientes'
-      TabOrder = 1
-    end
     object Perfil: TButton
       Left = 8
       Top = 281
       Width = 105
       Height = 25
       Caption = 'Perfil'
-      TabOrder = 2
+      TabOrder = 1
       OnClick = PerfilClick
     end
     object Relatorio: TButton
       Left = 8
-      Top = 104
+      Top = 64
       Width = 105
       Height = 25
       Caption = 'Relat'#243'rio de consultas'
-      TabOrder = 3
+      TabOrder = 2
+      OnClick = RelatorioClick
     end
   end
 end

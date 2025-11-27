@@ -51,9 +51,9 @@ uses
 procedure Tformlogin.FormCreate(Sender: TObject);
 begin
   DMPrincipalP.buscarbanco;
-  self.CPFEdit.Text := '08840214917';
-  self.CRP.Text := '123456';
-  self.SenhaEdit.Text := '123456';
+//  self.CPFEdit.Text := '08840214917';
+//  self.CRP.Text := '123456';
+//  self.SenhaEdit.Text := '123456';
 end;
 
 procedure Tformlogin.CadastroClick(Sender: TObject);

@@ -1,0 +1,52 @@
+object RelatorioPCT: TRelatorioPCT
+  Left = 0
+  Top = 0
+  Caption = 'RelatorioPCT'
+  ClientHeight = 441
+  ClientWidth = 624
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  TextHeight = 15
+  object RelatorioPCTE: TRLReport
+    Left = -8
+    Top = 0
+    Width = 992
+    Height = 1403
+    DataSource = DSRelatorio
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -17
+    Font.Name = 'Arial'
+    Font.Style = []
+    object cabecalho: TRLBand
+      Left = 47
+      Top = 47
+      Width = 898
+      Height = 66
+      BandType = btHeader
+    end
+    object Rodape: TRLBand
+      Left = 47
+      Top = 113
+      Width = 898
+      Height = 56
+      BandType = btFooter
+      object Data: TRLSystemInfo
+        Left = 16
+        Top = 24
+        Width = 76
+        Height = 19
+        Info = itFullDate
+        Text = ''
+      end
+    end
+  end
+  object DSRelatorio: TDataSource
+    Left = 16
+    Top = 288
+  end
+end

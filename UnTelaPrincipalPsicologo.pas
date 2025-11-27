@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
-  Vcl.Imaging.pngimage, UnUsuarioPsico, Unformagendapsico, UnDMPrincipal, UnDMAgenda;
+  Vcl.Imaging.pngimage, UnUsuarioPsico, Unformagendapsico, UnDMPrincipal, UnDMAgenda, UnRelatórioFiltro;
 
 type
   TFormprincipalpsicologo = class(TForm)
@@ -15,13 +15,13 @@ type
     Panel1: TPanel;
     Panel2: TPanel;
     agenda: TButton;
-    pacientes: TButton;
     Perfil: TButton;
     Label1: TLabel;
     Relatorio: TButton;
     procedure agendaClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure PerfilClick(Sender: TObject);
+    procedure RelatorioClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -65,6 +65,18 @@ begin
 
   finally
     FreeAndNil(LFormUsuario);
+  end;
+end;
+
+procedure TFormprincipalpsicologo.RelatorioClick(Sender: TObject);
+var
+  lformrelatorio : TRelatorioBusca;
+begin
+  lformrelatorio := TRelatorioBusca.Create(nil);
+  try
+    lformrelatorio.ShowModal;
+  finally
+    FreeAndNil(lformrelatorio);
   end;
 end;
 

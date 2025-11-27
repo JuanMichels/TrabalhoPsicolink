@@ -33,7 +33,12 @@ type
     Label8: TLabel;
     Label9: TLabel;
     DBEdit8: TDBEdit;
-    procedure FormCreate(Sender: TObject);
+    Salvar: TButton;
+    Novo: TButton;
+    Label10: TLabel;
+    procedure FormShow(Sender: TObject);
+    procedure NovoClick(Sender: TObject);
+    procedure SalvarClick(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
   private
     FAgendaID: Integer;
@@ -49,17 +54,30 @@ type
 
 var
   FormAgendaPsico: TFormAgendaPsico;
+  Idpaciente: Int64;
+  idagenda: Int64;
 
 implementation
 
 {$R *.dfm}
 
-procedure TFormAgendaPsico.FormCreate(Sender: TObject);
-var
-  Lgridpaciente: TGridpaciente;
+procedure TFormAgendaPsico.FormShow(Sender: TObject);
 begin
+  Label10.caption := 'Usuario: ' + DMPrincipalP.FDQuery.FieldByName('nome')
+    .AsString + sLineBreak + 'CRP: ' + DMPrincipalP.QRYPsicologo.FieldByName
+    ('crp').AsString;
 
 end;
+
+procedure TFormAgendaPsico.NovoClick(Sender: TObject);
+begin
+  DMAgenda.QRYConsulta.Append;
+  DMAgenda.QRYAgenda.Append;
+  DMAgenda.QRYPessoa.Append;
+end;
+
+
+
 
 procedure TFormAgendaPsico.SpeedButton1Click(Sender: TObject);
 var
@@ -67,49 +85,40 @@ var
 begin
   Lgridpaciente := TGridpaciente.Create(nil);
   try
-    Lgridpaciente.ShowModal
+    Lgridpaciente.ShowModal;
+
+    DMAgenda.QRYAgenda.Locate(' fk_pessoa; id',
+      VarArrayOf([Lgridpaciente.SelectIDPaciente,
+      Lgridpaciente.SelectIDAgenda]), []);
+    DBEdit1.Text := DMAgenda.QRYAgenda.FieldByName('fk_pessoa').AsString;
+    DBEdit2.Text := DMAgenda.QRYAgenda.FieldByName('nome').AsString;
+    DBEdit3.Text := DMAgenda.QRYAgenda.FieldByName('cpf').AsString;
+    Idpaciente := DMAgenda.QRYAgenda.FieldByName('fk_pessoa').AsInteger;
+    idagenda := DMAgenda.QRYAgenda.FieldByName('id').AsInteger;
+
+    DMAgenda.QRYConsulta.Close;
+    DMAgenda.QRYConsulta.SQL.Clear;
+    DMAgenda.QRYConsulta.SQL.Add('Select * from consulta');
+    DMAgenda.QRYConsulta.Open;
+
   finally
-    AgendaID := UnGridPaciente.SelectIDAgenda;
-    PacienteID := UnGridPaciente.SelectIDPaciente;
-    DMAgenda.QRYAgenda.Close;
-    DMAgenda.QRYAgenda.SQL.Clear;
-    DMAgenda.QRYAgenda.SQL.Add
-      ('SELECT agenda.data_agendamento, agenda.hora_consulta, pessoa.nome, agenda.fk_pessoa'
-      + #13 + 'FROM AGENDA ' + #13 + 'join pessoa' + #13 +
-      'on (agenda.fk_pessoa = pessoa.id)' + #13 + 'where fk_pessoa = ' + #13 +
-      IntToStr(DMPrincipalP.Usuarioid));
-    DMAgenda.QRYAgenda.ParamByName('id').AsInteger := FAgendaID;
-    DMAgenda.QRYAgenda.Open;
-
-    // DMAgenda := TDMAgenda.Create(nil);
-    DMAgenda.QRYPessoa.Close;
-    DMAgenda.QRYPessoa.SQL.Clear;
-    DMAgenda.QRYPessoa.SQL.Add('Select * from pessoa');
-    // where id = %0:d', [DMPrincipalP.Usuarioid]));
-    // DMAgenda.QRYPessoa.SQL.Text :=
-    // 'SELECT * FROM pessoa WHERE id = :id';
-    DMAgenda.QRYPessoa.ParamByName('id').AsInteger := PacienteID;
-    DMAgenda.QRYPessoa.Open;
-
-    DMAgenda.QRYPsicologo.Close;
-    DMAgenda.QRYPsicologo.SQL.Clear;
-    DMAgenda.QRYPsicologo.SQL.Add
-      ('SELECT * FROM psicologo where id_psicologo = ' +
-      IntToStr(DMPrincipalP.Usuarioid));
-    DMAgenda.QRYPessoa.ParamByName('id').AsInteger := FPacienteID;
-    DMAgenda.QRYPsicologo.Open;
-
-    DMAgenda.QRYAgenda.Close;
-    DMAgenda.QRYAgenda.SQL.Clear;
-    DMAgenda.QRYAgenda.SQL.Add
-      ('SELECT agenda.data_agendamento, agenda.hora_consulta, pessoa.nome, agenda.fk_pessoa'
-      + #13 + 'FROM AGENDA ' + #13 + 'join pessoa' + #13 +
-      'on (agenda.fk_pessoa = pessoa.id)' + #13 + 'where fk_pessoa = ' + #13 +
-      IntToStr(DMPrincipalP.Usuarioid));
-    DMAgenda.QRYAgenda.ParamByName('id').AsInteger := FAgendaID;
-    DMAgenda.QRYAgenda.Open;
-
     FreeAndNil(Lgridpaciente);
+  end;
+end;
+
+procedure TFormAgendaPsico.SalvarClick(Sender: TObject);
+begin
+  if DMAgenda.QRYConsulta.State in [dsInsert, dsEdit] then
+  begin
+  DMAgenda.QRYConsulta.Append;
+  DMAgenda.DSConsulta.DataSet.FieldByName('fk_pessoa').AsInteger := Idpaciente;
+  DMAgenda.DSConsulta.DataSet.FieldByName('fk_agenda').AsInteger := idagenda;
+  DMAgenda.DSConsulta.DataSet.FieldByName('id').AsInteger;
+    DMAgenda.QRYConsulta.post;
+    DMAgenda.QRYConsulta.ApplyUpdates();
+    DMAgenda.QRYConsulta.CommitUpdates;
+    ShowMessage('Diagnostico salvo');
+
   end;
 end;
 

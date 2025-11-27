@@ -34,6 +34,11 @@ object Gridpaciente: TGridpaciente
       end
       item
         Expanded = False
+        FieldName = 'fk_pessoa'
+        Visible = True
+      end
+      item
+        Expanded = False
         FieldName = 'nome'
         Visible = True
       end

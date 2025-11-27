@@ -52,7 +52,7 @@ begin
 
   DMAgenda.QRYPessoa.Close;
   DMAgenda.QRYPessoa.SQL.Clear;
-  DMAgenda.QRYPessoa.SQL.Add(Format('Select * from pessoa where id =  %0:d',
+  DMAgenda.QRYPessoa.SQL.Add(format('Select * from pessoa where id =  %0:d',
     [DMPrincipalP.Usuarioid]));
   DMAgenda.QRYPessoa.Open;
 
@@ -64,7 +64,7 @@ begin
   DMAgenda.QRYAgenda.Close;
   DMAgenda.QRYAgenda.SQL.Clear;
   DMAgenda.QRYAgenda.SQL.Add
-    ('SELECT agenda.data_agendamento, agenda.hora_consulta, pessoa.nome, agenda.fk_pessoa'
+    ('SELECT agenda.id, agenda.data_agendamento, agenda.hora_consulta, pessoa.nome, agenda.fk_pessoa'
     + #13 + 'FROM AGENDA ' + #13 + 'join pessoa' + #13 +
     'on (agenda.fk_pessoa = pessoa.id)' + #13 + 'where fk_pessoa = ' + #13 +
     IntToStr(DMPrincipalP.Usuarioid));
@@ -74,6 +74,8 @@ begin
   DBComboBox2.Items.Clear;
   DBComboBox2.Items.AddStrings(['08:00', '09:00', '10:00', '11:00', '13:00',
     '14:00', '15:00', '16:00', '17:00']);
+
+  DateTimePicker1.Date := Date;
 
   DMAgenda.QRYAgenda.append;
   DMAgenda.QRYPsicologo.append;
@@ -101,9 +103,10 @@ end;
 
 procedure TFormAgenda.SalvarClick(Sender: TObject);
 begin
-  if DMAgenda.QRYAgenda.State in [dsEdit, dsInsert] then
-    DMAgenda.Dsagenda.DataSet.FieldByName('fk_pessoa').AsInteger :=
-      DMPrincipalP.Usuarioid;
+   if DMAgenda.QRYAgenda.State in [dsEdit, dsInsert] then
+
+  DMAgenda.Dsagenda.DataSet.FieldByName('fk_pessoa').AsInteger :=
+    DMPrincipalP.Usuarioid;
 
   DMAgenda.QRYAgenda.FieldByName('data_agendamento').AsDateTime :=
     DateTimePicker1.Date;
@@ -113,7 +116,6 @@ begin
 
   DMAgenda.QRYAgenda.Post;
   DMAgenda.QRYAgenda.ApplyUpdates();
-  DMAgenda.QRYAgenda.append;
 end;
 
 end.
